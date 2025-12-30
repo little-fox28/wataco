@@ -1,0 +1,15 @@
+@import url('[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap)');
+@import "tailwindcss";
+
+
+@theme {
+  --color-jerseyDark: #163300;
+  --color-jerseyNeon: #65cf21;
+  --color-jerseyLightNeon: #9fe870;
+  --color-jerseyBlack: #0d1f00;
+  --color-jerseyGray: #f3f4f6;
+
+
+  --font-sans: "Inter", sans-serif;
+  --font-sport: "Oswald", sans-serif;
+}
