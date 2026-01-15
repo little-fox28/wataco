@@ -5,7 +5,7 @@ import { Factory, Home, Sprout, Sun, Cpu, Battery, Zap, Building2, TrendingUp, W
 const translations: { [key in Language]: TranslationContent } = {
   VN: {
     // Updated Nav Items
-    nav: ["Trang chủ", "Dự án", "Sản phẩm", "Tin tức"],
+    nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
     heroH1: "KỸ THUẬT\nNHẬT BẢN.\nNĂNG LƯỢNG\nVIỆT NAM.",
     heroSub: "Kế thừa di sản kỹ thuật từ Watanabe Create Group (Sendai, Nhật Bản) để thúc đẩy quá trình chuyển đổi năng lượng công nghiệp tại Việt Nam.",
     ctaMain: "NHẬN TƯ VẤN KỸ THUẬT",
@@ -158,48 +158,48 @@ const translations: { [key in Language]: TranslationContent } = {
     mapTitle: "Mạng lưới dự án toàn quốc",
     getQuote: "NHẬN BÁO GIÁ",
     hero: {
-        sub: "CÁC GIẢI PHÁP TIÊN TIẾN CHO MỌI NHU CẦU",
-        title: "Dòng Sản Phẩm ",
-        highlight: "Đa Dạng",
-        desc: "Khám phá danh mục sản phẩm và công nghệ chất lượng cao, được tuyển chọn từ các đối tác hàng đầu thế giới, đảm bảo hiệu suất và độ tin cậy vượt trội cho mọi dự án năng lượng mặt trời."
+      sub: "CÁC GIẢI PHÁP TIÊN TIẾN CHO MỌI NHU CẦU",
+      title: "Dòng Sản Phẩm ",
+      highlight: "Đa Dạng",
+      desc: "Khám phá danh mục sản phẩm và công nghệ chất lượng cao, được tuyển chọn từ các đối tác hàng đầu thế giới, đảm bảo hiệu suất và độ tin cậy vượt trội cho mọi dự án năng lượng mặt trời."
     },
     filters: {
-        all: "Tất cả",
-        panels: "Tấm Pin Solar",
-        inverter: "Biến Tần",
-        storage: "Lưu Trữ"
+      all: "Tất cả",
+      panels: "Tấm Pin Solar",
+      inverter: "Biến Tần",
+      storage: "Lưu Trữ"
     },
     ui: {
-        searchPlaceholder: "Tìm kiếm sản phẩm...",
-        showing: "Hiển thị",
-        products: "sản phẩm",
-        sort: "Sắp xếp",
-        newest: "Mới nhất",
-        priceLow: "Giá: Thấp đến Cao",
-        priceHigh: "Giá: Cao đến Thấp",
-        viewFast: "Xem nhanh",
-        quoteBtn: "Nhận báo giá",
-        specPower: "Công suất",
-        specEff: "Hiệu suất",
-        specWarranty: "Bảo hành",
-        noResult: "Không tìm thấy sản phẩm nào.",
-        resetFilter: "Đặt lại bộ lọc",
-        ctaTitle: "Bạn đã sẵn sàng biến năng lượng mặt trời thành lợi nhuận?",
-        ctaDesc: "Liên hệ ngay để nhận tư vấn giải pháp phù hợp nhất với nhu cầu của bạn.",
-        ctaBtn1: "NHẬN BÁO GIÁ",
-        ctaBtn2: "LIÊN HỆ TƯ VẤN"
+      searchPlaceholder: "Tìm kiếm sản phẩm...",
+      showing: "Hiển thị",
+      products: "sản phẩm",
+      sort: "Sắp xếp",
+      newest: "Mới nhất",
+      priceLow: "Giá: Thấp đến Cao",
+      priceHigh: "Giá: Cao đến Thấp",
+      viewFast: "Xem nhanh",
+      quoteBtn: "Nhận báo giá",
+      specPower: "Công suất",
+      specEff: "Hiệu suất",
+      specWarranty: "Bảo hành",
+      noResult: "Không tìm thấy sản phẩm nào.",
+      resetFilter: "Đặt lại bộ lọc",
+      ctaTitle: "Bạn đã sẵn sàng biến năng lượng mặt trời thành lợi nhuận?",
+      ctaDesc: "Liên hệ ngay để nhận tư vấn giải pháp phù hợp nhất với nhu cầu của bạn.",
+      ctaBtn1: "NHẬN BÁO GIÁ",
+      ctaBtn2: "LIÊN HỆ TƯ VẤN"
     },
     navProducts: {
-        home: "Trang chủ",
-        products: "Sản phẩm",
-        projects: "Dự án",
-        contact: "Liên hệ",
-        quote: "Báo giá"
+      home: "Trang chủ",
+      products: "Sản phẩm",
+      projects: "Dự án",
+      contact: "Liên hệ",
+      quote: "Báo giá"
     }
   },
   EN: {
     // Updated Nav Items
-    nav: ["Home", "Projects", "Products", "News"],
+    nav: ["Home", "Projects", "Careers", "News"],
     heroH1: "JAPANESE\nENGINEERING.\nVIETNAMESE\nENERGY.",
     heroSub: "Leveraging 30+ years of Watanabe Create heritage from Sendai to power Vietnam's industrial transition.",
     ctaMain: "REQUEST CONSULTING",
@@ -328,47 +328,47 @@ const translations: { [key in Language]: TranslationContent } = {
     mapTitle: "Map",
     getQuote: "QUOTE",
     hero: {
-        sub: "ADVANCED SOLUTIONS FOR EVERY NEED",
-        title: "Diverse ",
-        highlight: "Product Range",
-        desc: "Explore our catalog of high-quality products and technologies, curated from leading global partners, ensuring superior performance and reliability for all solar energy projects."
+      sub: "ADVANCED SOLUTIONS FOR EVERY NEED",
+      title: "Diverse ",
+      highlight: "Product Range",
+      desc: "Explore our catalog of high-quality products and technologies, curated from leading global partners, ensuring superior performance and reliability for all solar energy projects."
     },
     filters: {
-        all: "All",
-        panels: "Solar Panels",
-        inverter: "Inverters",
-        storage: "Storage"
+      all: "All",
+      panels: "Solar Panels",
+      inverter: "Inverters",
+      storage: "Storage"
     },
     ui: {
-        searchPlaceholder: "Search products...",
-        showing: "Showing",
-        products: "products",
-        sort: "Sort",
-        newest: "Newest",
-        priceLow: "Price: Low to High",
-        priceHigh: "Price: High to Low",
-        viewFast: "Quick View",
-        quoteBtn: "Get Quote",
-        specPower: "Power",
-        specEff: "Efficiency",
-        specWarranty: "Warranty",
-        noResult: "No products found.",
-        resetFilter: "Reset Filter",
-        ctaTitle: "Ready to turn solar energy into profit?",
-        ctaDesc: "Contact us now to get the best solution for your needs.",
-        ctaBtn1: "GET A QUOTE",
-        ctaBtn2: "CONTACT US"
+      searchPlaceholder: "Search products...",
+      showing: "Showing",
+      products: "products",
+      sort: "Sort",
+      newest: "Newest",
+      priceLow: "Price: Low to High",
+      priceHigh: "Price: High to Low",
+      viewFast: "Quick View",
+      quoteBtn: "Get Quote",
+      specPower: "Power",
+      specEff: "Efficiency",
+      specWarranty: "Warranty",
+      noResult: "No products found.",
+      resetFilter: "Reset Filter",
+      ctaTitle: "Ready to turn solar energy into profit?",
+      ctaDesc: "Contact us now to get the best solution for your needs.",
+      ctaBtn1: "GET A QUOTE",
+      ctaBtn2: "CONTACT US"
     },
     navProducts: {
-        home: "Home",
-        products: "Products",
-        projects: "Projects",
-        contact: "Contact",
-        quote: "Quote"
+      home: "Home",
+      products: "Products",
+      projects: "Projects",
+      contact: "Contact",
+      quote: "Quote"
     }
-  },  JP: {
+  }, JP: {
     // Updated Nav Items
-    nav: ["ホーム", "プロジェクト", "製品", "ニュース"],
+    nav: ["ホーム", "プロジェクト", "キャリア", "ニュース"],
     heroH1: "日本の\n技術。\nベトナムの\nエネルギー。",
     heroSub: "仙台のワタナベクリエイトグループの30年以上の技術遺産を継承。",
     ctaMain: "技術相談",
@@ -497,43 +497,43 @@ const translations: { [key in Language]: TranslationContent } = {
     mapTitle: "マップ",
     getQuote: "見積もり",
     hero: {
-        sub: "あらゆるニーズに対応する高度なソリューション",
-        title: "多様な",
-        highlight: "製品ラインナップ",
-        desc: "世界をリードするパートナーから厳選された、高品質な製品と技術のカタログをご覧ください。あらゆる太陽光発電プロジェクトにおいて、優れた性能と信頼性を保証します。"
+      sub: "あらゆるニーズに対応する高度なソリューション",
+      title: "多様な",
+      highlight: "製品ラインナップ",
+      desc: "世界をリードするパートナーから厳選された、高品質な製品と技術のカタログをご覧ください。あらゆる太陽光発電プロジェクトにおいて、優れた性能と信頼性を保証します。"
     },
     filters: {
-        all: "全て",
-        panels: "ソーラーパネル",
-        inverter: "インバーター",
-        storage: "蓄電池"
+      all: "全て",
+      panels: "ソーラーパネル",
+      inverter: "インバーター",
+      storage: "蓄電池"
     },
     ui: {
-        searchPlaceholder: "製品を検索...",
-        showing: "表示中",
-        products: "製品",
-        sort: "並べ替え",
-        newest: "最新",
-        priceLow: "価格：安い順",
-        priceHigh: "価格：高い順",
-        viewFast: "クイック表示",
-        quoteBtn: "見積もり依頼",
-        specPower: "出力",
-        specEff: "効率",
-        specWarranty: "保証",
-        noResult: "製品が見つかりません。",
-        resetFilter: "フィルターをリセット",
-        ctaTitle: "太陽エネルギーを利益に変える準備はできましたか？",
-        ctaDesc: "今すぐお問い合わせください。お客様のニーズに最適なソリューションをご提案いたします。",
-        ctaBtn1: "見積もり依頼",
-        ctaBtn2: "お問い合わせ"
+      searchPlaceholder: "製品を検索...",
+      showing: "表示中",
+      products: "製品",
+      sort: "並べ替え",
+      newest: "最新",
+      priceLow: "価格：安い順",
+      priceHigh: "価格：高い順",
+      viewFast: "クイック表示",
+      quoteBtn: "見積もり依頼",
+      specPower: "出力",
+      specEff: "効率",
+      specWarranty: "保証",
+      noResult: "製品が見つかりません。",
+      resetFilter: "フィルターをリセット",
+      ctaTitle: "太陽エネルギーを利益に変える準備はできましたか？",
+      ctaDesc: "今すぐお問い合わせください。お客様のニーズに最適なソリューションをご提案いたします。",
+      ctaBtn1: "見積もり依頼",
+      ctaBtn2: "お問い合わせ"
     },
     navProducts: {
-        home: "ホーム",
-        products: "製品",
-        projects: "プロジェクト",
-        contact: "お問い合わせ",
-        quote: "見積もり"
+      home: "ホーム",
+      products: "製品",
+      projects: "プロジェクト",
+      contact: "お問い合わせ",
+      quote: "見積もり"
     }
   },
 };
@@ -548,90 +548,90 @@ export const useTranslation = () => {
 export type Language = 'VN' | 'EN' | 'JP';
 
 export interface TranslationContent {
-    nav: string[];
-    heroH1: string;
-    heroSub: string;
-    ctaMain: string;
-    ctaSub: string;
-    viewProject: string;
-    stats: { label: string; val: number; suffix: string; prefix: string }[];
-    introTitle: string;
-    introSub: string;
-    introContent1: string;
-    introContent2: string;
-    introContent3: string;
-    benefitsTitle: string;
-    benefitsSub: string;
-    benefitTabs: {
-        id: string;
-        label: string;
-        icon: any; 
-        title: string;
-        desc: string;
-        specs: { label: string; val: string }[];
-        btnText: string;
-        img: string;
+  nav: string[];
+  heroH1: string;
+  heroSub: string;
+  ctaMain: string;
+  ctaSub: string;
+  viewProject: string;
+  stats: { label: string; val: number; suffix: string; prefix: string }[];
+  introTitle: string;
+  introSub: string;
+  introContent1: string;
+  introContent2: string;
+  introContent3: string;
+  benefitsTitle: string;
+  benefitsSub: string;
+  benefitTabs: {
+    id: string;
+    label: string;
+    icon: any;
+    title: string;
+    desc: string;
+    specs: { label: string; val: string }[];
+    btnText: string;
+    img: string;
+  }[];
+  projectsTitle: string;
+  projectsSub: string;
+  projectCategories: string[];
+  projectsData: {
+    [key: number]: {
+      name: string;
+      location: string;
+      capacity: string;
+      production: string;
+      year: string;
+      img: string;
     }[];
-    projectsTitle: string;
-    projectsSub: string;
-    projectCategories: string[];
-    projectsData: {
-        [key: number]: {
-            name: string;
-            location: string;
-            capacity: string;
-            production: string;
-            year: string;
-            img: string;
-        }[];
-    };
-    productsTitle: string;
-    productsSub: string;
-    productTabs: { id: string; label: string; icon: any }[];
-    baseProductsData: {
-        [key: string]: { name: string; spec: string; eff: string; img: string; tag: string }[];
-    };
-    partners: string[];
-    financeTitle: string;
-    financeSub: string;
-    financeSolutions: { icon: any; title: string; desc: string; link: string }[];
-    newsTitle: string;
-    newsSub: string;
-    newsArticles: { source: string; date: string; title: string; link: string; tag: string; img: string }[];
-    mapTitle: string;
-    getQuote: string;
-    // New fields from Products page (index.tsx)
-    hero: {
-        sub: string;
-        title: string;
-        highlight: string;
-        desc: string;
-    };
-    filters: {
-        all: string;
-        panels: string;
-        inverter: string;
-        storage: string;
-    };
-    ui: {
-        searchPlaceholder: string;
-        showing: string;
-        products: string;
-        sort: string;
-        newest: string;
-        priceLow: string;
-        priceHigh: string;
-        viewFast: string;
-        quoteBtn: string;
-        specPower: string;
-        specEff: string;
-        specWarranty: string;
-        noResult: string;
-        resetFilter: string;
-        ctaTitle: string;
-        ctaDesc: string;
-        ctaBtn1: string;
-        ctaBtn2: string;
-    };
-    navProducts: { home: string; products: string; projects: string; contact: string; quote: string; };
+  };
+  productsTitle: string;
+  productsSub: string;
+  productTabs: { id: string; label: string; icon: any }[];
+  baseProductsData: {
+    [key: string]: { name: string; spec: string; eff: string; img: string; tag: string }[];
+  };
+  partners: string[];
+  financeTitle: string;
+  financeSub: string;
+  financeSolutions: { icon: any; title: string; desc: string; link: string }[];
+  newsTitle: string;
+  newsSub: string;
+  newsArticles: { source: string; date: string; title: string; link: string; tag: string; img: string }[];
+  mapTitle: string;
+  getQuote: string;
+  // New fields from Products page (index.tsx)
+  hero: {
+    sub: string;
+    title: string;
+    highlight: string;
+    desc: string;
+  };
+  filters: {
+    all: string;
+    panels: string;
+    inverter: string;
+    storage: string;
+  };
+  ui: {
+    searchPlaceholder: string;
+    showing: string;
+    products: string;
+    sort: string;
+    newest: string;
+    priceLow: string;
+    priceHigh: string;
+    viewFast: string;
+    quoteBtn: string;
+    specPower: string;
+    specEff: string;
+    specWarranty: string;
+    noResult: string;
+    resetFilter: string;
+    ctaTitle: string;
+    ctaDesc: string;
+    ctaBtn1: string;
+    ctaBtn2: string;
+  };
+  navProducts: { home: string; products: string; projects: string; contact: string; quote: string; };
 }

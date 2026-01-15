@@ -119,16 +119,16 @@ const projectsList: ProjectDataProjectsPage[] = [
 ];
 
 const projectLocations: ProjectLocation[] = [
-    { top: '15%', left: '55%', name: 'Bắc Ninh' },
-    { top: '18%', left: '58%', name: 'Hải Dương' },
-    { top: '20%', left: '60%', name: 'Hải Phòng' },
-    { top: '48%', left: '65%', name: 'Quảng Ngãi' },
-    { top: '75%', left: '52%', name: 'Lâm Đồng' },
-    { top: '80%', left: '58%', name: 'Bình Thuận' },
-    { top: '85%', left: '40%', name: 'Tây Ninh' },
-    { top: '87%', left: '45%', name: 'Bình Dương' },
-    { top: '88%', left: '50%', name: 'Đồng Nai' },
-    { top: '92%', left: '38%', name: 'Long An' },
+    { top: "15%", left: "45%", name: "Bắc Ninh" },
+    { top: "18%", left: "48%", name: "Hải Dương" },
+    { top: "20%", left: "40%", name: "Hải Phòng" },
+    { top: "48%", left: "50%", name: "Quảng Ngãi" },
+    { top: "75%", left: "52%", name: "Lâm Đồng" },
+    { top: "80%", left: "55%", name: "Bình Thuận" },
+    { top: "85%", left: "42%", name: "Tây Ninh" },
+    { top: "87%", left: "45%", name: "Bình Dương" },
+    { top: "88%", left: "44%", name: "Đồng Nai" },
+    { top: "92%", left: "42%", name: "Long An" },
 ];
 
 // --- COMPONENTS ---
@@ -199,53 +199,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 };
 
 const VietnamMapStylized = () => (
-    <svg viewBox="0 0 600 1000" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[95%] w-auto opacity-30">
-        {/* Stylized Dot Map of Vietnam */}
-        <g fill="#9CA3AF" opacity="0.6">
-            {/* North */}
-            <circle cx="300" cy="100" r="3" /> <circle cx="310" cy="100" r="3" /> <circle cx="320" cy="100" r="3" />
-            <circle cx="295" cy="110" r="3" /> <circle cx="305" cy="110" r="3" /> <circle cx="315" cy="110" r="3" /> <circle cx="325" cy="110" r="3" />
-            <circle cx="290" cy="120" r="3" /> <circle cx="300" cy="120" r="3" /> <circle cx="310" cy="120" r="3" /> <circle cx="320" cy="120" r="3" />
-            <circle cx="295" cy="130" r="3" /> <circle cx="305" cy="130" r="3" /> <circle cx="315" cy="130" r="3" />
+    <div className="lg:col-span-8 relative h-[350px] sm:h-[450px] lg:h-[600px] flex items-center justify-center">
+        {/* Map Container */}
+        <div className="relative flex-grow flex items-center justify-center p-0 lg:p-8 w-full">
+            {/* Map Image */}
+            <img src='/wataco/client-logo/vietnam-maps.png' className='h-full w-[45%]' />
 
-            {/* North Central */}
-            <circle cx="300" cy="150" r="3" /> <circle cx="310" cy="150" r="3" />
-            <circle cx="310" cy="160" r="3" /> <circle cx="320" cy="160" r="3" />
-            <circle cx="320" cy="170" r="3" />
-            <circle cx="325" cy="180" r="3" />
-            <circle cx="330" cy="190" r="3" />
-            <circle cx="335" cy="200" r="3" />
-            <circle cx="340" cy="210" r="3" />
-
-            {/* Central */}
-            <circle cx="345" cy="230" r="3" /> <circle cx="355" cy="230" r="3" />
-            <circle cx="350" cy="240" r="3" /> <circle cx="360" cy="240" r="3" />
-            <circle cx="360" cy="250" r="3" /> <circle cx="370" cy="250" r="3" />
-            <circle cx="365" cy="260" r="3" /> <circle cx="375" cy="260" r="3" />
-            <circle cx="370" cy="270" r="3" /> <circle cx="380" cy="270" r="3" />
-            <circle cx="375" cy="280" r="3" /> <circle cx="385" cy="280" r="3" />
-            <circle cx="370" cy="290" r="3" /> <circle cx="380" cy="290" r="3" />
-
-            {/* South Central */}
-            <circle cx="360" cy="310" r="3" /> <circle cx="370" cy="310" r="3" />
-            <circle cx="350" cy="320" r="3" /> <circle cx="360" cy="320" r="3" />
-            <circle cx="340" cy="330" r="3" /> <circle cx="350" cy="330" r="3" />
-
-            {/* South */}
-            <circle cx="330" cy="350" r="3" /> <circle cx="340" cy="350" r="3" /> <circle cx="350" cy="350" r="3" />
-            <circle cx="320" cy="360" r="3" /> <circle cx="330" cy="360" r="3" /> <circle cx="340" cy="360" r="3" />
-            <circle cx="310" cy="370" r="3" /> <circle cx="320" cy="370" r="3" /> <circle cx="330" cy="370" r="3" />
-
-            {/* Hoang Sa */}
-            <circle cx="450" cy="350" r="2" /> <circle cx="460" cy="350" r="2" /> <circle cx="455" cy="360" r="2" />
-
-            {/* Truong Sa */}
-            <circle cx="480" cy="750" r="2" /> <circle cx="490" cy="750" r="2" /> <circle cx="485" cy="760" r="2" /> <circle cx="500" cy="755" r="2" />
-        </g>
-
-        <text x="450" y="340" fontSize="10" fill="#9CA3AF" className="font-heading font-bold" textAnchor="middle">Hoàng Sa</text>
-        <text x="490" y="740" fontSize="10" fill="#9CA3AF" className="font-heading font-bold" textAnchor="middle">Trường Sa</text>
-    </svg>
+            {/* Project Location Dots */}
+            {projectLocations.map((loc, i) => (
+                <div
+                    key={i}
+                    className="absolute flex items-center justify-center group/dot"
+                    style={{
+                        top: loc.top,
+                        left: loc.left,
+                        transform: "translate(-50%, -50%)",
+                    }}
+                >
+                    {/* Shadow Ping Effect */}
+                    <div className="absolute w-4 h-4 bg-[#228B22] rounded-full opacity-75 animate-ping" style={{ zIndex: 5 }}></div>
+                    {/* Dots */}
+                    <div className="w-3 h-3 bg-[#228B22] rounded-full z-10 cursor-pointer hover:scale-125 transition-transform"></div>
+                    {/* Tooltip */}
+                    <div className="absolute opacity-0 group-hover/dot:opacity-100 transition-opacity bg-[#1A2B3C] text-white text-[10px] px-2 py-1 rounded shadow-lg -top-8 whitespace-nowrap z-20 pointer-events-none font-bold">
+                        {loc.name}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
 );
 
 
@@ -332,29 +314,6 @@ export default function ProjectsPage() {
                             <FadeInUp delay={0.2} className="lg:col-span-8 relative h-[450px] lg:h-[600px] bg-[#F8FAFC] rounded-2xl border border-gray-200 overflow-hidden flex items-center justify-center group shadow-sm">
                                 {/* Vietnam Map - Stylized Dots SVG */}
                                 <VietnamMapStylized />
-
-                                {/* Project Location Dots (Blurred Green Glow) */}
-                                {projectLocations.map((loc, i) => (
-                                    <div
-                                        key={i}
-                                        className="absolute flex items-center justify-center group/dot"
-                                        style={{
-                                            top: loc.top,
-                                            left: loc.left,
-                                            transform: 'translate(-50%, -50%)'
-                                        }}
-                                    >
-                                        {/* Outer blurred glow */}
-                                        <div className="absolute w-6 h-6 bg-[#228B22]/40 rounded-full blur-sm dot-glow pointer-events-none"></div>
-                                        {/* Core dot */}
-                                        <div className="relative w-2 h-2 bg-[#228B22] rounded-full shadow-sm z-10 cursor-pointer hover:scale-150 transition-transform"></div>
-
-                                        {/* Tooltip on Hover */}
-                                        <div className="absolute opacity-0 group-hover/dot:opacity-100 transition-opacity bg-[#1A2B3C] text-white text-[10px] px-3 py-1 rounded-full shadow-lg -top-8 whitespace-nowrap z-20 pointer-events-none font-bold tracking-wider">
-                                            {loc.name}
-                                        </div>
-                                    </div>
-                                ))}
 
                                 <div className="absolute bottom-6 right-6 z-10 text-center">
                                     <div className="inline-flex items-center bg-white border border-[#228B22] px-4 py-2 rounded-full shadow-lg">

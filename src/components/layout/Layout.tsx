@@ -24,7 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
-      <main>{children}</main>
+      <main>
+        {children}
+      </main>
       <Footer icons={icons} />
     </div>
   );

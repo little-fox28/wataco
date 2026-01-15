@@ -1,16 +1,7 @@
-/*
- * WATACO ENGINEERING WEBSITE
- * Version: Homepage-v.2.5 (Fixed)
- * Date: 2024
- * Changes:
- * - CRITICAL BUG FIX: Removed duplicate declarations of helper components (`WatacoLogo`, `CountUp`, `StaggerContainer`, `StaggerItem`) that were causing build errors.
- * - Structure: Components are now defined exactly once at the top level.
- * - Functionality: Preserved all homepage features (Mobile Nav, Animations, Map, etc.).
- */
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowRight, Menu, X, MapPin, Home, Newspaper, Zap, Building2, TrendingUp, Wallet, Calendar, BarChart3, Download, ChevronLeft, ChevronRight, Cpu, Battery, Factory, Sprout, Sun, Linkedin, Facebook, Youtube, Mail, Phone } from 'lucide-react';
+import { ArrowRight, Menu, X, MapPin, Home, Newspaper, Zap, Building2, TrendingUp, Wallet, Calendar, Activity, BarChart3, Download, ChevronLeft, ChevronRight, Cpu, Battery, Factory, Sprout, Sun, Linkedin, Facebook, Youtube, Mail, Phone, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import WatacoLogo from '../components/common/WatacoLogo';
 import type { CountUpProps, StaggerContainerProps, StaggerItemProps, Translations, TranslationContent, ProjectData, Product } from '../types';
 
@@ -138,7 +129,7 @@ const StaggerItem: React.FC<StaggerItemProps> = ({ children, className }) => (
 // --- 3. DATA & TRANSLATIONS ---
 const translations: Translations = {
   VN: {
-    nav: ["Trang chủ", "Dự án", "Sản phẩm", "Tin tức"],
+    nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
     heroH1: "KỸ THUẬT\nNHẬT BẢN.\nNĂNG LƯỢNG\nVIỆT NAM.",
     heroSub: "Kế thừa di sản kỹ thuật từ Watanabe Create Group (Sendai, Nhật Bản) để thúc đẩy quá trình chuyển đổi năng lượng công nghiệp tại Việt Nam.",
     ctaMain: "NHẬN TƯ VẤN KỸ THUẬT",
@@ -150,6 +141,33 @@ const translations: Translations = {
       { label: "DỰ ÁN HOÀN THÀNH", val: 200, suffix: "", prefix: "+" },
       { label: "ĐỘ TIN CẬY HỆ THỐNG", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "Dự án đã ký kết",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "Tổng công suất lắp đặt",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "Hệ thống đang vận hành",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "QUY MÔ HOẠT ĐỘNG",
+    section2Title: "Mạng Lưới\nDự Án",
+    section2Description: "Cam kết chất lượng và hiệu suất vượt trội trên toàn lãnh thổ Việt Nam với hơn 500MWp tổng công suất lắp đặt.",
+    section2ClientTitle: "Đối tác tin cậy",
     // SECTION 1: HERITAGE
     introTitle: "Hành Trình Từ Sendai Đến Việt Nam",
     introSub: "DI SẢN WATANABE CREATE",
@@ -288,10 +306,32 @@ const translations: Translations = {
       { source: "VTV News", date: "02/09/2023", title: "Lễ ký kết hợp tác chiến lược giữa WATACO và các đối tác Nhật Bản.", link: "#", tag: "Sự kiện", img: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&q=80&w=600" }
     ],
     mapTitle: "Mạng lưới dự án toàn quốc",
-    getQuote: "NHẬN BÁO GIÁ"
+    getQuote: "NHẬN BÁO GIÁ",
+    viewAllArticles: "Tất cả bài viết",
+    footer: {
+      description: "Kiến tạo hạ tầng năng lượng bền vững tại Việt Nam dựa trên tinh hoa kỹ thuật từ thành phố Sendai, Nhật Bản.",
+      solutionsTitle: "Giải pháp",
+      solutions: [
+        "Tổng thầu EPC",
+        "Vận hành & Bảo dưỡng (O&M)",
+        "Đầu tư ESCO",
+        "Cung cấp thiết bị"
+      ],
+      companyTitle: "Về WATACO",
+      company: [
+        "Giới thiệu chung",
+        "Dự án tiêu biểu",
+        "Tin tức & Sự kiện",
+        "Tuyển dụng"
+      ],
+      contactTitle: "Liên hệ",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "Chính sách bảo mật",
+      terms: "Điều khoản sử dụng"
+    }
   },
   EN: {
-    nav: ["Home", "Projects", "Products", "News"],
+    nav: ["Home", "Projects", "Careers", "News"],
     heroH1: "JAPANESE\nENGINEERING.\nVIETNAMESE\nENERGY.",
     heroSub: "Leveraging 30+ years of Watanabe Create heritage from Sendai to power Vietnam's industrial transition.",
     ctaMain: "REQUEST CONSULTING",
@@ -303,6 +343,33 @@ const translations: Translations = {
       { label: "COMPLETED PROJECTS", val: 200, suffix: "", prefix: "+" },
       { label: "SYSTEM RELIABILITY", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "Projects Signed",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "Total Installed Capacity",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "Operating Systems",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "SCALE OF OPERATIONS",
+    section2Title: "Nationwide\nProject Network",
+    section2Description: "Committed to outstanding quality and performance throughout Vietnam with over 500MWp of total installed capacity.",
+    section2ClientTitle: "Trusted Partners",
     introTitle: "Journey From Sendai to Vietnam",
     introSub: "WATANABE CREATE HERITAGE",
     introContent1: "WATACO was established based on the foundation of WATANABE CREATE Group in Sendai City, Miyagi Prefecture, Japan. Founded on December 17, 2015, WATANABE CREATE has achieved significant success in consulting, design, and construction of solar energy projects in Japan.",
@@ -418,10 +485,32 @@ const translations: Translations = {
       { source: "VTV News", date: "Sep 02", title: "Strategic partnership signing.", link: "#", tag: "Event", img: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&q=80&w=600" }
     ],
     mapTitle: "Map",
-    getQuote: "QUOTE"
+    getQuote: "QUOTE",
+    viewAllArticles: "View All Articles",
+    footer: {
+      description: "Creating sustainable energy infrastructure in Vietnam based on engineering excellence from Sendai, Japan.",
+      solutionsTitle: "Solutions",
+      solutions: [
+        "EPC Contractor",
+        "Operation & Maintenance (O&M)",
+        "ESCO Investment",
+        "Equipment Supply"
+      ],
+      companyTitle: "About WATACO",
+      company: [
+        "About Us",
+        "Featured Projects",
+        "News & Events",
+        "Careers"
+      ],
+      contactTitle: "Contact",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use"
+    }
   },
   JP: {
-    nav: ["ホーム", "プロジェクト", "製品", "ニュース"],
+    nav: ["ホーム", "プロジェクト", "キャリア", "ニュース"],
     heroH1: "日本の\n技術。\nベトナムの\nエネルギー。",
     heroSub: "仙台のワタナベクリエイトグループの30年以上の技術遺産を継承。",
     ctaMain: "技術相談",
@@ -433,6 +522,33 @@ const translations: Translations = {
       { label: "完了プロジェクト", val: 200, suffix: "", prefix: "+" },
       { label: "稼働信頼性", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "署名済みプロジェクト",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "総設備容量",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "運転中のシステム",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "事業規模",
+    section2Title: "全国の\nプロジェクト網",
+    section2Description: "ベトナム全土で500MWp以上の総設置容量で、卓越した品質とパフォーマンスをお約束します。",
+    section2ClientTitle: "信頼できるパートナー",
     introTitle: "仙台からベトナムへ",
     introSub: "ワタナベクリエイトの遺産",
     introContent1: "WATACOは、日本の宮城県仙台市にあるワタナベクリエイトグループの基盤の上に設立されました。",
@@ -548,14 +664,111 @@ const translations: Translations = {
       { source: "VTV News", date: "09/02", title: "戦略的パートナーシップ。", link: "#", tag: "Event", img: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&q=80&w=600" }
     ],
     mapTitle: "マップ",
-    getQuote: "見積もり"
+    getQuote: "見積もり",
+    viewAllArticles: "すべての記事を見る",
+    footer: {
+      description: "仙台市からの日本の技術的エッセンスに基づき、ベトナムで持続可能なエネルギーインフラを創造します。",
+      solutionsTitle: "ソリューション",
+      solutions: [
+        "EPC（設計・調達・建設）",
+        "O&M（運用・保守）",
+        "ESCO投資",
+        "設備供給"
+      ],
+      companyTitle: "WATACOについて",
+      company: [
+        "会社概要",
+        "主要プロジェクト",
+        "ニュース & イベント",
+        "採用情報"
+      ],
+      contactTitle: "お問い合わせ",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "プライバシーポリシー",
+      terms: "利用規約"
+    }
   }
+};
+
+const projectLocations = [
+  { top: "15%", left: "45%", name: "Bắc Ninh" },
+  { top: "18%", left: "48%", name: "Hải Dương" },
+  { top: "20%", left: "40%", name: "Hải Phòng" },
+  { top: "48%", left: "50%", name: "Quảng Ngãi" },
+  { top: "75%", left: "52%", name: "Lâm Đồng" },
+  { top: "80%", left: "58%", name: "Bình Thuận" },
+  { top: "85%", left: "40%", name: "Tây Ninh" },
+  { top: "87%", left: "45%", name: "Bình Dương" },
+  { top: "88%", left: "40%", name: "Đồng Nai" },
+  { top: "92%", left: "38%", name: "Long An" },
+];
+
+const clientsList = [
+  { name: "TH True Milk", logo: null, color: "#005CA9" },
+  { name: "ALPHA", logo: null, color: "#1A2B3C" },
+  { name: "KAIFA", logo: null, color: "#F59E0B" },
+  {
+    name: "Samsung",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+    color: "#1428A0",
+  },
+  {
+    name: "Vinamilk",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/28/Vinamilk_logo_2023.svg",
+    color: "#2F469C",
+  },
+  {
+    name: "Aeon Mall",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Aeon_logo.svg",
+    color: "#D90F57",
+  },
+  {
+    name: "Foxconn",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/Hon_Hai_Precision_Industry.svg",
+    color: "#005596",
+  },
+  { name: "VSIP", logo: null, color: "#ED1C24" },
+  { name: "Cheng Loong", logo: null, color: "#009639" },
+];
+
+// --- COMPONENT: CLIENT LOGO BOX (FRAMELESS) ---
+interface ClientLogoBoxProps {
+  client: {
+    name: string;
+    logo: string | null;
+    color?: string;
+  };
+}
+
+const ClientLogoBox: React.FC<ClientLogoBoxProps> = ({ client }) => {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="mx-8 flex items-center justify-center group cursor-default transition-all duration-300">
+      {!imgError && client.logo ? (
+        <img
+          src={client.logo}
+          alt={client.name}
+          className="h-10 lg:h-12 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        <span
+          className="text-lg lg:text-xl font-black uppercase tracking-wider font-heading leading-tight whitespace-nowrap opacity-60 group-hover:opacity-100 transition-opacity"
+          style={{ color: client.color || "#9CA3AF" }}
+        >
+          {client.name}
+        </span>
+      )}
+    </div>
+  );
 };
 
 // --- MAIN APP ---
 export default function HomePage() {
   const [lang, setLang] = useState<'VN' | 'EN' | 'JP'>('VN');
-  const [activeBenefit, setActiveBenefit] = useState(0);
+
+  const mapStats = translations[`${lang}`].mapStats;
 
   // Mobile Menu State
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -576,12 +789,10 @@ export default function HomePage() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 200]);
 
-  const CurrentIcon = t.benefitTabs[activeBenefit].icon;
-
   // Helper to generate full product list (16 items)
   const generateFullProductList = (category: string): Product[] => {
     const baseItems = t.baseProductsData[category];
-    let fullList: Product[] = [];
+    const fullList: Product[] = [];
     for (let i = 0; i < 16; i++) {
       const baseItem = baseItems[i % baseItems.length];
       fullList.push({
@@ -621,6 +832,12 @@ export default function HomePage() {
   };
 
   // --- PRODUCT CAROUSEL LOGIC ---
+  const handleProductNext = useCallback(() => {
+    setCurrentProductIndex((prev) =>
+      (prev + 1) >= (currentProducts.length - itemsPerPage + 1) ? 0 : prev + 1
+    );
+  }, [currentProducts.length]);
+
   useEffect(() => {
     let interval: number | undefined;
     if (!isProductSliderHovered) {
@@ -629,13 +846,8 @@ export default function HomePage() {
       }, 3000);
     }
     return () => clearInterval(interval);
-  }, [isProductSliderHovered, currentProductIndex]);
+  }, [isProductSliderHovered, currentProductIndex, handleProductNext]);
 
-  const handleProductNext = () => {
-    setCurrentProductIndex((prev) =>
-      (prev + 1) >= (currentProducts.length - itemsPerPage + 1) ? 0 : prev + 1
-    );
-  };
 
   const handleProductPrev = () => {
     setCurrentProductIndex((prev) =>
@@ -652,7 +864,8 @@ export default function HomePage() {
   }, [t.newsArticles.length]);
 
   // Navigation Links Mapping
-  const navLinks = ["/", "/projects", "/products", "/news"];
+  const navLinks = ["/", "/projects", "/careers", "/news"];
+  const footerNavLinks = ["/", "/projects", "/news", "/careers"];
 
   return (
     <div className="bg-[#F4F7F6] text-[#1A2B3C] selection:bg-[#228B22] selection:text-white">
@@ -660,13 +873,13 @@ export default function HomePage() {
 
       {/* Header - Green Background (#228B22) */}
       <header className="fixed top-0 w-full z-50 bg-[#228B22]/95 backdrop-blur-md border-b border-white/5 shadow-lg transition-colors duration-300">
-        <div className="max-w-[1440px] mx-auto px-6 h-16 lg:h-20 flex justify-between items-center">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 h-14 sm:h-16 lg:h-20 flex justify-between items-center">
           <WatacoLogo />
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex space-x-10 items-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
             {t.nav.map((item, idx) => (
-              <a key={idx} href={navLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</a>
+              <Link key={idx} to={navLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</Link>
             ))}
             <div className="h-4 w-px bg-white/20" />
             <div className="flex items-center space-x-3 text-xs">
@@ -703,7 +916,7 @@ export default function HomePage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-[#1A2B3C] text-white flex flex-col p-6 lg:hidden"
+            className="fixed inset-0 z-60 bg-[#1A2B3C] text-white flex flex-col p-6 lg:hidden"
           >
             <div className="flex justify-between items-center mb-8">
               <WatacoLogo />
@@ -711,7 +924,7 @@ export default function HomePage() {
             </div>
             <nav className="flex flex-col space-y-6 text-xl font-bold uppercase tracking-widest">
               {t.nav.map((item, idx) => (
-                <a key={idx} href={navLinks[idx]} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#FFD700] border-b border-white/10 pb-4">{item}</a>
+                <Link key={idx} to={navLinks[idx]} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#FFD700] border-b border-white/10 pb-4">{item}</Link>
               ))}
             </nav>
             <div className="mt-auto flex flex-col space-y-6">
@@ -720,7 +933,7 @@ export default function HomePage() {
                   <button key={l} onClick={() => setLang(l as 'VN' | 'EN' | 'JP')} className={lang === l ? 'text-[#FFD700]' : 'text-gray-400'}>{l}</button>
                 ))}
               </div>
-              <button className="bg-[#228B22] text-white w-full py-4 rounded-md font-black uppercase tracking-widest min-h-[44px]">
+              <button className="bg-[#228B22] text-white w-full py-4 rounded-md font-black uppercase tracking-widest min-h-11">
                 {t.getQuote}
               </button>
             </div>
@@ -738,13 +951,13 @@ export default function HomePage() {
             loading="eager"
           />
           {/* UPDATED OVERLAY: Restored simple clean gradient from v1.5 for readability (approx 10-40%) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FFD700]/10 to-[#228B22]/40" />
+          <div className="absolute inset-0 bg-linear-to-b from-[#FFD700]/10 to-[#228B22]/40" />
         </motion.div>
 
         <div className="absolute inset-0 z-1 pointer-events-none opacity-10"
           style={{ backgroundImage: 'linear-gradient(#ffffff22 1px, transparent 1px), linear-gradient(90deg, #ffffff22 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
-        <div className="max-w-[1440px] mx-auto px-6 w-full relative z-10 hero-text-shadow">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 w-full relative z-10 hero-text-shadow">
           <AnimatePresence mode="wait">
             <motion.div
               key={lang}
@@ -754,12 +967,12 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="max-w-4xl"
             >
-              <div className="flex items-center space-x-4 mb-4 lg:mb-8">
-                <span className="h-px w-8 lg:w-12 bg-[#FFD700] drop-shadow-md" />
-                <span className="text-[#FFD700] font-black text-[10px] lg:text-xs uppercase tracking-[0.5em] font-heading drop-shadow-md">Precision Engineering</span>
+              <div className="flex items-center space-x-3 mb-3 sm:mb-4 lg:mb-8">
+                <span className="h-px w-6 sm:w-8 lg:w-12 bg-[#FFD700] drop-shadow-md" />
+                <span className="text-[#FFD700] font-black text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-[0.5em] font-heading drop-shadow-md">Precision Engineering</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-[80px] font-black text-white leading-[1.1] mb-8 lg:mb-12 whitespace-pre-line tracking-tighter font-heading drop-shadow-2xl">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-black text-white leading-[1.2] sm:leading-[1.1] mb-6 sm:mb-8 lg:mb-12 whitespace-pre-line tracking-tighter font-heading drop-shadow-2xl">
                 {t.heroH1.split('\n').map((line, index) => (
                   <span key={index} className={`block ${index >= 2 ? "text-[#FFD700]" : ""}`}>
                     {line}
@@ -767,12 +980,12 @@ export default function HomePage() {
                 ))}
               </h1>
 
-              <p className="text-white text-base lg:text-2xl max-w-2xl mb-8 lg:mb-12 font-bold leading-relaxed border-l-4 border-[#228B22] pl-6 lg:pl-8 drop-shadow-lg">
+              <p className="text-white text-sm sm:text-base md:text-lg lg:text-2xl max-w-2xl mb-6 sm:mb-8 lg:mb-12 font-bold leading-relaxed border-l-4 border-[#228B22] pl-4 sm:pl-6 lg:pl-8 drop-shadow-lg">
                 {t.heroSub}
               </p>
 
-              <div className="flex flex-wrap gap-6">
-                <button className="bg-white text-[#228b22] px-8 lg:px-12 py-4 lg:py-6 font-black text-xs tracking-widest uppercase hover:bg-[#FFD700] hover:text-[#1A2B3C] transition-all shadow-xl border border-transparent rounded-md min-h-[44px]">
+              <div className="flex flex-wrap gap-4 sm:gap-6">
+                <button className="bg-white text-[#228b22] px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 font-black text-[11px] sm:text-xs tracking-widest uppercase hover:bg-[#FFD700] hover:text-[#1A2B3C] transition-all shadow-xl border border-transparent rounded-md min-h-[44px]">
                   {t.ctaMain}
                 </button>
               </div>
@@ -782,12 +995,12 @@ export default function HomePage() {
       </section>
 
       {/* Trust Bar (Stats) */}
-      <section id="section-stats" className="bg-[#1A2B3C] py-12 lg:py-20 relative z-20 border-y border-white/10 shadow-2xl">
-        <StaggerContainer className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+      <section id="section-stats" className="bg-[#1A2B3C] py-8 sm:py-12 lg:py-20 relative z-20 border-y border-white/10 shadow-2xl">
+        <StaggerContainer className="max-w-[1440px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
             {t.stats.map((stat, idx) => (
-              <StaggerItem key={idx} className="text-center group px-4 pt-6 lg:pt-0">
-                <div className="text-4xl lg:text-6xl font-bold text-[#FFD700] mb-2 lg:mb-4 font-tech tracking-tighter">
+              <StaggerItem key={idx} className="text-center group px-3 sm:px-4 pt-6 sm:pt-0">
+                <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-[#FFD700] mb-2 lg:mb-4 font-tech tracking-tighter">
                   {stat.prefix}
                   <CountUp value={stat.val} suffix={stat.suffix} decimals={stat.val % 1 !== 0 ? 1 : 0} />
                 </div>
@@ -799,10 +1012,10 @@ export default function HomePage() {
       </section>
 
       {/* Heritage Section */}
-      <section id="section-1" className="py-20 lg:py-40 bg-white relative overflow-hidden">
+      <section id="section-1" className="py-12 sm:py-20 lg:py-40 bg-white relative overflow-hidden">
         {/* BG SVG kept same */}
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
             <StaggerContainer className="lg:col-span-5 relative">
               <div className="relative group">
                 <div className="overflow-hidden rounded-[40px] lg:rounded-[100px/75px] border-[8px] lg:border-[12px] border-[#F4F7F6] shadow-2xl relative">
@@ -829,7 +1042,7 @@ export default function HomePage() {
                 <h3 className="text-[#228b22] font-black text-sm uppercase tracking-[0.5em] font-heading">{t.introSub}</h3>
               </StaggerItem>
               <StaggerItem>
-                <h2 className="text-4xl lg:text-7xl font-black text-[#1A2B3C] mb-8 lg:mb-12 tracking-tighter leading-none font-heading">{t.introTitle}</h2>
+                <h2 className="text-3xl sm:text-4xl lg:text-7xl font-black text-[#1A2B3C] mb-6 sm:mb-8 lg:mb-12 tracking-tighter leading-none font-heading">{t.introTitle}</h2>
               </StaggerItem>
               <StaggerItem className="space-y-6 lg:space-y-8">
                 <div className="grid md:grid-cols-2 gap-6 lg:gap-10">
@@ -850,105 +1063,121 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section id="section-2" className="py-20 lg:py-32 bg-[#F4F7F6] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-          <StaggerContainer className="flex flex-col items-center mb-12 lg:mb-16 text-center">
-            <h3 className="text-xs font-black text-[#228b22] tracking-[0.6em] uppercase mb-4 font-heading">{t.benefitsSub}</h3>
-            <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.benefitsTitle}</h2>
-          </StaggerContainer>
+      {/* SECTION 2: */}
+      <section
+        id="section-2"
+        className="py-12 sm:py-20 lg:py-32 bg-white relative overflow-hidden"
+      >
+        {/* Subtle pattern background */}
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
 
-          <StaggerContainer className="grid lg:grid-cols-12 gap-8 h-auto lg:h-[600px]" delay={0.2}>
-            {/* Left Column: Square Grid Navigation - ROUNDED-MD */}
-            <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-2 gap-4 h-full content-start">
-              {t.benefitTabs.map((tab, idx) => (
-                <StaggerItem key={tab.id}>
-                  <button
-                    onClick={() => setActiveBenefit(idx)}
-                    className={`w-full relative aspect-square p-6 flex flex-col items-center justify-center text-center transition-all duration-300 group overflow-hidden border-0 shadow-lg rounded-md min-h-[140px] aspect-auto lg:aspect-square ${activeBenefit === idx
-                      ? 'bg-[#1A2B3C] text-white scale-105 z-10'
-                      : 'bg-white text-gray-400 hover:bg-[#228B22]/10 hover:text-[#228B22]'
-                      }`}
-                  >
-                    <div className={`mb-4 p-3 rounded-full transition-colors ${activeBenefit === idx ? 'bg-white/10' : 'bg-[#228b22]/10 group-hover:bg-[#228b22]/20'
-                      }`}>
-                      <tab.icon size={32} className={activeBenefit === idx ? 'text-[#FFD700]' : 'text-[#228b22]'} />
-                    </div>
-                    <span className="font-black uppercase tracking-widest text-[10px] leading-relaxed font-heading">{tab.label}</span>
-                  </button>
-                </StaggerItem>
-              ))}
-              {/* Extra Box - ROUNDED-MD */}
-              <StaggerItem className="aspect-square bg-[#228b22] p-6 flex flex-col items-center justify-center text-center shadow-lg rounded-md">
-                <div className="text-white font-black text-3xl mb-1 font-tech">30%</div>
-                <div className="text-white/80 text-[9px] font-bold uppercase tracking-widest leading-tight font-heading">Tiết kiệm trung bình</div>
-                <ArrowRight className="mt-4 text-[#FFD700]" size={20} />
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+          {/* ROW 1: STATS & MAP */}
+          <StaggerContainer className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center mb-12 sm:mb-20">
+            {/* LEFT: DATA STATS */}
+            <div className="lg:col-span-4 space-y-8">
+              <StaggerItem className="mb-8">
+                <h3 className="text-[#228B22] font-bold text-sm uppercase tracking-widest mb-3">
+                  {t.section2SubTitle}
+                </h3>
+                <h2 className="text-4xl lg:text-5xl font-black text-[#1A2B3C] leading-tight font-heading whitespace-pre-line">
+                  {t.section2Title}
+                </h2>
+                <p className="text-gray-500 mt-4 leading-relaxed font-light">
+                  {t.section2Description}
+                </p>
               </StaggerItem>
+
+              {mapStats &&
+                mapStats.map((stat, idx) => (
+                  <StaggerItem
+                    key={idx}
+                    className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center space-x-5 hover:shadow-md transition-all hover:-translate-y-1"
+                  >
+                    <div
+                      className="p-3 rounded-full bg-gray-50 shadow-sm flex-shrink-0"
+                      style={{ color: stat.color }}
+                    >
+                      <stat.icon size={28} />
+                    </div>
+                    <div>
+                      <div className="text-3xl font-black text-[#1A2B3C] font-tech leading-none mb-1">
+                        <CountUp value={stat.val} suffix={stat.suffix} />
+                      </div>
+                      <div className="text-xs text-gray-500 font-bold uppercase tracking-wider">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
             </div>
 
-            {/* Right Column: Content - FadeInUp Transition */}
-            <StaggerItem className="lg:col-span-8 relative h-[500px] lg:h-full rounded-sm overflow-hidden shadow-2xl group">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeBenefit}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="absolute inset-0"
-                >
-                  <img
-                    src={t.benefitTabs[activeBenefit].img}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                    alt="Solution Background"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#228B22] to-[#FFD700]/10 opacity-95 lg:opacity-90" />
-                  <div className="absolute inset-0 p-8 lg:p-16 flex flex-col justify-end">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <div className="flex items-center space-x-3 mb-4 text-[#FFD700]">
-                        <CurrentIcon size={24} />
-                        <span className="font-bold uppercase tracking-widest text-xs font-heading">{t.benefitTabs[activeBenefit].label} Solution</span>
-                      </div>
-                      <h3 className="text-2xl lg:text-5xl font-black text-white mb-4 lg:mb-6 leading-tight max-w-2xl font-heading">
-                        {t.benefitTabs[activeBenefit].title}
-                      </h3>
-                      <p className="text-gray-100 leading-relaxed text-base lg:text-lg mb-8 lg:mb-10 max-w-2xl font-light border-l-2 border-[#FFD700] pl-6">
-                        {t.benefitTabs[activeBenefit].desc}
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 mb-8 lg:mb-10 border-t border-white/20 pt-8">
-                        {t.benefitTabs[activeBenefit].specs.map((spec, i) => (
-                          <div key={i}>
-                            <div className="text-xl lg:text-3xl font-black text-white mb-1 font-tech">{spec.val}</div>
-                            <div className="text-[9px] font-bold text-[#228b22] uppercase tracking-widest font-heading">{spec.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <button className="inline-flex items-center space-x-3 bg-white text-[#228B22] px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#FFD700] hover:text-[#1A2B3C] transition-colors shadow-lg rounded-md min-h-[44px]">
-                        <span>{t.benefitTabs[activeBenefit].btnText}</span>
-                        <ArrowRight size={14} />
-                      </button>
-                    </motion.div>
+            {/* RIGHT: SEAMLESS MAP VISUALIZATION */}
+            <div className="lg:col-span-8 relative h-[350px] sm:h-[450px] lg:h-[600px] flex items-center justify-center">
+              {/* Map Container */}
+              <div className="relative flex-grow flex items-center justify-center p-0 lg:p-8 w-full">
+                {/* Map Image */}
+                <img src='/wataco/client-logo/vietnam-maps.png' className='h-full w-[62%]' />
+
+                {/* Project Location Dots */}
+                {projectLocations.map((loc, i) => (
+                  <div
+                    key={i}
+                    className="absolute flex items-center justify-center group/dot"
+                    style={{
+                      top: loc.top,
+                      left: loc.left,
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  >
+                    {/* Shadow Ping Effect */}
+                    <div className="absolute w-4 h-4 bg-[#228B22] rounded-full opacity-75 animate-ping" style={{ zIndex: 5 }}></div>
+                    {/* Dots */}
+                    <div className="w-3 h-3 bg-[#228B22] rounded-full z-10 cursor-pointer hover:scale-125 transition-transform"></div>
+                    {/* Tooltip */}
+                    <div className="absolute opacity-0 group-hover/dot:opacity-100 transition-opacity bg-[#1A2B3C] text-white text-[10px] px-2 py-1 rounded shadow-lg -top-8 whitespace-nowrap z-20 pointer-events-none font-bold">
+                      {loc.name}
+                    </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </StaggerItem>
+                ))}
+              </div>
+            </div>
+          </StaggerContainer>
+
+          {/* ROW 2: CLIENTS MARQUEE */}
+          <StaggerContainer className="w-full border-t border-gray-100 pt-20 mt-20">
+            <div className="text-center mb-10">
+              <h5 className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+                {t.section2ClientTitle}
+              </h5>
+            </div>
+
+            <div className="overflow-hidden flex relative z-10 items-center justify-center">
+              <motion.div
+                className="flex space-x-8 items-center whitespace-nowrap"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+              >
+                {/* Duplicate for loop */}
+                {[...clientsList, ...clientsList, ...clientsList].map(
+                  (client, i) => (
+                    <ClientLogoBox key={i} client={client} />
+                  )
+                )}
+              </motion.div>
+            </div>
           </StaggerContainer>
         </div>
       </section>
 
       {/* SECTION 3: PROJECTS - 3-CARD CENTER CAROUSEL (NEW v1.16: Rounded Tabs) */}
-      <section id="section-3" className="py-20 lg:py-32 bg-[#F8FAFC] text-[#1A2B3C] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
+      <section id="section-3" className="py-12 sm:py-20 lg:py-32 bg-[#F8FAFC] text-[#1A2B3C] relative overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
           {/* Section Header */}
-          <StaggerContainer className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-8">
+          <StaggerContainer className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 lg:mb-16 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-[#228B22] font-black text-sm uppercase tracking-[0.5em] font-heading mb-2">{t.projectsSub}</h3>
-              <h2 className="text-3xl lg:text-6xl font-black tracking-tighter leading-none text-[#1A2B3C] font-heading">{t.projectsTitle}</h2>
+              <h3 className="text-[#228B22] font-black text-xs sm:text-sm uppercase tracking-[0.5em] font-heading mb-2">{t.projectsSub}</h3>
+              <h2 className="text-2xl sm:text-3xl lg:text-6xl font-black tracking-tighter leading-none text-[#1A2B3C] font-heading">{t.projectsTitle}</h2>
             </div>
 
             {/* Tabs Navigation - ROUNDED-MD */}
@@ -974,7 +1203,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full h-[600px] lg:h-[500px] flex items-center justify-center touch-pan-y"
+            className="relative w-full h-[400px] sm:h-[500px] lg:h-[500px] flex items-center justify-center touch-pan-y"
           >
 
             {/* Slider Track with Swipe */}
@@ -1078,11 +1307,11 @@ export default function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section id="section-4" className="py-20 lg:py-32 bg-[#EAEFE9] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-          <StaggerContainer className="flex flex-col items-center mb-12 lg:mb-16 text-center">
-            <h3 className="text-xs font-black text-[#228b22] tracking-[0.6em] uppercase font-heading mb-4">{t.productsSub}</h3>
-            <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.productsTitle}</h2>
+      <section id="section-4" className="py-12 sm:py-20 lg:py-32 bg-[#EAEFE9] relative overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+          <StaggerContainer className="flex flex-col items-center mb-8 sm:mb-12 lg:mb-16 text-center">
+            <h3 className="text-[10px] sm:text-xs font-black text-[#228b22] tracking-[0.6em] uppercase font-heading mb-3 sm:mb-4">{t.productsSub}</h3>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.productsTitle}</h2>
           </StaggerContainer>
 
           <StaggerContainer className="flex justify-center mb-12">
@@ -1168,14 +1397,14 @@ export default function HomePage() {
       </section>
 
       {/* FINANCE SECTION (#section-5) */}
-      <section id="section-5" className="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100 text-[#1A2B3C] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-          <StaggerContainer className="flex flex-col items-center mb-12 lg:mb-16 text-center">
-            <h3 className="text-xs font-black text-[#228B22] tracking-[0.6em] uppercase font-heading mb-4">{t.financeSub}</h3>
-            <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.financeTitle}</h2>
+      <section id="section-5" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100 text-[#1A2B3C] relative overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+          <StaggerContainer className="flex flex-col items-center mb-8 sm:mb-12 lg:mb-16 text-center">
+            <h3 className="text-[10px] sm:text-xs font-black text-[#228B22] tracking-[0.6em] uppercase font-heading mb-3 sm:mb-4">{t.financeSub}</h3>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.financeTitle}</h2>
           </StaggerContainer>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" delay={0.2}>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" delay={0.2}>
             {t.financeSolutions.map((item, idx) => (
               <StaggerItem key={idx}>
                 <a
@@ -1199,27 +1428,27 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 6: NEWS - NEW MASTER-DETAIL LAYOUT (v1.26 - Brighter) */}
-      <section id="section-6" className="py-32 bg-gradient-to-b from-white via-[#F0FDF4] to-white border-t border-[#e5e7eb]">
-        <div className="max-w-[1440px] mx-auto px-6">
+      <section id="section-6" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-b from-white via-[#F0FDF4] to-white border-t border-[#e5e7eb]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           {/* Header */}
-          <StaggerContainer className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <StaggerContainer className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-8">
             <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-[#228b22]/10 rounded flex items-center justify-center text-[#228b22]">
-                  <Newspaper size={20} />
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#228b22]/10 rounded flex items-center justify-center text-[#228b22]">
+                  <Newspaper size={18} />
                 </div>
-                <h3 className="text-[#228b22] font-black text-sm uppercase tracking-[0.5em] font-heading">{t.newsSub}</h3>
+                <h3 className="text-[#228b22] font-black text-[10px] sm:text-sm uppercase tracking-[0.5em] font-heading">{t.newsSub}</h3>
               </div>
-              <h2 className="text-4xl lg:text-6xl font-black text-[#1A2B3C] tracking-tighter leading-none font-heading">{t.newsTitle}</h2>
+              <h2 className="text-2xl sm:text-3xl lg:text-6xl font-black text-[#1A2B3C] tracking-tighter leading-none font-heading">{t.newsTitle}</h2>
             </div>
-            <button className="text-[11px] font-black uppercase tracking-[0.2em] text-[#1A2B3C] flex items-center group">
-              <span>Tất cả bài viết</span>
+            <Link to="/news" className="text-[11px] font-black uppercase tracking-[0.2em] text-[#1A2B3C] flex items-center group">
+              <span>{t.viewAllArticles}</span>
               <ArrowRight size={16} className="ml-3 group-hover:translate-x-2 transition-transform" />
-            </button>
+            </Link>
           </StaggerContainer>
 
           {/* MAIN CONTENT GRID */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:h-[600px]">
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:h-[600px]">
 
             {/* Left Column: Vertical Article Queue */}
             <StaggerContainer className="lg:col-span-5 flex flex-col h-full space-y-2 overflow-y-auto pr-2 news-list-scroll" delay={0.2}>
@@ -1249,7 +1478,7 @@ export default function HomePage() {
 
             {/* Right Column: Large Preview Image */}
             <StaggerContainer className="lg:col-span-7 h-full" delay={0.4}>
-              <div className="relative h-[400px] lg:h-full rounded-lg overflow-hidden shadow-2xl bg-gray-100 border-2 border-[#FFD700]">
+              <div className="relative h-[300px] sm:h-[400px] lg:h-full rounded-lg overflow-hidden shadow-2xl bg-gray-100 border-2 border-[#FFD700]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeNewsIndex}
@@ -1295,19 +1524,19 @@ export default function HomePage() {
       </section>
 
       {/* Footer - Navy Blue */}
-      <footer className="bg-[#1A2B3C] text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden font-jp-style">
+      <footer className="bg-[#1A2B3C] text-white pt-16 sm:pt-24 pb-8 sm:pb-12 border-t border-white/10 relative overflow-hidden font-jp-style">
         {/* Background Texture/Pattern for "Modern" feel */}
         <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none transform scale-150 origin-top-right">
           <WatacoLogo />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-4 gap-12 mb-20">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-20">
             {/* Col 1: Brand */}
             <div className="space-y-6">
               <WatacoLogo />
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                Kiến tạo hạ tầng năng lượng bền vững tại Việt Nam dựa trên tinh hoa kỹ thuật từ thành phố Sendai, Nhật Bản.
+                {t.footer.description}
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
@@ -1324,30 +1553,28 @@ export default function HomePage() {
 
             {/* Col 2: Solutions */}
             <div>
-              <h4 className="text-lg font-bold text-white mb-6 font-heading">Giải pháp</h4>
-              <ul className="space-y-4 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tổng thầu EPC</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Vận hành & Bảo dưỡng (O&M)</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Đầu tư ESCO</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Cung cấp thiết bị</a></li>
+              <h4 className="text-base sm:text-lg font-bold text-white mb-4 sm:mb-6 font-heading">{t.footer.solutionsTitle}</h4>
+              <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-400">
+                {t.footer.solutions.map((item, idx) => (
+                  <li key={idx}><a href="#" className="hover:text-[#FFD700] transition-colors">{item}</a></li>
+                ))}
               </ul>
             </div>
 
             {/* Col 3: Company */}
             <div>
-              <h4 className="text-lg font-bold text-white mb-6 font-heading">Về WATACO</h4>
-              <ul className="space-y-4 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Giới thiệu chung</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Dự án tiêu biểu</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tin tức & Sự kiện</a></li>
-                <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tuyển dụng</a></li>
+              <h4 className="text-base sm:text-lg font-bold text-white mb-4 sm:mb-6 font-heading">{t.footer.companyTitle}</h4>
+              <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-400">
+                {t.footer.company.map((item, idx) => (
+                  <li key={idx}><Link to={footerNavLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</Link></li>
+                ))}
               </ul>
             </div>
 
             {/* Col 4: Contact */}
             <div>
-              <h4 className="text-lg font-bold text-white mb-6 font-heading">Liên hệ</h4>
-              <ul className="space-y-4 text-sm text-gray-400">
+              <h4 className="text-base sm:text-lg font-bold text-white mb-4 sm:mb-6 font-heading">{t.footer.contactTitle}</h4>
+              <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-start">
                   <MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
                   <span>District 7, Ho Chi Minh City, Vietnam</span>
@@ -1369,11 +1596,11 @@ export default function HomePage() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-            <p>© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">Chính sách bảo mật</a>
-              <a href="#" className="hover:text-white transition-colors">Điều khoản sử dụng</a>
+          <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs text-gray-500 gap-4 sm:gap-0">
+            <p>{t.footer.copyright}</p>
+            <div className="flex space-x-4 sm:space-x-6 mt-4 sm:mt-0">
+              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
             </div>
           </div>
         </div>

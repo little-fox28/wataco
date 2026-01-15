@@ -1,7 +1,7 @@
 const WatacoLogo = () => (
-  <a href="/" className="flex items-center space-x-3">
-    <div className="h-[40px] w-[40px] lg:h-[50px] lg:w-[50px] relative">
-      <img src="/wataco-logo-svg.svg" alt="Wataco Logo" className="w-full h-full" />
+  <a href="/wataco/" className="flex items-center space-x-3">
+    <div className="h-[40px] w-[60px] lg:h-[50px] lg:w-[65px] relative">
+      <img src="/wataco/wataco-logo-svg.svg" alt="Wataco Logo" className="w-full h-full" />
     </div>
 
     <div className="flex flex-col">
@@ -11,4 +11,4 @@ const WatacoLogo = () => (
   </a>
 );
 
-export default WatacoLogo;
+export default WatacoLogo

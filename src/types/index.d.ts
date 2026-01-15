@@ -29,6 +29,14 @@ export interface Stat {
   prefix: string;
 }
 
+export interface MapStats {
+  label: string,
+  val: number,
+  suffix: string,
+  icon: LucideIcon,
+  color: string,
+}
+
 export interface BenefitSpec {
   label: string;
   val: string;
@@ -86,6 +94,11 @@ export interface NewsArticle {
 }
 
 export interface TranslationContent {
+  viewAllArticles: ReactNode;
+  section2ClientTitle: ReactNode;
+  section2Description: ReactNode;
+  section2Title: ReactNode;
+  section2SubTitle: ReactNode;
   nav: string[];
   heroH1: string;
   heroSub: string;
@@ -93,6 +106,7 @@ export interface TranslationContent {
   ctaSub: string;
   viewProject: string;
   stats: Stat[];
+  mapStats: MapStats[];
   introTitle: string;
   introSub: string;
   introContent1: string;
@@ -122,6 +136,17 @@ export interface TranslationContent {
   newsArticles: NewsArticle[];
   mapTitle: string;
   getQuote: string;
+  footer: {
+    description: string;
+    solutionsTitle: string;
+    solutions: string[];
+    companyTitle: string;
+    company: string[];
+    contactTitle: string;
+    copyright: string;
+    privacy: string;
+    terms: string;
+  };
 }
 
 export interface Translations {
@@ -132,54 +157,54 @@ export interface Translations {
 
 // NewsPage specific interfaces
 export interface HeroSlide {
-    id: number;
-    title: string;
-    summary: string;
-    image: string;
-    date: string;
+  id: number;
+  title: string;
+  summary: string;
+  image: string;
+  date: string;
 }
 
 export interface Category {
-    id: string;
-    label: string;
-    count: number;
+  id: string;
+  label: string;
+  count: number;
 }
 
 export interface NewsItem {
-    id: number;
-    title: string;
-    summary: string;
-    category: string;
-    categoryId: string;
-    date: string;
-    views: number;
-    image: string;
+  id: number;
+  title: string;
+  summary: string;
+  category: string;
+  categoryId: string;
+  date: string;
+  views: number;
+  image: string;
 }
 
 export interface TrendingNewsItem {
-    id: number;
-    title: string;
-    date: string;
+  id: number;
+  title: string;
+  date: string;
 }
 
 export interface ExpertArticle {
-    id: number;
-    title: string;
-    desc: string;
-    img: string;
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
 }
 
 export interface HighlightWatacoProps {
-    text: string;
+  text: string;
 }
 
 export interface NewsListItemProps {
-    item: NewsItem;
+  item: NewsItem;
 }
 
 export interface SidebarWidgetProps {
-    title: string;
-    children: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
 }
 
 // ProjectsPage specific interfaces
