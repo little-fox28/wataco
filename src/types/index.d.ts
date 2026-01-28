@@ -1,6 +1,9 @@
 // src/types/index.d.ts
 
 import { Icon as LucideIcon } from 'lucide-react';
+import { ReactNode } from 'react';
+
+export type ProductCategoryId = 'panels' | 'inverter_grid' | 'inverter_hybrid';
 
 export interface CountUpProps {
   value: number;
@@ -63,7 +66,7 @@ export interface ProjectData {
 }
 
 export interface ProductTab {
-  id: string;
+  id: ProductCategoryId;
   label: string;
   icon: LucideIcon;
 }
@@ -93,6 +96,28 @@ export interface NewsArticle {
   img: string;
 }
 
+export interface InfoItem {
+  icon: LucideIcon;
+  title: string;
+  desc?: string;
+}
+
+export interface WhySolarSection {
+  title: string;
+  tagline: string;
+  items: InfoItem[];
+}
+
+export interface OurServicesSection {
+  title: string;
+  items: InfoItem[];
+}
+
+export interface ProjectPageTab {
+  id: string;
+  label: string;
+}
+
 export interface TranslationContent {
   viewAllArticles: ReactNode;
   section2ClientTitle: ReactNode;
@@ -117,17 +142,18 @@ export interface TranslationContent {
   benefitTabs: BenefitTab[];
   projectsTitle: string;
   projectsSub: string;
-  projectCategories: string[];
+  projectTabs: ProjectPageTab[];
+  whySolar: WhySolarSection;
+  ourServices: OurServicesSection;
   projectsData: {
-    [key: number]: ProjectData[];
+    [key: string]: ProjectData[];
   };
   productsTitle: string;
   productsSub: string;
   productTabs: ProductTab[];
   baseProductsData: {
-    [key: string]: Product[];
+    [key in ProductCategoryId]: Product[];
   };
-  partners: string[];
   financeTitle: string;
   financeSub: string;
   financeSolutions: FinanceSolution[];
@@ -143,6 +169,12 @@ export interface TranslationContent {
     companyTitle: string;
     company: string[];
     contactTitle: string;
+    contact: {
+      address1: string;
+      address2: string;
+      email: string;
+      phone: string;
+    };
     copyright: string;
     privacy: string;
     terms: string;
@@ -224,7 +256,7 @@ export interface ProjectsPageCountUpProps {
 export interface ProjectCategory {
   id: string;
   label: string;
-  icon: LucideIcon | null; // LucideIcon is a type for the icon components
+  icon: LucideIcon | null;
 }
 
 export interface ProjectDataProjectsPage {

@@ -36,3 +36,5 @@ eslint.config.js
 *.njsproj
 *.sln
 *.sw?
+
+requirement.md

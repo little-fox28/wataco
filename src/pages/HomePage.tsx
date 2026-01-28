@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowRight, Menu, X, MapPin, Home, Newspaper, Zap, Building2, TrendingUp, Wallet, Calendar, Activity, BarChart3, Download, ChevronLeft, ChevronRight, Cpu, Battery, Factory, Sprout, Sun, Linkedin, Facebook, Youtube, Mail, Phone, FileText } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Menu, X, MapPin, Home, Newspaper, Zap, Building2, TrendingUp, Wallet, Calendar, Activity, BarChart3, Download, ChevronLeft, ChevronRight, Cpu, Battery, Factory, Sprout, Sun, Linkedin, Facebook, Youtube, Mail, Phone, FileText, DollarSign, Leaf, Shield, Package, Wrench, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import WatacoLogo from '../components/common/WatacoLogo';
-import type { CountUpProps, StaggerContainerProps, StaggerItemProps, Translations, TranslationContent, ProjectData, Product } from '../types';
+import Marquee from '../components/common/Marquee';
+import type { Translations, TranslationContent, ProjectData, Product, ProductCategoryId } from '../types';
+import WhySolarSection from '../components/sections/page-home/whysolarsection';
+import ServicesSection from '../components/sections/page-home/servicessection';
+import { StaggerContainer, StaggerItem } from '../components/common/StaggerAnimations';
+import CountUp from '../components/common/CountUp';
 
 // --- 1. GLOBAL STYLES ---
 const FontStyles = () => (
@@ -64,68 +69,6 @@ const FontStyles = () => (
   `}</style>
 );
 
-// --- 2. REUSABLE COMPONENTS (Defined ONCE) ---
-
-const CountUp: React.FC<CountUpProps> = ({ value, suffix = "", decimals = 0, prefix = "" }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (isInView) {
-      const steps = 60;
-      const increment = value / steps;
-      let current = 0;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= value) {
-          setCount(value);
-          clearInterval(timer);
-        } else {
-          setCount(current);
-        }
-      }, 2000 / steps);
-      return () => clearInterval(timer);
-    }
-  }, [isInView, value]);
-
-  return (
-    <span ref={ref} className="font-mono font-tech">
-      {prefix}{count.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}{suffix}
-    </span>
-  );
-};
-
-const StaggerContainer: React.FC<StaggerContainerProps> = ({ children, className, delay = 0 }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: false, amount: 0.1, margin: "0px 0px -50px 0px" }}
-    variants={{
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.1, delayChildren: delay }
-      }
-    }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
-const StaggerItem: React.FC<StaggerItemProps> = ({ children, className }) => (
-  <motion.div
-    variants={{
-      hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-    }}
-    className={className}
-  >
-    {children}
-  </motion.div>
-);
-
 // --- 3. DATA & TRANSLATIONS ---
 const translations: Translations = {
   VN: {
@@ -173,7 +116,7 @@ const translations: Translations = {
     introSub: "DI SẢN WATANABE CREATE",
     introContent1: "WATACO được thành lập dựa trên nền tảng của Tập đoàn WATANABE CREATE tại thành phố Sendai, Tỉnh Miyagi, Nhật Bản. Ra đời vào ngày 17/12/2015, tập đoàn WATANABE CREATE đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
     introContent2: "Với phương châm chất lượng tạo nên uy tín bền vững, WATACO cam kết mang đến khách hàng những giải pháp tối ưu nhất phù hợp với yêu cầu của khách hàng đến từng chi tiết nhỏ của mỗi công trình.",
-    introContent3: "Bên cạnh đó, Wataco còn phát triển thêm lĩnh vực xây dựng, cải tạo nhà ở, nội thất nhằm đem lại không gian sống thoải mái, tiện nghi, hiện đại tới khách hàng. Chúng tôi luôn luôn lắng nghe ý muốn của khách hàng để kiến tạo nên những tác phẩm xứng tầm với những gì đã cam kết và không ngừng học hỏi để luôn xứng đáng là một trong những lựa chọn hàng đầu của mọi khách hàng.",
+    introContent3: "WATANABE CREATE ra đời vào ngày 17/12/2015, tập đoàn đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
     benefitsTitle: "Giải Pháp Ứng Dụng",
     benefitsSub: "HIỆU QUẢ ĐẦU TƯ",
     benefitTabs: [
@@ -222,22 +165,25 @@ const translations: Translations = {
     ],
     projectsTitle: "Dự Án Tiêu Biểu",
     projectsSub: "CÔNG TRÌNH THỰC TẾ",
-    projectCategories: ["Doanh Nghiệp", "Nhà Ở", "Nông Nghiệp"],
     projectsData: {
-      0: [ // Business
-        { name: "Thanh Cong Textile Factory", location: "KCN Trảng Bàng, Tây Ninh", capacity: "1.2 MWp", production: "1,750 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Kho vận Logis VI", location: "VSIP I, Bình Dương", capacity: "850 kWp", production: "1,240 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "Nhà máy Cơ khí Chính xác", location: "KCN Cao, TP.HCM", capacity: "2.5 MWp", production: "3,600 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "Đồng Văn 4, Ninh Bình", capacity: "0.80 MWp", production: "1,161 MWh/Năm", year: "2023", img: "/wataco/public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Đơn Dương, Lâm Đồng", capacity: "1.19 MWp", production: "1,723 MWh/Năm", year: "2023", img: "/wataco/public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "0.34 MWp", production: "488 MWh/Năm", year: "2022", img: "/wataco/public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2022", img: "/wataco/public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "Mỹ Phước 3, Bình Dương", capacity: "0.48 MWp", production: "696 MWh/Năm", year: "2021", img: "/wataco/public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "0.76 MWp", production: "1,099 MWh/Năm", year: "2021", img: "/wataco/public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1.24 MWp", production: "1,801 MWh/Năm", year: "2020", img: "/wataco/public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "TP. Thái Bình", capacity: "3.01 MWp", production: "4,362 MWh/Năm", year: "2020", img: "/wataco/public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2023", img: "/wataco/public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quỳnh Phụ, Thái Bình", capacity: "2.21 MWp", production: "3,201 MWh/Năm", year: "2022", img: "/wataco/public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liêm, Ninh Bình", capacity: "1.24 MWp", production: "1,798 MWh/Năm", year: "2021", img: "/wataco/public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thăng, Đà Nẵng", capacity: "1.13 MWp", production: "1,637 MWh/Năm", year: "2020", img: "/wataco/public/project/amann.png" }
       ],
-      1: [ // Residential
-        { name: "Villa Thảo Điền", location: "Thủ Đức, TP.HCM", capacity: "15 kWp", production: "21 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Nhà phố Cityland Park Hills", location: "Gò Vấp, TP.HCM", capacity: "8 kWp", production: "11 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "Biệt thự nghỉ dưỡng", location: "Hồ Tràm, BR-VT", capacity: "20 kWp", production: "29 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [ // Agriculture
-        { name: "Farm Dưa Lưới Công Nghệ", location: "Đức Trọng, Lâm Đồng", capacity: "500 kWp", production: "720 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "Trại Nấm Solar", location: "Long Khánh, Đồng Nai", capacity: "200 kWp", production: "290 MWh/Năm", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "Farm Thanh Long Xuất Khẩu", location: "Hàm Thuận Nam, Bình Thuận", capacity: "1 MWp", production: "1,450 MWh/Năm", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
+      'international': [
+        { name: "Dự án Marsushima", location: "Sendai, Nhật Bản", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "/wataco/public/project/Matoba.jpg" },
+        { name: "Dự án Higashimatsushima", location: "Miyagi, Nhật Bản", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "/wataco/public/project/Higashimatsushima.jpg" },
+        { name: "Dự án Nemawari Daini", location: "Osaka, Nhật Bản", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "/wataco/public/project/Nemawari.jpg" },
       ]
     },
     productsTitle: "Công Nghệ & Thiết Bị",
@@ -264,9 +210,6 @@ const translations: Translations = {
         { name: "Sofar HYD 20KTL", spec: "20kW | Storage Ready", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: [
-      "Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko Solar", "Trina Solar", "Growatt", "GoodWe", "JA Solar"
-    ],
     financeTitle: "Giải Pháp Tài Chính",
     financeSub: "LINH HOẠT & HIỆU QUẢ",
     financeSolutions: [
@@ -327,7 +270,37 @@ const translations: Translations = {
       contactTitle: "Liên hệ",
       copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
       privacy: "Chính sách bảo mật",
-      terms: "Điều khoản sử dụng"
+      terms: "Điều khoản sử dụng",
+      contact: {
+        address1: "Trụ sở chính tại Việt Nam: 29 Nguyễn Khắc Nhu, Phường Cầu Ông Lãnh, Thành phố Hồ Chí Minh, Việt Nam",
+        address2: "Văn phòng đại diện Miền Bắc: Tầng 4, Số 44 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành phố Hà Nội, Việt Nam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
+    },
+    projectTabs: [
+      { id: 'vietnam', label: 'Việt Nam' },
+      { id: 'international', label: 'Quốc Tế' },
+    ],
+    whySolar: {
+      title: "TẠI SAO NÊN SỬ DỤNG ĐIỆN MẶT TRỜI?",
+      tagline: "Điện mặt trời – Giải pháp năng lượng bền vững cho tương lai!",
+      items: [
+        { icon: DollarSign, title: "Tiết kiệm chi phí điện", desc: "Giảm mạnh hóa đơn điện hàng tháng – đặc biệt với hộ tiêu thụ cao hoặc doanh nghiệp." },
+        { icon: Leaf, title: "Thân thiện môi trường", desc: "Nguồn năng lượng xanh – không phát thải, không gây ô nhiễm môi trường." },
+        { icon: Zap, title: "Chủ động nguồn điện", desc: "Không còn lo mất điện – hệ thống có thể hoạt động độc lập (kèm pin lưu trữ)." },
+        { icon: Shield, title: "Độ bền cao – dễ bảo trì", desc: "Tuổi thọ hệ thống từ 25–30 năm, ít hỏng hóc, bảo hành dài hạn." }
+      ]
+    },
+    ourServices: {
+      title: "Dịch vụ của chúng tôi",
+      items: [
+        { icon: FileText, title: "Tư vấn và thiết kế hệ thống" },
+        { icon: Package, title: "Cung cấp vật tư, thiết bị" },
+        { icon: Wrench, title: "Thi công lắp đặt" },
+        { icon: Settings, title: "Vận hành và bảo trì" },
+        { icon: TrendingUp, title: "Giải pháp tài chính và đầu tư" }
+      ]
     }
   },
   EN: {
@@ -374,7 +347,7 @@ const translations: Translations = {
     introSub: "WATANABE CREATE HERITAGE",
     introContent1: "WATACO was established based on the foundation of WATANABE CREATE Group in Sendai City, Miyagi Prefecture, Japan. Founded on December 17, 2015, WATANABE CREATE has achieved significant success in consulting, design, and construction of solar energy projects in Japan.",
     introContent2: "With quality as our sustainable prestige, WATACO commits to providing the most optimal solutions tailored to every small detail of each project.",
-    introContent3: "Furthermore, Wataco has expanded into construction, home renovation, and interior design to bring comfortable, convenient, and modern living spaces to our clients.",
+    introContent3: "Established on December 17, 2015, WATANABE CREATE has achieved significant success in the consulting, design, and construction of solar energy projects in Japan—a leading nation in renewable energy technologies dedicated to environmental protection.",
     benefitsTitle: "Application Solutions",
     benefitsSub: "INVESTMENT EFFICIENCY",
     benefitTabs: [
@@ -423,22 +396,29 @@ const translations: Translations = {
     ],
     projectsTitle: "Featured Projects",
     projectsSub: "ACTUAL WORKS",
-    projectCategories: ["Business", "Residential", "Agriculture"],
+    projectTabs: [
+      { id: 'vietnam', label: 'Vietnam' },
+      { id: 'international', label: 'International' },
+    ],
     projectsData: {
-      0: [
-        { name: "Thanh Cong Textile", location: "Tay Ninh IP", capacity: "1.2 MWp", production: "1,750 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Logis VI Logistics", location: "VSIP I", capacity: "850 kWp", production: "1,240 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "Precision Mech Factory", location: "HCMC High-Tech", capacity: "2.5 MWp", production: "3,600 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "Dong Van 4, Ninh Binh", capacity: "0.80 MWp", production: "1,161 MWh/Year", year: "2023", img: "/wataco/public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Don Duong, Lam Dong", capacity: "1.19 MWp", production: "1,723 MWh/Year", year: "2023", img: "/wataco/public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "Tan Thuan EPZ, HCMC", capacity: "0.34 MWp", production: "488 MWh/Year", year: "2022", img: "/wataco/public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2022", img: "/wataco/public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "My Phuoc 3, Binh Duong", capacity: "0.48 MWp", production: "696 MWh/Year", year: "2021", img: "/wataco/public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Hi-Tech Park, HCMC", capacity: "0.76 MWp", production: "1,099 MWh/Year", year: "2021", img: "/wataco/public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Van Lam, Hung Yen", capacity: "1.24 MWp", production: "1,801 MWh/Year", year: "2020", img: "/wataco/public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "Thai Binh City", capacity: "3.01 MWp", production: "4,362 MWh/Year", year: "2020", img: "/wataco/public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2023", img: "/wataco/public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quynh Phu, Thai Binh", capacity: "2.21 MWp", production: "3,201 MWh/Year", year: "2022", img: "/wataco/public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liem, Ninh Binh", capacity: "1.24 MWp", production: "1,798 MWh/Year", year: "2021", img: "/wataco/public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thang, Da Nang", capacity: "1.13 MWp", production: "1,637 MWh/Year", year: "2020", img: "/wataco/public/project/amann.png" }
       ],
-      1: [
-        { name: "Thao Dien Villa", location: "Thu Duc, HCMC", capacity: "15 kWp", production: "21 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Cityland Park Hills", location: "Go Vap, HCMC", capacity: "8 kWp", production: "11 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "Resort Villa", location: "Ho Tram", capacity: "20 kWp", production: "29 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [
-        { name: "Hi-tech Melon Farm", location: "Lam Dong", capacity: "500 kWp", production: "720 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "Solar Mushroom Farm", location: "Dong Nai", capacity: "200 kWp", production: "290 MWh/Yr", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "Dragon Fruit Farm", location: "Binh Thuan", capacity: "1 MWp", production: "1,450 MWh/Yr", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
+      'international': [
+        { name: "Marsushima Solar", location: "Sendai, Japan", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "/wataco/public/project/Matoba.jpg" },
+        { name: "Higashimatsushima Sholar", location: "Miyagi, Japan", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "/wataco/public/project/Higashimatsushima.jpg" },
+        { name: "Nemawari Daini Sholar", location: "Osaka, Japan", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "/wataco/public/project/Nemawari.jpg" }
       ]
     },
     productsTitle: "Technology",
@@ -465,7 +445,6 @@ const translations: Translations = {
         { name: "Sofar HYD 20KTL", spec: "20kW", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: ["Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko", "Trina", "Growatt", "GoodWe", "JA Solar"],
     financeTitle: "Financial Solutions",
     financeSub: "FLEXIBLE",
     financeSolutions: [
@@ -506,7 +485,49 @@ const translations: Translations = {
       contactTitle: "Contact",
       copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
       privacy: "Privacy Policy",
-      terms: "Terms of Use"
+      terms: "Terms of Use",
+      contact: {
+        address1: "Head Office in Vietnam: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
+        address2: "Northern Representative Office: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
+    },
+    whySolar: {
+      title: "WHY CHOOSE SOLAR ENERGY?",
+      tagline: "Solar Power – A sustainable energy solution for the future!",
+      items: [
+        {
+          icon: DollarSign,
+          title: "Cost Savings",
+          desc: "Significantly reduce monthly electricity bills – especially for high-consumption households or businesses."
+        },
+        {
+          icon: Leaf,
+          title: "Eco-Friendly",
+          desc: "Green energy source – zero emissions, no environmental pollution."
+        },
+        {
+          icon: Zap,
+          title: "Energy Independence",
+          desc: "No more worries about power outages – the system can operate independently (when paired with battery storage)."
+        },
+        {
+          icon: Shield,
+          title: "High Durability & Low Maintenance",
+          desc: "System lifespan of 25–30 years with minimal failures and long-term warranty coverage."
+        }
+      ]
+    },
+    ourServices: {
+      title: "Our Services",
+      items: [
+        { icon: FileText, title: "System Consulting & Design" },
+        { icon: Package, title: "Equipment & Material Supply" },
+        { icon: Wrench, title: "Installation & Construction" },
+        { icon: Settings, title: "Operation & Maintenance (O&M)" },
+        { icon: TrendingUp, title: "Financial & Investment Solutions" }
+      ]
     }
   },
   JP: {
@@ -553,7 +574,7 @@ const translations: Translations = {
     introSub: "ワタナベクリエイトの遺産",
     introContent1: "WATACOは、日本の宮城県仙台市にあるワタナベクリエイトグループの基盤の上に設立されました。",
     introContent2: "「品質こそが持続可能な信頼を生む」という方針のもと、最適なソリューションを提供します。",
-    introContent3: "さらに、Watacoは建設、住宅改修分野にも進出しています。",
+    introContent3: "「WATANABE CREATEは2015年12月17日に設立されました。当社は、環境保護のための再生可能エネルギー技術における先進国である日本において、太陽光発電施設のコンサルティング・設計・施工の分野で確かな実績を築いてまいりました。」",
     benefitsTitle: "ソリューション",
     benefitsSub: "投資効率",
     benefitTabs: [
@@ -602,23 +623,50 @@ const translations: Translations = {
     ],
     projectsTitle: "プロジェクト",
     projectsSub: "施工事例",
-    projectCategories: ["企業", "住宅", "農業"],
+    projectTabs: [
+      { id: 'vietnam', label: 'ベトナム' },
+      { id: 'international', label: '国際' },
+    ],
     projectsData: {
-      0: [
-        { name: "Thanh Cong 繊維工場", location: "タイニン", capacity: "1.2 MWp", production: "1,750 MWh", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Logis VI 物流倉庫", location: "ビンズオン", capacity: "850 kWp", production: "1,240 MWh", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "精密機械工場", location: "HCMC", capacity: "2.5 MWp", production: "3,600 MWh", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "ニンビン省、ドンバン4", capacity: "0.80 MWp", production: "1,161 MWh/年", year: "2023", img: "/wataco/public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "ラムドン省、ドンズオン", capacity: "1.19 MWp", production: "1,723 MWh/年", year: "2023", img: "/wataco/public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "ホーチミン市、タントゥアン輸出加工区", capacity: "0.34 MWp", production: "488 MWh/年", year: "2022", img: "/wataco/public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2022", img: "/wataco/public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "ビンズオン省、ミーフオック3", capacity: "0.48 MWp", production: "696 MWh/年", year: "2021", img: "/wataco/public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "ホーチミン市、ハイテクパーク", capacity: "0.76 MWp", production: "1,099 MWh/年", year: "2021", img: "/wataco/public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "フンイエン省、ヴァンラム", capacity: "1.24 MWp", production: "1,801 MWh/年", year: "2020", img: "/wataco/public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "タイビン市", capacity: "3.01 MWp", production: "4,362 MWh/年", year: "2020", img: "/wataco/public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2023", img: "/wataco/public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "タイビン省、クインフー", capacity: "2.21 MWp", production: "3,201 MWh/年", year: "2022", img: "/wataco/public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "ニンビン省、タンリエム", capacity: "1.24 MWp", production: "1,798 MWh/年", year: "2021", img: "/wataco/public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "ダナン市、タムタン", capacity: "1.13 MWp", production: "1,637 MWh/年", year: "2020", img: "/wataco/public/project/amann.png" }
       ],
-      1: [
-        { name: "タオディエン・ヴィラ", location: "HCMC", capacity: "15 kWp", production: "21 MWh", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Cityland Park Hills", location: "HCMC", capacity: "8 kWp", production: "11 MWh", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "リゾートヴィラ", location: "BR-VT", capacity: "20 kWp", production: "29 MWh", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [
-        { name: "ハイテクメロン農場", location: "ラムドン", capacity: "500 kWp", production: "720 MWh", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "ソーラーマッシュルーム", location: "ドンナイ", capacity: "200 kWp", production: "290 MWh", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "ドラゴンフルーツ農場", location: "ビントゥアン", capacity: "1 MWp", production: "1,450 MWh", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
-      ]
+      'international': [
+        {
+          name: "マルシマ・ソーラー", // Hoặc "松島ソーラー" (Matsushima) nếu tên gốc là Matsushima
+          location: "日本、仙台市",
+          capacity: "10 MWp",
+          production: "12,000 MWh/年",
+          year: "2022",
+          img: "/wataco/public/project/Matoba.jpg"
+        },
+        {
+          name: "東松島ソーラー", // Higashimatsushima Solar
+          location: "日本、宮城県",
+          capacity: "5 MWp",
+          production: "6,000 MWh/年",
+          year: "2021",
+          img: "/wataco/public/project/Higashimatsushima.jpg"
+        },
+        {
+          name: "根廻第二ソーラー", // Nemawari Daini Solar
+          location: "日本、大阪府",
+          capacity: "2 MWp",
+          production: "2,400 MWh/年",
+          year: "2023",
+          img: "/wataco/public/project/Nemawari.jpg"
+        }]
     },
     productsTitle: "技術と設備",
     productsSub: "パートナー",
@@ -644,7 +692,6 @@ const translations: Translations = {
         { name: "Sofar HYD 20KTL", spec: "20kW", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: ["Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko", "Trina", "Growatt", "GoodWe", "JA Solar"],
     financeTitle: "金融ソリューション",
     financeSub: "柔軟性",
     financeSolutions: [
@@ -685,8 +732,51 @@ const translations: Translations = {
       contactTitle: "お問い合わせ",
       copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
       privacy: "プライバシーポリシー",
-      terms: "利用規約"
+      terms: "利用規約",
+      contact: {
+        address1: "ベトナム本社: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
+        address2: "北部駐在員事務所: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
+    },
+    whySolar: {
+      title: "太陽光発電を選ぶ理由",
+      tagline: "太陽光発電 — 未来のための持続可能なエネルギーソリューション！",
+      items: [
+        {
+          icon: DollarSign,
+          title: "電気代の削減",
+          desc: "毎月の電気代を大幅に削減します。特に電力消費量の多いご家庭や企業様に最適です。"
+        },
+        {
+          icon: Leaf,
+          title: "環境に優しい",
+          desc: "グリーンエネルギー源であり、排出ガスゼロで環境汚染を引き起こしません。"
+        },
+        {
+          icon: Zap,
+          title: "電力の自給自足",
+          desc: "停電の心配はありません。システムは独立して稼働可能です（蓄電池併用時）。"
+        },
+        {
+          icon: Shield,
+          title: "高耐久・メンテナンスが容易",
+          desc: "システム寿命は25〜30年。故障が少なく、安心の長期保証付きです。"
+        }
+      ]
+    },
+    ourServices: {
+      title: "当社のサービス",
+      items: [
+        { icon: FileText, title: "システムのコンサルティング・設計" },
+        { icon: Package, title: "機材・設備の供給" },
+        { icon: Wrench, title: "設置・施工" },
+        { icon: Settings, title: "運用・保守 (O&M)" },
+        { icon: TrendingUp, title: "金融・投資ソリューション" }
+      ]
     }
+
   }
 };
 
@@ -704,31 +794,17 @@ const projectLocations = [
 ];
 
 const clientsList = [
-  { name: "TH True Milk", logo: null, color: "#005CA9" },
-  { name: "ALPHA", logo: null, color: "#1A2B3C" },
-  { name: "KAIFA", logo: null, color: "#F59E0B" },
-  {
-    name: "Samsung",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
-    color: "#1428A0",
-  },
-  {
-    name: "Vinamilk",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/28/Vinamilk_logo_2023.svg",
-    color: "#2F469C",
-  },
-  {
-    name: "Aeon Mall",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Aeon_logo.svg",
-    color: "#D90F57",
-  },
-  {
-    name: "Foxconn",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/Hon_Hai_Precision_Industry.svg",
-    color: "#005596",
-  },
-  { name: "VSIP", logo: null, color: "#ED1C24" },
-  { name: "Cheng Loong", logo: null, color: "#009639" },
+  { name: "TH True Milk", logo: '/wataco/client-logo/TH.svg', color: "#013C78" },
+  { name: "ALPHA", logo: '/wataco/client-logo/alpha.svg', color: "#00469B" },
+  { name: "AMANN", logo: '/wataco/client-logo/amann.svg', color: "#028AD2" },
+  { name: "FGC", logo: '/wataco/client-logo/fgc.svg', color: "#42851F" },
+  { name: "HAWA-EXPO", logo: '/wataco/client-logo/hawa-expo.svg', color: "#A13538" },
+  { name: "HUONG SEN", logo: '/wataco/client-logo/huong-sen.svg', color: "#9CA3AF" },
+  { name: "KAIFA", logo: '/wataco/client-logo/kaifa.svg', color: "#1D2088" },
+  { name: "MKVN", logo: '/wataco/client-logo/mkvn.svg', color: "#00A650" },
+  { name: "RYOBI", logo: '/wataco/client-logo/ryobi.svg', color: "#1456A1" },
+  { name: "STROMAN", logo: '/wataco/client-logo/stroman.svg', color: "#0F75BC" },
+  { name: "TRALYTEX", logo: '/wataco/client-logo/tralytex.svg', color: "#9CA3AF" },
 ];
 
 // --- COMPONENT: CLIENT LOGO BOX (FRAMELESS) ---
@@ -744,12 +820,12 @@ const ClientLogoBox: React.FC<ClientLogoBoxProps> = ({ client }) => {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="mx-8 flex items-center justify-center group cursor-default transition-all duration-300">
+    <div className="mx-8 flex items-center justify-center group cursor-default transition-all duration-300 min-w-25 min-h-12.5">
       {!imgError && client.logo ? (
         <img
           src={client.logo}
           alt={client.name}
-          className="h-10 lg:h-12 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+          className="h-12 lg:h-20 w-auto object-contain transition-all duration-500"
           onError={() => setImgError(true)}
         />
       ) : (
@@ -774,11 +850,11 @@ export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Projects Slider State
-  const [activeProjectTab, setActiveProjectTab] = useState(0);
+  const [activeProjectTab, setActiveProjectTab] = useState('vietnam');
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
   // Product Slider State
-  const [activeProductTab, setActiveProductTab] = useState('panels');
+  const [activeProductTab, setActiveProductTab] = useState<ProductCategoryId>('panels');
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [isProductSliderHovered, setIsProductSliderHovered] = useState(false);
 
@@ -790,7 +866,7 @@ export default function HomePage() {
   const heroY = useTransform(scrollY, [0, 500], [0, 200]);
 
   // Helper to generate full product list (16 items)
-  const generateFullProductList = (category: string): Product[] => {
+  const generateFullProductList = (category: ProductCategoryId): Product[] => {
     const baseItems = t.baseProductsData[category];
     const fullList: Product[] = [];
     for (let i = 0; i < 16; i++) {
@@ -807,8 +883,8 @@ export default function HomePage() {
   const currentProducts = generateFullProductList(activeProductTab);
   const itemsPerPage = 4;
 
-  const handleProjectTabChange = (idx: number) => {
-    setActiveProjectTab(idx);
+  const handleProjectTabChange = (id: string) => {
+    setActiveProjectTab(id);
     setCurrentProjectIndex(0);
   };
 
@@ -996,7 +1072,7 @@ export default function HomePage() {
 
       {/* Trust Bar (Stats) */}
       <section id="section-stats" className="bg-[#1A2B3C] py-8 sm:py-12 lg:py-20 relative z-20 border-y border-white/10 shadow-2xl">
-        <StaggerContainer className="max-w-[1440px] mx-auto px-4 sm:px-6">
+        <StaggerContainer className="max-w-360 mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
             {t.stats.map((stat, idx) => (
               <StaggerItem key={idx} className="text-center group px-3 sm:px-4 pt-6 sm:pt-0">
@@ -1018,11 +1094,11 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
             <StaggerContainer className="lg:col-span-5 relative">
               <div className="relative group">
-                <div className="overflow-hidden rounded-[40px] lg:rounded-[100px/75px] border-[8px] lg:border-[12px] border-[#F4F7F6] shadow-2xl relative">
+                <div className="overflow-hidden rounded-[40px] lg:rounded-[100px/75px] border-8 lg:border-12 border-[#F4F7F6] shadow-2xl relative">
                   <img
                     src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&q=80&w=1200"
                     alt="Sendai City Heritage"
-                    className="w-full aspect-[4/3] object-cover grayscale"
+                    className="w-full aspect-4/3 object-cover grayscale"
                     loading="lazy"
                   />
                   {/* Badge */}
@@ -1053,7 +1129,7 @@ export default function HomePage() {
                     <p className="text-sm text-gray-500 leading-relaxed font-light">{t.introContent3}</p>
                     <div className="flex items-center space-x-2 text-[#228B22] font-bold text-xs uppercase tracking-widest mt-auto">
                       <Home size={16} />
-                      <span>Residential & Industrial</span>
+                      <span>Enterprises & Industrial</span>
                     </div>
                   </div>
                 </div>
@@ -1063,15 +1139,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* NEW: WHY SOLAR SECTION */}
+      <WhySolarSection t={t} />
+
+      {/* NEW: SERVICES SECTION */}
+      <ServicesSection t={t} />
+
       {/* SECTION 2: */}
       <section
         id="section-2"
         className="py-12 sm:py-20 lg:py-32 bg-white relative overflow-hidden"
       >
         {/* Subtle pattern background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[20px_20px] opacity-30"></div>
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 relative z-10">
           {/* ROW 1: STATS & MAP */}
           <StaggerContainer className="grid lg:grid-cols-12 gap-8 sm:gap-12 items-center mb-12 sm:mb-20">
             {/* LEFT: DATA STATS */}
@@ -1095,7 +1177,7 @@ export default function HomePage() {
                     className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center space-x-5 hover:shadow-md transition-all hover:-translate-y-1"
                   >
                     <div
-                      className="p-3 rounded-full bg-gray-50 shadow-sm flex-shrink-0"
+                      className="p-3 rounded-full bg-gray-50 shadow-sm shrink-0"
                       style={{ color: stat.color }}
                     >
                       <stat.icon size={28} />
@@ -1152,46 +1234,40 @@ export default function HomePage() {
               </h5>
             </div>
 
-            <div className="overflow-hidden flex relative z-10 items-center justify-center">
-              <motion.div
-                className="flex space-x-8 items-center whitespace-nowrap"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-              >
+            <div className="relative z-10 flex items-center justify-center">
+              <Marquee>
                 {/* Duplicate for loop */}
-                {[...clientsList, ...clientsList, ...clientsList].map(
+                {[...clientsList, ...clientsList].map(
                   (client, i) => (
                     <ClientLogoBox key={i} client={client} />
                   )
                 )}
-              </motion.div>
+              </Marquee>
             </div>
           </StaggerContainer>
         </div>
       </section>
 
-      {/* SECTION 3: PROJECTS - 3-CARD CENTER CAROUSEL (NEW v1.16: Rounded Tabs) */}
+      {/* SECTION 3: PROJECTS - 3-CARD CENTER CAROUSEL*/}
       <section id="section-3" className="py-12 sm:py-20 lg:py-32 bg-[#F8FAFC] text-[#1A2B3C] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 relative z-10">
           {/* Section Header */}
-          <StaggerContainer className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 lg:mb-16 gap-6 sm:gap-8">
+          <StaggerContainer className="flex justify-between mb-8 sm:mb-12 lg:mb-16 gap-6 sm:gap-8">
             <div>
               <h3 className="text-[#228B22] font-black text-xs sm:text-sm uppercase tracking-[0.5em] font-heading mb-2">{t.projectsSub}</h3>
               <h2 className="text-2xl sm:text-3xl lg:text-6xl font-black tracking-tighter leading-none text-[#1A2B3C] font-heading">{t.projectsTitle}</h2>
             </div>
-
-            {/* Tabs Navigation - ROUNDED-MD */}
-            <div className="flex flex-wrap gap-4">
-              {t.projectCategories.map((cat, idx) => (
+            <div className="flex flex-wrap items-center gap-2">
+              {t.projectTabs.map((tab) => (
                 <button
-                  key={idx}
-                  onClick={() => handleProjectTabChange(idx)}
-                  className={`px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all border rounded-md min-h-[44px] ${activeProjectTab === idx
-                    ? 'bg-[#228b22] text-white border-[#228b22]'
-                    : 'bg-transparent text-gray-500 border-gray-200 hover:border-[#228b22] hover:text-[#228b22]'
-                    }`}
+                  key={tab.id}
+                  onClick={() => handleProjectTabChange(tab.id)}
+                  className={`        px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300  ${activeProjectTab === tab.id
+                    ? 'bg-[#1A2B3C] text-white shadow-lg shadow-blue-900/20 transform scale-105'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} 
+                  `}
                 >
-                  <span className="font-heading">{cat}</span>
+                  {tab.label}
                 </button>
               ))}
             </div>
@@ -1203,7 +1279,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full h-[400px] sm:h-[500px] lg:h-[500px] flex items-center justify-center touch-pan-y"
+            className="relative w-full h-100 sm:h-125 lg:h-125 flex items-center justify-center touch-pan-y"
           >
 
             {/* Slider Track with Swipe */}
@@ -1577,19 +1653,19 @@ export default function HomePage() {
               <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-start">
                   <MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                  <span>District 7, Ho Chi Minh City, Vietnam</span>
+                  <span>{t.footer.contact.address1}</span>
                 </li>
                 <li className="flex items-start">
                   <MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                  <span>Minato-ku, Tokyo, Japan</span>
+                  <span>{t.footer.contact.address2}</span>
                 </li>
                 <li className="flex items-center">
                   <Mail size={18} className="mr-3 text-[#228B22]" />
-                  <a href="mailto:info@wataco.com" className="hover:text-white">info@wataco.com</a>
+                  <a href={`mailto:${t.footer.contact.email}`} className="hover:text-white">{t.footer.contact.email}</a>
                 </li>
                 <li className="flex items-center">
                   <Phone size={18} className="mr-3 text-[#228B22]" />
-                  <a href="tel:+84123456789" className="hover:text-white">(+84) 123 456 789</a>
+                  <a href={`tel:${t.footer.contact.phone}`} className="hover:text-white">{t.footer.contact.phone}</a>
                 </li>
               </ul>
             </div>

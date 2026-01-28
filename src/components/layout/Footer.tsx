@@ -55,10 +55,10 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
           <div>
             <h4 className="text-lg font-bold text-white mb-6 font-heading">Về WATACO</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Giới thiệu chung</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Dự án tiêu biểu</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tin tức & Sự kiện</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tuyển dụng</a></li>
+              <li><a href="#section-1" className="hover:text-[#FFD700] transition-colors">Giới thiệu chung</a></li>
+              <li><a href="/wataco/projects" className="hover:text-[#FFD700] transition-colors">Dự án tiêu biểu</a></li>
+              <li><a href="/wataco/news" className="hover:text-[#FFD700] transition-colors">Tin tức & Sự kiện</a></li>
+              <li><a href="/wataco/careers" className="hover:text-[#FFD700] transition-colors">Tuyển dụng</a></li>
             </ul>
           </div>
 
@@ -68,19 +68,19 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-start">
                 <icons.MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                <span>District 7, Ho Chi Minh City, Vietnam</span>
+                <span>Trụ sở chính tại Việt Nam: 29 Nguyễn Khắc Nhu, Phường Cầu Ông Lãnh, Thành phố Hồ Chí Minh, Việt Nam</span>
               </li>
               <li className="flex items-start">
                 <icons.MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                <span>Minato-ku, Tokyo, Japan</span>
+                <span>Văn phòng đại diện Miền Bắc: Tầng 4, Số 44 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành phố Hà Nội, Việt Nam</span>
               </li>
               <li className="flex items-center">
                 <icons.Mail size={18} className="mr-3 text-[#228B22]" />
-                <a href="mailto:info@wataco.com" className="hover:text-white">info@wataco.com</a>
+                <a href="mailto:info@wataco.net" className="hover:text-white">info@wataco.net</a>
               </li>
               <li className="flex items-center">
                 <icons.Phone size={18} className="mr-3 text-[#228B22]" />
-                <a href="tel:+84123456789" className="hover:text-white">(+84) 123 456 789</a>
+                <a href="tel:+84123456789" className="hover:text-white">078.678.8837</a>
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.</p>
+          <p>© 2026 WATACO | MEMBER OF WATANABE CREATE GROUP JAPAN.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Chính sách bảo mật</a>
             <a href="#" className="hover:text-white transition-colors">Điều khoản sử dụng</a>
