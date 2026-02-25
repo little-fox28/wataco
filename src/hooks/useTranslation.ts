@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Factory, Home, Sprout, Sun, Cpu, Battery, Zap, Building2, TrendingUp, Wallet, Newspaper, MapPin, Calendar, BarChart3, Linkedin, Facebook, Youtube, Mail, Phone } from 'lucide-react';
+import { BarChart3, Battery, Building2, Calendar, Cpu, DollarSign, Facebook, Factory, FileText, Home, Leaf, Linkedin, Mail, MapPin, Newspaper, Package, Phone, Settings, Shield, Sprout, Sun, TrendingUp, Wallet, Wrench, Youtube, Zap } from 'lucide-react';
+import { Activity, useState } from 'react';
+import type { Translations } from '../types';
 
 // --- DỮ LIỆU NGÔN NGỮ ---
-const translations: { [key in Language]: TranslationContent } = {
+export const translations: Translations = {
   VN: {
-    // Updated Nav Items
     nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
     heroH1: "KỸ THUẬT\nNHẬT BẢN.\nNĂNG LƯỢNG\nVIỆT NAM.",
     heroSub: "Kế thừa di sản kỹ thuật từ Watanabe Create Group (Sendai, Nhật Bản) để thúc đẩy quá trình chuyển đổi năng lượng công nghiệp tại Việt Nam.",
@@ -17,12 +17,39 @@ const translations: { [key in Language]: TranslationContent } = {
       { label: "DỰ ÁN HOÀN THÀNH", val: 200, suffix: "", prefix: "+" },
       { label: "ĐỘ TIN CẬY HỆ THỐNG", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "Dự án đã ký kết",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "Tổng công suất lắp đặt",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "Hệ thống đang vận hành",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "QUY MÔ HOẠT ĐỘNG",
+    section2Title: "Mạng Lưới\nDự Án",
+    section2Description: "Cam kết chất lượng và hiệu suất vượt trội trên toàn lãnh thổ Việt Nam với hơn 500MWp tổng công suất lắp đặt.",
+    section2ClientTitle: "Đối tác tin cậy",
     // SECTION 1: HERITAGE
     introTitle: "Hành Trình Từ Sendai Đến Việt Nam",
     introSub: "DI SẢN WATANABE CREATE",
     introContent1: "WATACO được thành lập dựa trên nền tảng của Tập đoàn WATANABE CREATE tại thành phố Sendai, Tỉnh Miyagi, Nhật Bản. Ra đời vào ngày 17/12/2015, tập đoàn WATANABE CREATE đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
     introContent2: "Với phương châm chất lượng tạo nên uy tín bền vững, WATACO cam kết mang đến khách hàng những giải pháp tối ưu nhất phù hợp với yêu cầu của khách hàng đến từng chi tiết nhỏ của mỗi công trình.",
-    introContent3: "Bên cạnh đó, Wataco còn phát triển thêm lĩnh vực xây dựng, cải tạo nhà ở, nội thất nhằm đem lại không gian sống thoải mái, tiện nghi, hiện đại tới khách hàng. Chúng tôi luôn luôn lắng nghe ý muốn của khách hàng để kiến tạo nên những tác phẩm xứng tầm với những gì đã cam kết và không ngừng học hỏi để luôn xứng đáng là một trong những lựa chọn hàng đầu của mọi khách hàng.",
+    introContent3: "WATANABE CREATE ra đời vào ngày 17/12/2015, tập đoàn đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
     benefitsTitle: "Giải Pháp Ứng Dụng",
     benefitsSub: "HIỆU QUẢ ĐẦU TƯ",
     benefitTabs: [
@@ -71,22 +98,25 @@ const translations: { [key in Language]: TranslationContent } = {
     ],
     projectsTitle: "Dự Án Tiêu Biểu",
     projectsSub: "CÔNG TRÌNH THỰC TẾ",
-    projectCategories: ["Doanh Nghiệp", "Nhà Ở", "Nông Nghiệp"],
     projectsData: {
-      0: [ // Business
-        { name: "Nhà máy Dệt may Thành Công", location: "KCN Trảng Bàng, Tây Ninh", capacity: "1.2 MWp", production: "1,750 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Kho vận Logis VI", location: "VSIP I, Bình Dương", capacity: "850 kWp", production: "1,240 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "Nhà máy Cơ khí Chính xác", location: "KCN Cao, TP.HCM", capacity: "2.5 MWp", production: "3,600 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "Đồng Văn 4, Ninh Bình", capacity: "0.80 MWp", production: "1,161 MWh/Năm", year: "2023", img: "public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Đơn Dương, Lâm Đồng", capacity: "1.19 MWp", production: "1,723 MWh/Năm", year: "2023", img: "public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "0.34 MWp", production: "488 MWh/Năm", year: "2022", img: "public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2022", img: "public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "Mỹ Phước 3, Bình Dương", capacity: "0.48 MWp", production: "696 MWh/Năm", year: "2021", img: "public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "0.76 MWp", production: "1,099 MWh/Năm", year: "2021", img: "public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1.24 MWp", production: "1,801 MWh/Năm", year: "2020", img: "public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "TP. Thái Bình", capacity: "3.01 MWp", production: "4,362 MWh/Năm", year: "2020", img: "public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2023", img: "public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quỳnh Phụ, Thái Bình", capacity: "2.21 MWp", production: "3,201 MWh/Năm", year: "2022", img: "public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liêm, Ninh Bình", capacity: "1.24 MWp", production: "1,798 MWh/Năm", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thăng, Đà Nẵng", capacity: "1.13 MWp", production: "1,637 MWh/Năm", year: "2020", img: "public/project/amann.png" }
       ],
-      1: [ // Residential
-        { name: "Villa Thảo Điền", location: "Thủ Đức, TP.HCM", capacity: "15 kWp", production: "21 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Nhà phố Cityland Park Hills", location: "Gò Vấp, TP.HCM", capacity: "8 kWp", production: "11 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "Biệt thự nghỉ dưỡng", location: "Hồ Tràm, BR-VT", capacity: "20 kWp", production: "29 MWh/Năm", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [ // Agriculture
-        { name: "Farm Dưa Lưới Công Nghệ", location: "Đức Trọng, Lâm Đồng", capacity: "500 kWp", production: "720 MWh/Năm", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "Trại Nấm Solar", location: "Long Khánh, Đồng Nai", capacity: "200 kWp", production: "290 MWh/Năm", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "Farm Thanh Long Xuất Khẩu", location: "Hàm Thuận Nam, Bình Thuận", capacity: "1 MWp", production: "1,450 MWh/Năm", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
+      'international': [
+        { name: "Dự án Marsushima", location: "Sendai, Nhật Bản", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "public/project/Matoba.jpg" },
+        { name: "Dự án Higashimatsushima", location: "Miyagi, Nhật Bản", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "public/project/Higashimatsushima.jpg" },
+        { name: "Dự án Nemawari Daini", location: "Osaka, Nhật Bản", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "public/project/Nemawari.jpg" },
       ]
     },
     productsTitle: "Công Nghệ & Thiết Bị",
@@ -113,10 +143,6 @@ const translations: { [key in Language]: TranslationContent } = {
         { name: "Sofar HYD 20KTL", spec: "20kW | Storage Ready", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: [
-      "Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko Solar", "Trina Solar", "Growatt", "GoodWe", "JA Solar"
-    ],
-    // NEW FINANCE SECTION DATA
     financeTitle: "Giải Pháp Tài Chính",
     financeSub: "LINH HOẠT & HIỆU QUẢ",
     financeSolutions: [
@@ -157,48 +183,60 @@ const translations: { [key in Language]: TranslationContent } = {
     ],
     mapTitle: "Mạng lưới dự án toàn quốc",
     getQuote: "NHẬN BÁO GIÁ",
-    hero: {
-      sub: "CÁC GIẢI PHÁP TIÊN TIẾN CHO MỌI NHU CẦU",
-      title: "Dòng Sản Phẩm ",
-      highlight: "Đa Dạng",
-      desc: "Khám phá danh mục sản phẩm và công nghệ chất lượng cao, được tuyển chọn từ các đối tác hàng đầu thế giới, đảm bảo hiệu suất và độ tin cậy vượt trội cho mọi dự án năng lượng mặt trời."
+    viewAllArticles: "Tất cả bài viết",
+    footer: {
+      description: "Kiến tạo hạ tầng năng lượng bền vững tại Việt Nam dựa trên tinh hoa kỹ thuật từ thành phố Sendai, Nhật Bản.",
+      solutionsTitle: "Giải pháp",
+      solutions: [
+        "Tổng thầu EPC",
+        "Vận hành & Bảo dưỡng (O&M)",
+        "Đầu tư ESCO",
+        "Cung cấp thiết bị"
+      ],
+      companyTitle: "Về WATACO",
+      company: [
+        "Giới thiệu chung",
+        "Dự án tiêu biểu",
+        "Tin tức & Sự kiện",
+        "Tuyển dụng"
+      ],
+      contactTitle: "Liên hệ",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "Chính sách bảo mật",
+      terms: "Điều khoản sử dụng",
+      contact: {
+        address1: "Trụ sở chính tại Việt Nam: 29 Nguyễn Khắc Nhu, Phường Cầu Ông Lãnh, Thành phố Hồ Chí Minh, Việt Nam",
+        address2: "Văn phòng đại diện Miền Bắc: Tầng 4, Số 44 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành phố Hà Nội, Việt Nam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
     },
-    filters: {
-      all: "Tất cả",
-      panels: "Tấm Pin Solar",
-      inverter: "Biến Tần",
-      storage: "Lưu Trữ"
+    projectTabs: [
+      { id: 'vietnam', label: 'Việt Nam' },
+      { id: 'international', label: 'Quốc Tế' },
+    ],
+    whySolar: {
+      title: "TẠI SAO NÊN SỬ DỤNG ĐIỆN MẶT TRỜI?",
+      tagline: "Điện mặt trời – Giải pháp năng lượng bền vững cho tương lai!",
+      items: [
+        { icon: DollarSign, title: "Tiết kiệm chi phí điện", desc: "Giảm mạnh hóa đơn điện hàng tháng – đặc biệt với hộ tiêu thụ cao hoặc doanh nghiệp." },
+        { icon: Leaf, title: "Thân thiện môi trường", desc: "Nguồn năng lượng xanh – không phát thải, không gây ô nhiễm môi trường." },
+        { icon: Zap, title: "Chủ động nguồn điện", desc: "Không còn lo mất điện – hệ thống có thể hoạt động độc lập (kèm pin lưu trữ)." },
+        { icon: Shield, title: "Độ bền cao – dễ bảo trì", desc: "Tuổi thọ hệ thống từ 25–30 năm, ít hỏng hóc, bảo hành dài hạn." }
+      ]
     },
-    ui: {
-      searchPlaceholder: "Tìm kiếm sản phẩm...",
-      showing: "Hiển thị",
-      products: "sản phẩm",
-      sort: "Sắp xếp",
-      newest: "Mới nhất",
-      priceLow: "Giá: Thấp đến Cao",
-      priceHigh: "Giá: Cao đến Thấp",
-      viewFast: "Xem nhanh",
-      quoteBtn: "Nhận báo giá",
-      specPower: "Công suất",
-      specEff: "Hiệu suất",
-      specWarranty: "Bảo hành",
-      noResult: "Không tìm thấy sản phẩm nào.",
-      resetFilter: "Đặt lại bộ lọc",
-      ctaTitle: "Bạn đã sẵn sàng biến năng lượng mặt trời thành lợi nhuận?",
-      ctaDesc: "Liên hệ ngay để nhận tư vấn giải pháp phù hợp nhất với nhu cầu của bạn.",
-      ctaBtn1: "NHẬN BÁO GIÁ",
-      ctaBtn2: "LIÊN HỆ TƯ VẤN"
-    },
-    navProducts: {
-      home: "Trang chủ",
-      products: "Sản phẩm",
-      projects: "Dự án",
-      contact: "Liên hệ",
-      quote: "Báo giá"
+    ourServices: {
+      title: "Dịch vụ của chúng tôi",
+      items: [
+        { icon: FileText, title: "Tư vấn và thiết kế hệ thống" },
+        { icon: Package, title: "Cung cấp vật tư, thiết bị" },
+        { icon: Wrench, title: "Thi công lắp đặt" },
+        { icon: Settings, title: "Vận hành và bảo trì" },
+        { icon: TrendingUp, title: "Giải pháp tài chính và đầu tư" }
+      ]
     }
   },
   EN: {
-    // Updated Nav Items
     nav: ["Home", "Projects", "Careers", "News"],
     heroH1: "JAPANESE\nENGINEERING.\nVIETNAMESE\nENERGY.",
     heroSub: "Leveraging 30+ years of Watanabe Create heritage from Sendai to power Vietnam's industrial transition.",
@@ -211,11 +249,38 @@ const translations: { [key in Language]: TranslationContent } = {
       { label: "COMPLETED PROJECTS", val: 200, suffix: "", prefix: "+" },
       { label: "SYSTEM RELIABILITY", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "Projects Signed",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "Total Installed Capacity",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "Operating Systems",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "SCALE OF OPERATIONS",
+    section2Title: "Nationwide\nProject Network",
+    section2Description: "Committed to outstanding quality and performance throughout Vietnam with over 500MWp of total installed capacity.",
+    section2ClientTitle: "Trusted Partners",
     introTitle: "Journey From Sendai to Vietnam",
     introSub: "WATANABE CREATE HERITAGE",
     introContent1: "WATACO was established based on the foundation of WATANABE CREATE Group in Sendai City, Miyagi Prefecture, Japan. Founded on December 17, 2015, WATANABE CREATE has achieved significant success in consulting, design, and construction of solar energy projects in Japan.",
     introContent2: "With quality as our sustainable prestige, WATACO commits to providing the most optimal solutions tailored to every small detail of each project.",
-    introContent3: "Furthermore, Wataco has expanded into construction, home renovation, and interior design to bring comfortable, convenient, and modern living spaces to our clients.",
+    introContent3: "Established on December 17, 2015, WATANABE CREATE has achieved significant success in the consulting, design, and construction of solar energy projects in Japan—a leading nation in renewable energy technologies dedicated to environmental protection.",
     benefitsTitle: "Application Solutions",
     benefitsSub: "INVESTMENT EFFICIENCY",
     benefitTabs: [
@@ -264,22 +329,29 @@ const translations: { [key in Language]: TranslationContent } = {
     ],
     projectsTitle: "Featured Projects",
     projectsSub: "ACTUAL WORKS",
-    projectCategories: ["Business", "Residential", "Agriculture"],
+    projectTabs: [
+      { id: 'vietnam', label: 'Vietnam' },
+      { id: 'international', label: 'International' },
+    ],
     projectsData: {
-      0: [
-        { name: "Thanh Cong Textile", location: "Tay Ninh IP", capacity: "1.2 MWp", production: "1,750 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Logis VI Logistics", location: "VSIP I", capacity: "850 kWp", production: "1,240 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "Precision Mech Factory", location: "HCMC High-Tech", capacity: "2.5 MWp", production: "3,600 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "Dong Van 4, Ninh Binh", capacity: "0.80 MWp", production: "1,161 MWh/Year", year: "2023", img: "public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Don Duong, Lam Dong", capacity: "1.19 MWp", production: "1,723 MWh/Year", year: "2023", img: "public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "Tan Thuan EPZ, HCMC", capacity: "0.34 MWp", production: "488 MWh/Year", year: "2022", img: "public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2022", img: "public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "My Phuoc 3, Binh Duong", capacity: "0.48 MWp", production: "696 MWh/Year", year: "2021", img: "public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Hi-Tech Park, HCMC", capacity: "0.76 MWp", production: "1,099 MWh/Year", year: "2021", img: "public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Van Lam, Hung Yen", capacity: "1.24 MWp", production: "1,801 MWh/Year", year: "2020", img: "public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "Thai Binh City", capacity: "3.01 MWp", production: "4,362 MWh/Year", year: "2020", img: "public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2023", img: "public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quynh Phu, Thai Binh", capacity: "2.21 MWp", production: "3,201 MWh/Year", year: "2022", img: "public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liem, Ninh Binh", capacity: "1.24 MWp", production: "1,798 MWh/Year", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thang, Da Nang", capacity: "1.13 MWp", production: "1,637 MWh/Year", year: "2020", img: "public/project/amann.png" }
       ],
-      1: [
-        { name: "Thao Dien Villa", location: "Thu Duc, HCMC", capacity: "15 kWp", production: "21 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Cityland Park Hills", location: "Go Vap, HCMC", capacity: "8 kWp", production: "11 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "Resort Villa", location: "Ho Tram", capacity: "20 kWp", production: "29 MWh/Yr", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [
-        { name: "Hi-tech Melon Farm", location: "Lam Dong", capacity: "500 kWp", production: "720 MWh/Yr", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "Solar Mushroom Farm", location: "Dong Nai", capacity: "200 kWp", production: "290 MWh/Yr", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "Dragon Fruit Farm", location: "Binh Thuan", capacity: "1 MWp", production: "1,450 MWh/Yr", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
+      'international': [
+        { name: "Marsushima Solar", location: "Sendai, Japan", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "public/project/Matoba.jpg" },
+        { name: "Higashimatsushima Sholar", location: "Miyagi, Japan", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "public/project/Higashimatsushima.jpg" },
+        { name: "Nemawari Daini Sholar", location: "Osaka, Japan", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "public/project/Nemawari.jpg" }
       ]
     },
     productsTitle: "Technology",
@@ -306,7 +378,6 @@ const translations: { [key in Language]: TranslationContent } = {
         { name: "Sofar HYD 20KTL", spec: "20kW", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: ["Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko", "Trina", "Growatt", "GoodWe", "JA Solar"],
     financeTitle: "Financial Solutions",
     financeSub: "FLEXIBLE",
     financeSolutions: [
@@ -327,47 +398,72 @@ const translations: { [key in Language]: TranslationContent } = {
     ],
     mapTitle: "Map",
     getQuote: "QUOTE",
-    hero: {
-      sub: "ADVANCED SOLUTIONS FOR EVERY NEED",
-      title: "Diverse ",
-      highlight: "Product Range",
-      desc: "Explore our catalog of high-quality products and technologies, curated from leading global partners, ensuring superior performance and reliability for all solar energy projects."
+    viewAllArticles: "View All Articles",
+    footer: {
+      description: "Creating sustainable energy infrastructure in Vietnam based on engineering excellence from Sendai, Japan.",
+      solutionsTitle: "Solutions",
+      solutions: [
+        "EPC Contractor",
+        "Operation & Maintenance (O&M)",
+        "ESCO Investment",
+        "Equipment Supply"
+      ],
+      companyTitle: "About WATACO",
+      company: [
+        "About Us",
+        "Featured Projects",
+        "News & Events",
+        "Careers"
+      ],
+      contactTitle: "Contact",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      contact: {
+        address1: "Head Office in Vietnam: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
+        address2: "Northern Representative Office: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
     },
-    filters: {
-      all: "All",
-      panels: "Solar Panels",
-      inverter: "Inverters",
-      storage: "Storage"
+    whySolar: {
+      title: "WHY CHOOSE SOLAR ENERGY?",
+      tagline: "Solar Power – A sustainable energy solution for the future!",
+      items: [
+        {
+          icon: DollarSign,
+          title: "Cost Savings",
+          desc: "Significantly reduce monthly electricity bills – especially for high-consumption households or businesses."
+        },
+        {
+          icon: Leaf,
+          title: "Eco-Friendly",
+          desc: "Green energy source – zero emissions, no environmental pollution."
+        },
+        {
+          icon: Zap,
+          title: "Energy Independence",
+          desc: "No more worries about power outages – the system can operate independently (when paired with battery storage)."
+        },
+        {
+          icon: Shield,
+          title: "High Durability & Low Maintenance",
+          desc: "System lifespan of 25–30 years with minimal failures and long-term warranty coverage."
+        }
+      ]
     },
-    ui: {
-      searchPlaceholder: "Search products...",
-      showing: "Showing",
-      products: "products",
-      sort: "Sort",
-      newest: "Newest",
-      priceLow: "Price: Low to High",
-      priceHigh: "Price: High to Low",
-      viewFast: "Quick View",
-      quoteBtn: "Get Quote",
-      specPower: "Power",
-      specEff: "Efficiency",
-      specWarranty: "Warranty",
-      noResult: "No products found.",
-      resetFilter: "Reset Filter",
-      ctaTitle: "Ready to turn solar energy into profit?",
-      ctaDesc: "Contact us now to get the best solution for your needs.",
-      ctaBtn1: "GET A QUOTE",
-      ctaBtn2: "CONTACT US"
-    },
-    navProducts: {
-      home: "Home",
-      products: "Products",
-      projects: "Projects",
-      contact: "Contact",
-      quote: "Quote"
+    ourServices: {
+      title: "Our Services",
+      items: [
+        { icon: FileText, title: "System Consulting & Design" },
+        { icon: Package, title: "Equipment & Material Supply" },
+        { icon: Wrench, title: "Installation & Construction" },
+        { icon: Settings, title: "Operation & Maintenance (O&M)" },
+        { icon: TrendingUp, title: "Financial & Investment Solutions" }
+      ]
     }
-  }, JP: {
-    // Updated Nav Items
+  },
+  JP: {
     nav: ["ホーム", "プロジェクト", "キャリア", "ニュース"],
     heroH1: "日本の\n技術。\nベトナムの\nエネルギー。",
     heroSub: "仙台のワタナベクリエイトグループの30年以上の技術遺産を継承。",
@@ -380,11 +476,38 @@ const translations: { [key in Language]: TranslationContent } = {
       { label: "完了プロジェクト", val: 200, suffix: "", prefix: "+" },
       { label: "稼働信頼性", val: 99.9, suffix: "%", prefix: "" }
     ],
+    mapStats: [
+      {
+        label: "署名済みプロジェクト",
+        val: 250,
+        suffix: "+",
+        icon: FileText,
+        color: "#3B82F6",
+      },
+      {
+        label: "総設備容量",
+        val: 500,
+        suffix: " MWp",
+        icon: Zap,
+        color: "#EAB308",
+      },
+      {
+        label: "運転中のシステム",
+        val: 180,
+        suffix: "+",
+        icon: Activity,
+        color: "#228B22",
+      },
+    ],
+    section2SubTitle: "事業規模",
+    section2Title: "全国の\nプロジェクト網",
+    section2Description: "ベトナム全土で500MWp以上の総設置容量で、卓越した品質とパフォーマンスをお約束します。",
+    section2ClientTitle: "信頼できるパートナー",
     introTitle: "仙台からベトナムへ",
     introSub: "ワタナベクリエイトの遺産",
     introContent1: "WATACOは、日本の宮城県仙台市にあるワタナベクリエイトグループの基盤の上に設立されました。",
-    introContent2: "\"品質こそが持続可能な信頼を生む\"という方針のもと、最適なソリューションを提供します。",
-    introContent3: "さらに、Watacoは建設、住宅改修分野にも進出しています。",
+    introContent2: "「品質こそが持続可能な信頼を生む」という方針のもと、最適なソリューションを提供します。",
+    introContent3: "「WATANABE CREATEは2015年12月17日に設立されました。当社は、環境保護のための再生可能エネルギー技術における先進国である日本において、太陽光発電施設のコンサルティング・設計・施工の分野で確かな実績を築いてまいりました。」",
     benefitsTitle: "ソリューション",
     benefitsSub: "投資効率",
     benefitTabs: [
@@ -433,23 +556,50 @@ const translations: { [key in Language]: TranslationContent } = {
     ],
     projectsTitle: "プロジェクト",
     projectsSub: "施工事例",
-    projectCategories: ["企業", "住宅", "農業"],
+    projectTabs: [
+      { id: 'vietnam', label: 'ベトナム' },
+      { id: 'international', label: '国際' },
+    ],
     projectsData: {
-      0: [
-        { name: "Thanh Cong 繊維工場", location: "タイニン", capacity: "1.2 MWp", production: "1,750 MWh", year: "2023", img: "https://images.unsplash.com/photo-1565128938229-43654489eb12?auto=format&fit=crop&q=80&w=800" },
-        { name: "Logis VI 物流倉庫", location: "ビンズオン", capacity: "850 kWp", production: "1,240 MWh", year: "2022", img: "https://images.unsplash.com/photo-1581094794329-cd56b350a942?auto=format&fit=crop&q=80&w=800" },
-        { name: "精密機械工場", location: "HCMC", capacity: "2.5 MWp", production: "3,600 MWh", year: "2023", img: "https://images.unsplash.com/photo-1534951474654-886e563204d5?auto=format&fit=crop&q=80&w=800" }
+      'vietnam': [
+        { name: "Alpha Network", location: "ニンビン省、ドンバン4", capacity: "0.80 MWp", production: "1,161 MWh/年", year: "2023", img: "public/project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "ラムドン省、ドンズオン", capacity: "1.19 MWp", production: "1,723 MWh/年", year: "2023", img: "public/project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "ホーチミン市、タントゥアン輸出加工区", capacity: "0.34 MWp", production: "488 MWh/年", year: "2022", img: "public/project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2022", img: "public/project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "ビンズオン省、ミーフオック3", capacity: "0.48 MWp", production: "696 MWh/年", year: "2021", img: "public/project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "ホーチミン市、ハイテクパーク", capacity: "0.76 MWp", production: "1,099 MWh/年", year: "2021", img: "public/project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "フンイエン省、ヴァンラム", capacity: "1.24 MWp", production: "1,801 MWh/年", year: "2020", img: "public/project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "タイビン市", capacity: "3.01 MWp", production: "4,362 MWh/年", year: "2020", img: "public/project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2023", img: "public/project/the-he-moi.png" },
+        { name: "Huong Sen", location: "タイビン省、クインフー", capacity: "2.21 MWp", production: "3,201 MWh/年", year: "2022", img: "public/project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "ニンビン省、タンリエム", capacity: "1.24 MWp", production: "1,798 MWh/年", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "ダナン市、タムタン", capacity: "1.13 MWp", production: "1,637 MWh/年", year: "2020", img: "public/project/amann.png" }
       ],
-      1: [
-        { name: "タオディエン・ヴィラ", location: "HCMC", capacity: "15 kWp", production: "21 MWh", year: "2023", img: "https://images.unsplash.com/photo-1600596542815-2a502f35f6e4?auto=format&fit=crop&q=80&w=800" },
-        { name: "Cityland Park Hills", location: "HCMC", capacity: "8 kWp", production: "11 MWh", year: "2022", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800" },
-        { name: "リゾートヴィラ", location: "BR-VT", capacity: "20 kWp", production: "29 MWh", year: "2023", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" }
-      ],
-      2: [
-        { name: "ハイテクメロン農場", location: "ラムドン", capacity: "500 kWp", production: "720 MWh", year: "2022", img: "https://images.unsplash.com/photo-1582298649479-7a5528892787?auto=format&fit=crop&q=80&w=800" },
-        { name: "ソーラーマッシュルーム", location: "ドンナイ", capacity: "200 kWp", production: "290 MWh", year: "2021", img: "https://images.unsplash.com/photo-1627823521360-1554558e658a?auto=format&fit=crop&q=80&w=800" },
-        { name: "ドラゴンフルーツ農場", location: "ビントゥアン", capacity: "1 MWp", production: "1,450 MWh", year: "2020", img: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&q=80&w=800" }
-      ]
+      'international': [
+        {
+          name: "マルシマ・ソーラー", // Hoặc "松島ソーラー" (Matsushima) nếu tên gốc là Matsushima
+          location: "日本、仙台市",
+          capacity: "10 MWp",
+          production: "12,000 MWh/年",
+          year: "2022",
+          img: "public/project/Matoba.jpg"
+        },
+        {
+          name: "東松島ソーラー", // Higashimatsushima Solar
+          location: "日本、宮城県",
+          capacity: "5 MWp",
+          production: "6,000 MWh/年",
+          year: "2021",
+          img: "public/project/Higashimatsushima.jpg"
+        },
+        {
+          name: "根廻第二ソーラー", // Nemawari Daini Solar
+          location: "日本、大阪府",
+          capacity: "2 MWp",
+          production: "2,400 MWh/年",
+          year: "2023",
+          img: "public/project/Nemawari.jpg"
+        }]
     },
     productsTitle: "技術と設備",
     productsSub: "パートナー",
@@ -475,7 +625,6 @@ const translations: { [key in Language]: TranslationContent } = {
         { name: "Sofar HYD 20KTL", spec: "20kW", eff: "98.0%", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=600", tag: "High Power" }
       ]
     },
-    partners: ["Canadian Solar", "SMA", "Huawei", "Sungrow", "Longi", "Jinko", "Trina", "Growatt", "GoodWe", "JA Solar"],
     financeTitle: "金融ソリューション",
     financeSub: "柔軟性",
     financeSolutions: [
@@ -489,53 +638,79 @@ const translations: { [key in Language]: TranslationContent } = {
     newsArticles: [
       { source: "VnExpress", date: "12/20", title: "WATACOと日本のソーラー技術。", link: "#", tag: "Market", img: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=600" },
       { source: "Forbes", date: "10/15", title: "再生可能エネルギー企業トップ。", link: "#", tag: "Ranking", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" },
-      { source: "Tuổi trẻ", date: "08/05", title: "屋上太陽光発電ソリューション。", link: "#", tag: "Tech", img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=600" },
+      { source: "Tuổi Trẻ", date: "08/05", title: "屋上太陽光発電ソリューション。", link: "#", tag: "Tech", img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=600" },
       { source: "CafeF", date: "01/10", title: "グリーントランジション。", link: "#", tag: "Invest", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=600" },
       { source: "VIR", date: "11/22", title: "CEOインタビュー。", link: "#", tag: "People", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600" },
       { source: "VTV News", date: "09/02", title: "戦略的パートナーシップ。", link: "#", tag: "Event", img: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&q=80&w=600" }
     ],
     mapTitle: "マップ",
     getQuote: "見積もり",
-    hero: {
-      sub: "あらゆるニーズに対応する高度なソリューション",
-      title: "多様な",
-      highlight: "製品ラインナップ",
-      desc: "世界をリードするパートナーから厳選された、高品質な製品と技術のカタログをご覧ください。あらゆる太陽光発電プロジェクトにおいて、優れた性能と信頼性を保証します。"
+    viewAllArticles: "すべての記事を見る",
+    footer: {
+      description: "仙台市からの日本の技術的エッセンスに基づき、ベトナムで持続可能なエネルギーインフラを創造します。",
+      solutionsTitle: "ソリューション",
+      solutions: [
+        "EPC（設計・調達・建設）",
+        "O&M（運用・保守）",
+        "ESCO投資",
+        "設備供給"
+      ],
+      companyTitle: "WATACOについて",
+      company: [
+        "会社概要",
+        "主要プロジェクト",
+        "ニュース & イベント",
+        "採用情報"
+      ],
+      contactTitle: "お問い合わせ",
+      copyright: "© 2024 WATACO ENGINEERING | MEMBER OF WATANABE CREATE GROUP JAPAN.",
+      privacy: "プライバシーポリシー",
+      terms: "利用規約",
+      contact: {
+        address1: "ベトナム本社: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
+        address2: "北部駐在員事務所: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
+        email: "info@wataco.net",
+        phone: "0786788837"
+      }
     },
-    filters: {
-      all: "全て",
-      panels: "ソーラーパネル",
-      inverter: "インバーター",
-      storage: "蓄電池"
+    whySolar: {
+      title: "太陽光発電を選ぶ理由",
+      tagline: "太陽光発電 — 未来のための持続可能なエネルギーソリューション！",
+      items: [
+        {
+          icon: DollarSign,
+          title: "電気代の削減",
+          desc: "毎月の電気代を大幅に削減します。特に電力消費量の多いご家庭や企業様に最適です。"
+        },
+        {
+          icon: Leaf,
+          title: "環境に優しい",
+          desc: "グリーンエネルギー源であり、排出ガスゼロで環境汚染を引き起こしません。"
+        },
+        {
+          icon: Zap,
+          title: "電力の自給自足",
+          desc: "停電の心配はありません。システムは独立して稼働可能です（蓄電池併用時）。"
+        },
+        {
+          icon: Shield,
+          title: "高耐久・メンテナンスが容易",
+          desc: "システム寿命は25〜30年。故障が少なく、安心の長期保証付きです。"
+        }
+      ]
     },
-    ui: {
-      searchPlaceholder: "製品を検索...",
-      showing: "表示中",
-      products: "製品",
-      sort: "並べ替え",
-      newest: "最新",
-      priceLow: "価格：安い順",
-      priceHigh: "価格：高い順",
-      viewFast: "クイック表示",
-      quoteBtn: "見積もり依頼",
-      specPower: "出力",
-      specEff: "効率",
-      specWarranty: "保証",
-      noResult: "製品が見つかりません。",
-      resetFilter: "フィルターをリセット",
-      ctaTitle: "太陽エネルギーを利益に変える準備はできましたか？",
-      ctaDesc: "今すぐお問い合わせください。お客様のニーズに最適なソリューションをご提案いたします。",
-      ctaBtn1: "見積もり依頼",
-      ctaBtn2: "お問い合わせ"
-    },
-    navProducts: {
-      home: "ホーム",
-      products: "製品",
-      projects: "プロジェクト",
-      contact: "お問い合わせ",
-      quote: "見積もり"
+    ourServices: {
+      title: "当社のサービス",
+      items: [
+        { icon: FileText, title: "システムのコンサルティング・設計" },
+        { icon: Package, title: "機材・設備の供給" },
+        { icon: Wrench, title: "設置・施工" },
+        { icon: Settings, title: "運用・保守 (O&M)" },
+        { icon: TrendingUp, title: "金融・投資ソリューション" }
+      ]
     }
-  },
+
+  }
 };
 
 export const useTranslation = () => {
@@ -546,92 +721,3 @@ export const useTranslation = () => {
 };
 
 export type Language = 'VN' | 'EN' | 'JP';
-
-export interface TranslationContent {
-  nav: string[];
-  heroH1: string;
-  heroSub: string;
-  ctaMain: string;
-  ctaSub: string;
-  viewProject: string;
-  stats: { label: string; val: number; suffix: string; prefix: string }[];
-  introTitle: string;
-  introSub: string;
-  introContent1: string;
-  introContent2: string;
-  introContent3: string;
-  benefitsTitle: string;
-  benefitsSub: string;
-  benefitTabs: {
-    id: string;
-    label: string;
-    icon: any;
-    title: string;
-    desc: string;
-    specs: { label: string; val: string }[];
-    btnText: string;
-    img: string;
-  }[];
-  projectsTitle: string;
-  projectsSub: string;
-  projectCategories: string[];
-  projectsData: {
-    [key: number]: {
-      name: string;
-      location: string;
-      capacity: string;
-      production: string;
-      year: string;
-      img: string;
-    }[];
-  };
-  productsTitle: string;
-  productsSub: string;
-  productTabs: { id: string; label: string; icon: any }[];
-  baseProductsData: {
-    [key: string]: { name: string; spec: string; eff: string; img: string; tag: string }[];
-  };
-  partners: string[];
-  financeTitle: string;
-  financeSub: string;
-  financeSolutions: { icon: any; title: string; desc: string; link: string }[];
-  newsTitle: string;
-  newsSub: string;
-  newsArticles: { source: string; date: string; title: string; link: string; tag: string; img: string }[];
-  mapTitle: string;
-  getQuote: string;
-  // New fields from Products page (index.tsx)
-  hero: {
-    sub: string;
-    title: string;
-    highlight: string;
-    desc: string;
-  };
-  filters: {
-    all: string;
-    panels: string;
-    inverter: string;
-    storage: string;
-  };
-  ui: {
-    searchPlaceholder: string;
-    showing: string;
-    products: string;
-    sort: string;
-    newest: string;
-    priceLow: string;
-    priceHigh: string;
-    viewFast: string;
-    quoteBtn: string;
-    specPower: string;
-    specEff: string;
-    specWarranty: string;
-    noResult: string;
-    resetFilter: string;
-    ctaTitle: string;
-    ctaDesc: string;
-    ctaBtn1: string;
-    ctaBtn2: string;
-  };
-  navProducts: { home: string; products: string; projects: string; contact: string; quote: string; };
-}

@@ -11,43 +11,25 @@
  */
 
 import { useState } from 'react';
-
-import { rawProducts } from '../data/productData';
-
-import { useTranslation } from '../hooks/useTranslation';
-
 import Layout from '../components/layout/Layout';
-
-import HeroBanner from '../components/sections/page-products/HeroBanner';
-
-import FilterAndSearchBar from '../components/sections/page-products/FilterAndSearchBar';
-
-import ProductDisplayGrid from '../components/sections/page-products/ProductDisplayGrid';
-
 import CallToAction from '../components/sections/page-products/CallToAction';
-
-
+import FilterAndSearchBar from '../components/sections/page-products/FilterAndSearchBar';
+import HeroBanner from '../components/sections/page-products/HeroBanner';
+import ProductDisplayGrid from '../components/sections/page-products/ProductDisplayGrid';
+import { rawProducts } from '../data/productData';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Product {
 
     id: number;
-
     category: string;
-
     brand: string;
-
     model: string;
-
     power: string;
-
     efficiency: string;
-
     warranty: string;
-
     image: string;
-
     tag: string;
-
 }
 
 
@@ -55,13 +37,10 @@ interface Product {
 export default function ProductsPage() {
 
     const [activeCategory, setActiveCategory] = useState('all');
-
     const [searchQuery, setSearchQuery] = useState('');
 
 
-
     const { t } = useTranslation();
-
 
 
     // Filtering Logic
@@ -71,29 +50,20 @@ export default function ProductsPage() {
         return rawProducts.filter((product: Product) => {
 
             const categoryMatch = category ? product.category === category : true;
-
             const searchMatch = product.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
 
                 product.brand.toLowerCase().includes(searchQuery.toLowerCase());
-
             return categoryMatch && searchMatch;
-
         });
-
     };
-
 
 
     // Pre-calculate lists to avoid function calls in render
 
     const filteredPanels = getFilteredProducts('panels');
-
     const filteredInverters = getFilteredProducts('inverter');
-
     const filteredStorage = getFilteredProducts('storage');
-
     const filteredSpecific = getFilteredProducts(activeCategory);
-
 
 
     return (
@@ -141,5 +111,4 @@ export default function ProductsPage() {
         </Layout>
 
     );
-
 }

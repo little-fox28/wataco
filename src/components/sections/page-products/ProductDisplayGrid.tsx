@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import SectionHeader from '../../common/SectionHeader';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { Battery, Cpu, Sun } from 'lucide-react';
 import ProductCard, { containerVariants } from '../../common/ProductCard';
-import { Sun, Cpu, Battery } from 'lucide-react';
+import SectionHeader from '../../common/SectionHeader';
 
 interface ProductDisplayGridProps {
     t: any; // Translation object

@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Download, Mail } from 'lucide-react';
+import { Download, Mail, Search } from 'lucide-react';
 
 // Container variants for staggered animation
 export const containerVariants = {

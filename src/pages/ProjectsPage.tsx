@@ -12,14 +12,22 @@
  * + Grid Layout & "Load More" functionality.
  */
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
     ArrowRight, ArrowUp,
-    MapPin, Zap, Calendar, Building2, Factory, Sprout, Home, CheckCircle2
+    Building2,
+    Calendar,
+    CheckCircle2,
+    Factory,
+    Home,
+    MapPin,
+    Sprout,
+    Zap
 } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import type { FadeInUpProps, ProjectCategory, ProjectDataProjectsPage, ProjectLocation, ProjectCardProps } from '../types';
+import type { FadeInUpProps, ProjectCardProps, ProjectCategory, ProjectDataProjectsPage, ProjectLocation } from '../types';
 
 // --- SHARED STYLES ---
 const FontStyles = () => (
@@ -364,7 +372,9 @@ export default function ProjectsPage() {
                                     className="contents" // "contents" allows children to be direct grid items
                                 >
                                     {visibleProjects.map((project) => (
-                                        <ProjectCard key={project.id} project={project} />
+                                        <Link to={"/posts/du-an-dien-mat-troi-th-da-lat-milk"}>
+                                            <ProjectCard key={project.id} project={project} />
+                                        </Link>
                                     ))}
                                 </motion.div>
                             </AnimatePresence>

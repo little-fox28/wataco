@@ -1,9 +1,15 @@
-import { useState, forwardRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
-    Search, MapPin, Briefcase, Clock, ArrowRight,
-    Users, Zap, TrendingUp, Heart
+    ArrowRight,
+    Briefcase, Clock,
+    Heart,
+    MapPin,
+    Search,
+    TrendingUp,
+    Users, Zap
 } from 'lucide-react';
+import { forwardRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 
 // --- SHARED STYLES ---
@@ -313,7 +319,9 @@ export default function CareersPage() {
                             <AnimatePresence mode="popLayout">
                                 {filteredJobs.length > 0 ? (
                                     filteredJobs.map((job) => (
-                                        <JobCard key={job.id} job={job} />
+                                        <Link to={"/posts/tuyen-dung-ky-su-thiet-ke-dien-mat-troi"} >
+                                            <JobCard key={job.id} job={job} />
+                                        </Link>
                                     ))
                                 ) : (
                                     <div className="col-span-full text-center py-16 bg-white rounded-lg border border-dashed border-gray-300">

@@ -1,5 +1,6 @@
 import { StaggerContainer, StaggerItem } from "../../common/StaggerAnimations";
 import type { TranslationContent } from "../../../types";
+import { Link } from "react-router-dom";
 
 const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
   <section
@@ -27,19 +28,21 @@ const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
 
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {t.ourServices.items.map((item, idx) => (
-          <StaggerItem
-            key={idx}
-            className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center h-full justify-center border border-transparent hover:border-[#228B22] group"
-          >
-            <item.icon
-              size={40}
-              className="text-gray-400 group-hover:text-[#228B22] mb-6 transition-colors"
-              strokeWidth={1.5}
-            />
-            <h4 className="text-sm lg:text-base font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors">
-              {item.title}
-            </h4>
-          </StaggerItem>
+          <Link to={"posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi"}>
+            <StaggerItem
+              key={idx}
+              className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center h-full justify-center border border-transparent hover:border-[#228B22] group"
+            >
+              <item.icon
+                size={40}
+                className="text-gray-400 group-hover:text-[#228B22] mb-6 transition-colors"
+                strokeWidth={1.5}
+              />
+              <h4 className="text-sm lg:text-base font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors">
+                {item.title}
+              </h4>
+            </StaggerItem>
+          </Link>
         ))}
       </StaggerContainer>
     </div>

@@ -14,13 +14,18 @@
  * + Hero Slider, Magazine Layout, Functional Filters.
  */
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
-    Search, ArrowRight, Calendar, ChevronRight, ChevronLeft, Clock, Eye
+    ArrowRight, Calendar,
+    ChevronLeft,
+    ChevronRight,
+    Clock, Eye,
+    Search
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import type { HeroSlide, Category, NewsItem, TrendingNewsItem, ExpertArticle, HighlightWatacoProps, NewsListItemProps, SidebarWidgetProps } from '../types';
+import type { Category, ExpertArticle, HeroSlide, HighlightWatacoProps, NewsItem, NewsListItemProps, SidebarWidgetProps, TrendingNewsItem } from '../types';
 
 // --- SHARED STYLES ---
 const FontStyles = () => (
@@ -330,21 +335,6 @@ export default function NewsPage() {
 
     const visibleNews = filteredNews.slice(0, visibleCount);
 
-    // Remove unused nextExpert and prevExpert functions
-    // const nextExpert = () => {
-    //     setExpertIndex((prev) => (prev + 1) % (expertArticles.length - 2)); // Adjust for visible items
-    // };
-    // const prevExpert = () => {
-    //     setExpertIndex((prev) => (prev - 1 + (expertArticles.length - 2)) % (expertArticles.length - 2));
-    // };
-
-    // Logic for visible window in slider (simple version)
-    // We will simply translate the track.
-    // Desktop: show 3. Mobile: show 1.
-    // We'll rely on CSS constraints for mobile but let's implement a simple index-based translateX
-    // To keep it simple in React without resize listeners, we'll use a responsive width assumption or just 1 card step on mobile.
-    // Let's implement a simple "next goes to next card" logic.
-
     const handleExpertSlide = (dir: 'next' | 'prev') => {
         const maxIndex = expertArticles.length - 1;
         if (dir === 'next') {
@@ -394,7 +384,9 @@ export default function NewsPage() {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0 }}
                                             >
-                                                <NewsListItem item={item} />
+                                                <Link to={'/posts/tai-sao-nen-su-dung-dien-mat-troi'}>
+                                                    <NewsListItem item={item} />
+                                                </Link>
                                             </motion.div>
                                         ))
                                     ) : (
@@ -498,24 +490,12 @@ export default function NewsPage() {
                         <div className="overflow-hidden">
                             <motion.div
                                 className="flex gap-8"
-                                animate={{ x: `-${expertIndex * 100}%` }} // Simplified sliding: move by 100% of container width logic adjusted below
-                            // Actually for a proper 3-item view on desktop, we need percentage shifts.
-                            // Let's assume on desktop we shift by 33.33% per index, on mobile 100%.
-                            // Since we can't easily detect media query in this simplified framer block without hooks, 
-                            // let's use a simpler "one by one" slide but display multiple.
-                            // Better approach for responsive slider without resize listeners:
-                            // Just slide by fixed pixel amounts or use CSS scroll snap, but Framer motion 'animate' expects values.
-                            // For this POC, let's treat `expertIndex` as the STARTING item index.
+                                animate={{ x: `-${expertIndex * 100}%` }}
                             >
                                 {/* We map a larger array to allow sliding */}
                                 <div className="flex gap-8 w-full transition-transform duration-500 ease-out"
-                                    style={{ transform: `translateX(-${expertIndex * (100 / 1)}%)` }} // Default Mobile (1 item)
+                                    style={{ transform: `translateX(-${expertIndex * (100 / 1)}%)` }}
                                 >
-                                    {/* Note: In a real responsive framer slider, we'd use `useMedia` or CSS Scroll Snap. 
-                                Here, to keep it simple and working:
-                                I will use a CSS Grid with overflow-x-auto (Scroll Snap) combined with the buttons scrolling the ref.
-                                This is much more robust for responsive than calculating pixels in JS.
-                            */}
                                 </div>
                             </motion.div>
 
@@ -530,7 +510,7 @@ export default function NewsPage() {
                                 }}
                             >
                                 {expertArticles.map((article) => (
-                                    <div key={article.id} className="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                                    <div key={article.id} className="min-w-full mb-1 md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
                                         <div className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-transparent hover:border-[#228B22] flex flex-col h-full">
                                             <div className="h-60 overflow-hidden relative">
                                                 <img

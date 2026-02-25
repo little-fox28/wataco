@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion, LayoutGroup } from 'framer-motion';
-import { Search, Sun, Cpu, Battery } from 'lucide-react';
+
+import { LayoutGroup, motion } from 'framer-motion';
+import { Battery, Cpu, Search, Sun } from 'lucide-react';
 
 interface FilterAndSearchBarProps {
     t: any; // Translation object
