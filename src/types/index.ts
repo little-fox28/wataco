@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 
@@ -142,7 +143,9 @@ export interface TranslationContent {
     projectsSub: string;
     projectTabs: ProjectPageTab[];
     whySolar: WhySolarSection;
+    ppaSection: { title: string; subtitle: string; desc: string; benefits: string[] };
     ourServices: OurServicesSection;
+    epcSection: { subtitle: string; title: string; desc: string; image: string; steps: { icon: LucideIcon; title: string; desc: string; }[] };
     projectsData: {
         [key: string]: ProjectData[];
     };

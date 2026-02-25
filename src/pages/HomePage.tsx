@@ -6,8 +6,9 @@ import CountUp from '../components/common/CountUp';
 import Marquee from '../components/common/Marquee';
 import { StaggerContainer, StaggerItem } from '../components/common/StaggerAnimations';
 import WatacoLogo from '../components/common/WatacoLogo';
+import EpcManagementSection from '../components/sections/page-home/epcManagementSection';
+import PpaModelSection from '../components/sections/page-home/escoSection';
 import ServicesSection from '../components/sections/page-home/servicessection';
-import WhySolarSection from '../components/sections/page-home/whysolarsection';
 import { translations } from '../hooks/useTranslation';
 import type { ProjectData, TranslationContent } from '../types';
 
@@ -145,35 +146,12 @@ export default function HomePage() {
   const [activeProjectTab, setActiveProjectTab] = useState('vietnam');
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-  // Product Slider State
-  // const [activeProductTab, setActiveProductTab] = useState<ProductCategoryId>('panels');
-  // const [currentProductIndex, setCurrentProductIndex] = useState(0);
-  // const [isProductSliderHovered, setIsProductSliderHovered] = useState(false);
-
   // NEWS STATE
   const [activeNewsIndex, setActiveNewsIndex] = useState(0);
 
   const t: TranslationContent = translations[lang];
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 200]);
-
-  // Helper to generate full product list (16 items)
-  // const generateFullProductList = (category: ProductCategoryId): Product[] => {
-  //   const baseItems = t.baseProductsData[category];
-  //   const fullList: Product[] = [];
-  //   for (let i = 0; i < 16; i++) {
-  //     const baseItem = baseItems[i % baseItems.length];
-  //     fullList.push({
-  //       ...baseItem,
-  //       id: `${category}-${i}`,
-  //       name: `${baseItem.name} ${String.fromCharCode(65 + i)}`,
-  //     });
-  //   }
-  //   return fullList;
-  // };
-
-  // const currentProducts = generateFullProductList(activeProductTab);
-  // const itemsPerPage = 4;
 
   const handleProjectTabChange = (id: string) => {
     setActiveProjectTab(id);
@@ -199,29 +177,6 @@ export default function HomePage() {
     else return { x: '0%', scale: 0.5, opacity: 0, zIndex: 0, pointerEvents: 'none' };
   };
 
-  // --- PRODUCT CAROUSEL LOGIC ---
-  // const handleProductNext = useCallback(() => {
-  //   setCurrentProductIndex((prev) =>
-  //     (prev + 1) >= (currentProducts.length - itemsPerPage + 1) ? 0 : prev + 1
-  //   );
-  // }, [currentProducts.length]);
-
-  // useEffect(() => {
-  //   let interval: number | undefined;
-  //   if (!isProductSliderHovered) {
-  //     interval = setInterval(() => {
-  //       handleProductNext();
-  //     }, 3000);
-  //   }
-  //   return () => clearInterval(interval);
-  // }, [isProductSliderHovered, currentProductIndex, handleProductNext]);
-
-
-  // const handleProductPrev = () => {
-  //   setCurrentProductIndex((prev) =>
-  //     prev === 0 ? (currentProducts.length - itemsPerPage) : prev - 1
-  //   );
-  // };
 
   // --- NEWS CAROUSEL LOGIC (AUTO-PLAY) ---
   useEffect(() => {
@@ -353,7 +308,7 @@ export default function HomePage() {
               </p>
 
               <div className="flex flex-wrap gap-4 sm:gap-6">
-                <button className="bg-white text-[#228b22] px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 font-black text-[11px] sm:text-xs tracking-widest uppercase hover:bg-[#FFD700] hover:text-[#1A2B3C] transition-all shadow-xl border border-transparent rounded-md min-h-[44px]">
+                <button className="bg-white text-[#228b22] px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 font-black text-[11px] sm:text-xs tracking-widest uppercase hover:bg-[#FFD700] hover:text-[#1A2B3C] transition-all shadow-xl border border-transparent rounded-md min-h-11">
                   {t.ctaMain}
                 </button>
               </div>
@@ -431,11 +386,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW: WHY SOLAR SECTION */}
-      <WhySolarSection t={t} />
+      <PpaModelSection t={t} />
 
       {/* NEW: SERVICES SECTION */}
       <ServicesSection t={t} />
+
+      <EpcManagementSection t={t} />
 
       {/* SECTION 2: */}
       <section
@@ -487,9 +443,9 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT: SEAMLESS MAP VISUALIZATION */}
-            <div className="lg:col-span-8 relative h-[350px] sm:h-[450px] lg:h-[600px] flex items-center justify-center">
+            <div className="lg:col-span-8 relative h-87.5 sm:h-112.5 lg:h-150 flex items-center justify-center">
               {/* Map Container */}
-              <div className="relative flex-grow flex items-center justify-center p-0 lg:p-8 w-full">
+              <div className="relative grow flex items-center justify-center p-0 lg:p-8 w-full">
                 {/* Map Image */}
                 <img src='/wataco/client-logo/vietnam-maps.png' className='h-full w-[62%]' />
 
@@ -603,7 +559,7 @@ export default function HomePage() {
                       className="w-full h-full object-cover object-center"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B3C] via-transparent to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#1A2B3C] via-transparent to-transparent opacity-90" />
 
                     {/* Card Content - Only show for center card, or fade others */}
                     <div className="absolute bottom-0 left-0 w-full p-6 lg:p-12 transition-opacity duration-300"
@@ -675,132 +631,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      {/* <section id="section-4" className="py-12 sm:py-20 lg:py-32 bg-[#EAEFE9] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
-          <StaggerContainer className="flex flex-col items-center mb-8 sm:mb-12 lg:mb-16 text-center">
-            <h3 className="text-[10px] sm:text-xs font-black text-[#228b22] tracking-[0.6em] uppercase font-heading mb-3 sm:mb-4">{t.productsSub}</h3>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.productsTitle}</h2>
-          </StaggerContainer>
-
-          <StaggerContainer className="flex justify-center mb-12">
-            <div className="inline-flex bg-white p-1 rounded-full shadow-lg overflow-x-auto max-w-full">
-              {t.productTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveProductTab(tab.id)}
-                  className={`flex items-center space-x-2 px-6 lg:px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap min-h-[44px] ${activeProductTab === tab.id
-                    ? 'bg-[#1A2B3C] text-white shadow-md'
-                    : 'text-gray-400 hover:text-[#228b22]'
-                    }`}
-                >
-                  <tab.icon size={14} />
-                  <span className="font-heading">{tab.label}</span>
-                </button>
-              ))}
-            </div>
-          </StaggerContainer> */}
-
-      {/* PRODUCT CAROUSEL */}
-      {/* <StaggerContainer
-            className="relative w-full max-w-[1200px] mx-auto overflow-hidden px-4 lg:px-12"
-            onMouseEnter={() => setIsProductSliderHovered(true)}
-            onMouseLeave={() => setIsProductSliderHovered(false)}
-          >
-            <div className="overflow-hidden">
-              <motion.div
-                className="flex space-x-4 lg:space-x-8"
-                drag="x"
-                dragConstraints={{ right: 0, left: -((currentProducts.length * 320) - 300) }}
-                animate={{ x: `-${currentProductIndex * (320 + 32)}px` }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              >
-                {currentProducts.map((product, idx) => (
-                  <div
-                    key={`${product.id}-${idx}`}
-                    className="flex-shrink-0 w-72 lg:w-80 bg-white group hover:shadow-2xl transition-all duration-300 relative overflow-hidden border border-gray-100 hover:border-[#228b22] rounded-md"
-                  >
-                    <div className="absolute top-0 right-0 p-4 z-10">
-                      <span className="bg-[#FFD700] text-[#1A2B3C] text-[9px] font-bold px-3 py-1 uppercase tracking-widest font-heading rounded-md">{product.tag}</span>
-                    </div>
-                    <div className="p-8 pb-0 flex justify-center bg-gray-50 group-hover:bg-white transition-colors">
-                      <img src={product.img} alt={product.name} loading="lazy" className="h-40 lg:h-48 object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500" />
-                    </div>
-                    <div className="p-6 lg:p-8 border-t border-gray-100">
-                      <h4 className="text-lg font-black text-[#1A2B3C] mb-2 font-heading truncate">{product.name}</h4>
-                      <div className="space-y-3 mb-6">
-                        <div className="flex justify-between text-xs text-gray-500 border-b border-dashed border-gray-200 pb-2">
-                          <span>Spec</span>
-                          <span className="font-bold text-[#1A2B3C] font-tech">{product.spec}</span>
-                        </div>
-                        <div className="flex justify-between text-xs text-gray-500 border-b border-dashed border-gray-200 pb-2">
-                          <span>Efficiency</span>
-                          <span className="font-bold text-[#228b22] font-tech">{product.eff}</span>
-                        </div>
-                      </div>
-                      <button className="w-full py-3 border border-[#1A2B3C] text-[#1A2B3C] text-[9px] font-black uppercase tracking-widest hover:bg-[#228b22] hover:text-white hover:border-[#228b22] transition-colors flex items-center justify-center space-x-2 rounded-md min-h-[44px]">
-                        <Download size={12} />
-                        <span>Download Datasheet</span>
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div> */}
-
-      {/* Carousel Controls */}
-      {/* <button
-              onClick={handleProductPrev}
-              className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center bg-white border border-gray-200 text-[#1A2B3C] hover:bg-[#228b22] hover:text-white rounded-full shadow-lg transition-colors z-20"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={handleProductNext}
-              className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 items-center justify-center bg-white border border-gray-200 text-[#1A2B3C] hover:bg-[#228b22] hover:text-white rounded-full shadow-lg transition-colors z-20"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </StaggerContainer>
-        </div>
-      </section> */}
-
-      {/* FINANCE SECTION (#section-5) */}
-      <section id="section-5" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-slate-100 text-[#1A2B3C] relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
-          <StaggerContainer className="flex flex-col items-center mb-8 sm:mb-12 lg:mb-16 text-center">
-            <h3 className="text-[10px] sm:text-xs font-black text-[#228B22] tracking-[0.6em] uppercase font-heading mb-3 sm:mb-4">{t.financeSub}</h3>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">{t.financeTitle}</h2>
-          </StaggerContainer>
-
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" delay={0.2}>
-            {t.financeSolutions.map((item, idx) => (
-              <Link to={"posts/giai-phap-esco"}>
-                <StaggerItem key={idx}>
-                  <a
-                    href={item.link}
-                    className="group p-8 h-full bg-white border border-gray-100 hover:border-[#228B22] hover:shadow-xl transition-all duration-300 rounded-md relative overflow-hidden block cursor-pointer shadow-sm flex flex-col min-h-[250px]"
-                  >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#FFD700] to-[#228B22] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                    <div className="w-16 h-16 bg-[#F0FDF4] rounded-full flex items-center justify-center mb-6 group-hover:bg-[#228B22] transition-colors duration-300">
-                      <item.icon size={32} className="text-[#228B22] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <h4 className="text-xl font-bold text-[#1A2B3C] mb-4 font-heading group-hover:text-[#228B22] transition-colors flex items-center justify-between">
-                      {item.title}
-                      <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-                    </h4>
-                    <p className="text-gray-500 text-sm leading-relaxed font-light">{item.desc}</p>
-                  </a>
-                </StaggerItem>
-              </Link>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
       {/* SECTION 6: NEWS - NEW MASTER-DETAIL LAYOUT (v1.26 - Brighter) */}
-      <section id="section-6" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-b from-white via-[#F0FDF4] to-white border-t border-[#e5e7eb]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
+      <section id="section-6" className="py-12 sm:py-20 lg:py-32 bg-linear-to-b from-white via-[#F0FDF4] to-white border-t border-[#e5e7eb]">
+        <div className="max-w-360 mx-auto px-4 sm:px-6">
           {/* Header */}
           <StaggerContainer className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-8">
             <div>
@@ -819,7 +652,7 @@ export default function HomePage() {
           </StaggerContainer>
 
           {/* MAIN CONTENT GRID */}
-          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:h-[600px]">
+          <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:h-150">
 
             {/* Left Column: Vertical Article Queue */}
             <StaggerContainer className="lg:col-span-5 flex flex-col h-full space-y-2 overflow-y-auto pr-2 news-list-scroll" delay={0.2}>
@@ -849,7 +682,7 @@ export default function HomePage() {
 
             {/* Right Column: Large Preview Image */}
             <StaggerContainer className="lg:col-span-7 h-full" delay={0.4}>
-              <div className="relative h-[300px] sm:h-[400px] lg:h-full rounded-lg overflow-hidden shadow-2xl bg-gray-100 border-2 border-[#FFD700]">
+              <div className="relative h-75 sm:h-100 lg:h-full rounded-lg overflow-hidden shadow-2xl bg-gray-100 border-2 border-[#FFD700]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeNewsIndex}
@@ -865,7 +698,7 @@ export default function HomePage() {
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B3C] via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#1A2B3C] via-transparent to-transparent opacity-80" />
 
                     <div className="absolute bottom-0 left-0 p-12 w-full">
                       <motion.div
@@ -901,7 +734,7 @@ export default function HomePage() {
           <WatacoLogo />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-20">
             {/* Col 1: Brand */}
             <div className="space-y-6">
@@ -947,11 +780,11 @@ export default function HomePage() {
               <h4 className="text-base sm:text-lg font-bold text-white mb-4 sm:mb-6 font-heading">{t.footer.contactTitle}</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-start">
-                  <MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
+                  <MapPin size={18} className="mr-3 text-[#228B22] shrink-0 mt-1" />
                   <span>{t.footer.contact.address1}</span>
                 </li>
                 <li className="flex items-start">
-                  <MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
+                  <MapPin size={18} className="mr-3 text-[#228B22] shrink-0 mt-1" />
                   <span>{t.footer.contact.address2}</span>
                 </li>
                 <li className="flex items-center">

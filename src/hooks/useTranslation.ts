@@ -1,5 +1,5 @@
-import { BarChart3, Battery, Building2, Calendar, Cpu, DollarSign, Facebook, Factory, FileText, Home, Leaf, Linkedin, Mail, MapPin, Newspaper, Package, Phone, Settings, Shield, Sprout, Sun, TrendingUp, Wallet, Wrench, Youtube, Zap } from 'lucide-react';
-import { Activity, useState } from 'react';
+import { BarChart3, Battery, Building2, Calendar, Cpu, DollarSign, Facebook, Factory, FileText, Home, Leaf, Linkedin, Mail, MapPin, Newspaper, Package, PenTool, Phone, Settings, Shield, Sprout, Sun, TrendingUp, Wallet, Wrench, Youtube, Zap } from 'lucide-react';
+import { useState } from 'react';
 import type { Translations } from '../types';
 
 // --- DỮ LIỆU NGÔN NGỮ ---
@@ -36,7 +36,7 @@ export const translations: Translations = {
         label: "Hệ thống đang vận hành",
         val: 180,
         suffix: "+",
-        icon: Activity,
+        icon: BarChart3,
         color: "#228B22",
       },
     ],
@@ -225,6 +225,21 @@ export const translations: Translations = {
         { icon: Shield, title: "Độ bền cao – dễ bảo trì", desc: "Tuổi thọ hệ thống từ 25–30 năm, ít hỏng hóc, bảo hành dài hạn." }
       ]
     },
+    ppaSection: {
+      subtitle: "MÔ HÌNH HỢP TÁC",
+      title: "Giải pháp ESCO / Mô hình PPA",
+      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      benefits: [
+        "Không cần vốn đầu tư ban đầu.",
+        "Không lo về công nghệ và vòng đời thiết bị.",
+        "Miễn phí 100% chi phí vận hành bảo trì.",
+        "Giảm phụ thuộc vào lưới điện EVN.",
+        "Sử dụng điện với giá thấp hơn EVN.",
+        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
+        "Hưởng toàn bộ hệ thống sau hợp đồng.",
+        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
+      ]
+    },
     ourServices: {
       title: "Dịch vụ của chúng tôi",
       items: [
@@ -234,7 +249,19 @@ export const translations: Translations = {
         { icon: Settings, title: "Vận hành và bảo trì" },
         { icon: TrendingUp, title: "Giải pháp tài chính và đầu tư" }
       ]
-    }
+    },
+    epcSection: {
+      subtitle: "GIẢI PHÁP CHÌA KHÓA TRAO TAY",
+      title: "Tổng thầu và quản lý EPC",
+      desc: "WATACO cung cấp dịch vụ triển khai hệ thống điện mặt trời mái nhà toàn diện từ giai đoạn tư vấn thiết kế đến vận hành, nhằm tối đa hóa lợi nhuận và hạn chế rủi ro cho doanh nghiệp.",
+      image: "sgs.png",
+      steps: [
+        { icon: PenTool, title: "Tư Vấn & Thiết Kế (Engineering)", desc: "Khảo sát thực địa, đánh giá kết cấu chịu tải và ứng dụng phần mềm PVSyst/HelioScope mô phỏng 3D để tối ưu hóa vị trí lắp đặt và sản lượng điện." },
+        { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
+        { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
+        { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
+      ]
+    },
   },
   EN: {
     nav: ["Home", "Projects", "Careers", "News"],
@@ -268,7 +295,7 @@ export const translations: Translations = {
         label: "Operating Systems",
         val: 180,
         suffix: "+",
-        icon: Activity,
+        icon: BarChart3,
         color: "#228B22",
       },
     ],
@@ -452,6 +479,21 @@ export const translations: Translations = {
         }
       ]
     },
+    ppaSection: {
+      subtitle: "MÔ HÌNH HỢP TÁC",
+      title: "Giải pháp ESCO / Mô hình PPA",
+      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      benefits: [
+        "Không cần vốn đầu tư ban đầu.",
+        "Không lo về công nghệ và vòng đời thiết bị.",
+        "Miễn phí 100% chi phí vận hành bảo trì.",
+        "Giảm phụ thuộc vào lưới điện EVN.",
+        "Sử dụng điện với giá thấp hơn EVN.",
+        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
+        "Hưởng toàn bộ hệ thống sau hợp đồng.",
+        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
+      ]
+    },
     ourServices: {
       title: "Our Services",
       items: [
@@ -461,7 +503,19 @@ export const translations: Translations = {
         { icon: Settings, title: "Operation & Maintenance (O&M)" },
         { icon: TrendingUp, title: "Financial & Investment Solutions" }
       ]
-    }
+    },
+    epcSection: {
+      subtitle: "GIẢI PHÁP CHÌA KHÓA TRAO TAY",
+      title: "Tổng thầu và quản lý EPC",
+      desc: "WATACO cung cấp dịch vụ triển khai hệ thống điện mặt trời mái nhà toàn diện từ giai đoạn tư vấn thiết kế đến vận hành, nhằm tối đa hóa lợi nhuận và hạn chế rủi ro cho doanh nghiệp.",
+      image: "sgs.png",
+      steps: [
+        { icon: PenTool, title: "Tư Vấn & Thiết Kế (Engineering)", desc: "Khảo sát thực địa, đánh giá kết cấu chịu tải và ứng dụng phần mềm PVSyst/HelioScope mô phỏng 3D để tối ưu hóa vị trí lắp đặt và sản lượng điện." },
+        { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
+        { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
+        { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
+      ]
+    },
   },
   JP: {
     nav: ["ホーム", "プロジェクト", "キャリア", "ニュース"],
@@ -495,7 +549,7 @@ export const translations: Translations = {
         label: "運転中のシステム",
         val: 180,
         suffix: "+",
-        icon: Activity,
+        icon: BarChart3,
         color: "#228B22",
       },
     ],
@@ -697,6 +751,33 @@ export const translations: Translations = {
           title: "高耐久・メンテナンスが容易",
           desc: "システム寿命は25〜30年。故障が少なく、安心の長期保証付きです。"
         }
+      ]
+    },
+    ppaSection: {
+      subtitle: "MÔ HÌNH HỢP TÁC",
+      title: "Giải pháp ESCO / Mô hình PPA",
+      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      benefits: [
+        "Không cần vốn đầu tư ban đầu.",
+        "Không lo về công nghệ và vòng đời thiết bị.",
+        "Miễn phí 100% chi phí vận hành bảo trì.",
+        "Giảm phụ thuộc vào lưới điện EVN.",
+        "Sử dụng điện với giá thấp hơn EVN.",
+        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
+        "Hưởng toàn bộ hệ thống sau hợp đồng.",
+        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
+      ]
+    },
+    epcSection: {
+      subtitle: "GIẢI PHÁP CHÌA KHÓA TRAO TAY",
+      title: "Tổng thầu và quản lý EPC",
+      desc: "WATACO cung cấp dịch vụ triển khai hệ thống điện mặt trời mái nhà toàn diện từ giai đoạn tư vấn thiết kế đến vận hành, nhằm tối đa hóa lợi nhuận và hạn chế rủi ro cho doanh nghiệp.",
+      image: "sgs.png",
+      steps: [
+        { icon: PenTool, title: "Tư Vấn & Thiết Kế (Engineering)", desc: "Khảo sát thực địa, đánh giá kết cấu chịu tải và ứng dụng phần mềm PVSyst/HelioScope mô phỏng 3D để tối ưu hóa vị trí lắp đặt và sản lượng điện." },
+        { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
+        { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
+        { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
       ]
     },
     ourServices: {
