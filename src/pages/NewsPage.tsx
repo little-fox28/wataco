@@ -24,7 +24,6 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
 import type { Category, ExpertArticle, HeroSlide, HighlightWatacoProps, NewsItem, NewsListItemProps, SidebarWidgetProps, TrendingNewsItem } from '../types';
 
 // --- SHARED STYLES ---
@@ -345,205 +344,203 @@ export default function NewsPage() {
     };
 
     return (
-        <Layout>
-            <div className="min-h-screen bg-[#F8FAFC]">
-                <FontStyles />
+        <div className="min-h-screen bg-[#F8FAFC]">
+            <FontStyles />
 
-                {/* --- HERO SLIDER --- */}
-                <HeroCarousel />
+            {/* --- HERO SLIDER --- */}
+            <HeroCarousel />
 
-                <div className="max-w-[1440px] mx-auto px-6 py-16">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="max-w-[1440px] mx-auto px-6 py-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-                        {/* --- LEFT COLUMN: CONTENT (8 Cols) --- */}
-                        <div className="lg:col-span-8">
-                            {/* Filter Tabs */}
-                            <div className="flex overflow-x-auto no-scrollbar gap-2 mb-8 pb-2 border-b border-gray-200">
-                                {categories.map((cat) => (
-                                    <button
-                                        key={cat.id}
-                                        onClick={() => setActiveCategory(cat.id)}
-                                        className={`px-5 py-2.5 rounded-t-lg text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border-b-2 ${activeCategory === cat.id
-                                            ? 'border-[#228B22] text-[#228B22] bg-white'
-                                            : 'border-transparent text-gray-500 hover:text-[#1A2B3C]'
-                                            }`}
-                                    >
-                                        {cat.label}
-                                    </button>
+                    {/* --- LEFT COLUMN: CONTENT (8 Cols) --- */}
+                    <div className="lg:col-span-8">
+                        {/* Filter Tabs */}
+                        <div className="flex overflow-x-auto no-scrollbar gap-2 mb-8 pb-2 border-b border-gray-200">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => setActiveCategory(cat.id)}
+                                    className={`px-5 py-2.5 rounded-t-lg text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border-b-2 ${activeCategory === cat.id
+                                        ? 'border-[#228B22] text-[#228B22] bg-white'
+                                        : 'border-transparent text-gray-500 hover:text-[#1A2B3C]'
+                                        }`}
+                                >
+                                    {cat.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* News List */}
+                        <div className="space-y-6">
+                            <AnimatePresence mode="popLayout">
+                                {visibleNews.length > 0 ? (
+                                    visibleNews.map((item) => (
+                                        <motion.div
+                                            key={item.id}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0 }}
+                                        >
+                                            <Link to={'/posts/tai-sao-nen-su-dung-dien-mat-troi'}>
+                                                <NewsListItem item={item} />
+                                            </Link>
+                                        </motion.div>
+                                    ))
+                                ) : (
+                                    <div className="text-center py-20 bg-white rounded-lg border border-gray-100 border-dashed">
+                                        <p className="text-gray-400">Không tìm thấy bài viết nào.</p>
+                                        <button onClick={() => { setSearchQuery(''); setActiveCategory('all') }} className="text-[#228B22] font-bold mt-2 hover:underline">Xóa bộ lọc</button>
+                                    </div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Load More */}
+                        {filteredNews.length > visibleCount && (
+                            <div className="text-center mt-12">
+                                <button
+                                    onClick={() => setVisibleCount(prev => prev + 3)}
+                                    className="bg-white border border-[#1A2B3C] text-[#1A2B3C] px-8 py-3 rounded-md font-bold uppercase tracking-widest hover:bg-[#1A2B3C] hover:text-white transition-all shadow-sm active:scale-95"
+                                >
+                                    Xem thêm tin cũ
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* --- RIGHT COLUMN: SIDEBAR (4 Cols) --- */}
+                    <div className="lg:col-span-4 space-y-8">
+
+                        {/* Search Widget */}
+                        <div className="bg-white p-1 rounded-md border border-gray-200 shadow-sm flex items-center">
+                            <input
+                                type="text"
+                                placeholder="Tìm kiếm..."
+                                className="w-full pl-4 pr-2 py-2 bg-transparent text-sm focus:outline-none text-[#1A2B3C]"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <button className="p-2 bg-[#228B22] text-white rounded-md hover:bg-[#1A2B3C] transition-colors">
+                                <Search size={18} />
+                            </button>
+                        </div>
+
+                        {/* Trending Widget */}
+                        <SidebarWidget title="Đọc Nhiều Nhất">
+                            <ul className="space-y-4">
+                                {trendingNews.map((item, idx) => (
+                                    <li key={item.id} className="group cursor-pointer flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
+                                        <span className="text-3xl font-black text-gray-200 group-hover:text-[#228B22] transition-colors leading-none -mt-1">
+                                            0{idx + 1}
+                                        </span>
+                                        <div>
+                                            <h5 className="text-sm font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors line-clamp-2 mb-1">
+                                                {item.title}
+                                            </h5>
+                                            <span className="text-xs text-gray-400 flex items-center">
+                                                <Clock size={10} className="mr-1" /> {item.date}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </SidebarWidget>
+
+                        {/* Tag Cloud */}
+                        <SidebarWidget title="Từ Khóa Hot">
+                            <div className="flex flex-wrap gap-2">
+                                {["Solar Farm", "Điện áp mái", "Biến tần", "Pin lưu trữ", "EPC", "ESCO", "Net Zero"].map((tag, i) => (
+                                    <span key={i} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-[#228B22] hover:text-white transition-colors cursor-pointer border border-gray-200">
+                                        #{tag}
+                                    </span>
                                 ))}
                             </div>
+                        </SidebarWidget>
 
-                            {/* News List */}
-                            <div className="space-y-6">
-                                <AnimatePresence mode="popLayout">
-                                    {visibleNews.length > 0 ? (
-                                        visibleNews.map((item) => (
-                                            <motion.div
-                                                key={item.id}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0 }}
-                                            >
-                                                <Link to={'/posts/tai-sao-nen-su-dung-dien-mat-troi'}>
-                                                    <NewsListItem item={item} />
-                                                </Link>
-                                            </motion.div>
-                                        ))
-                                    ) : (
-                                        <div className="text-center py-20 bg-white rounded-lg border border-gray-100 border-dashed">
-                                            <p className="text-gray-400">Không tìm thấy bài viết nào.</p>
-                                            <button onClick={() => { setSearchQuery(''); setActiveCategory('all') }} className="text-[#228B22] font-bold mt-2 hover:underline">Xóa bộ lọc</button>
-                                        </div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
+                        {/* NOTE: Contact Card Removed as requested */}
 
-                            {/* Load More */}
-                            {filteredNews.length > visibleCount && (
-                                <div className="text-center mt-12">
-                                    <button
-                                        onClick={() => setVisibleCount(prev => prev + 3)}
-                                        className="bg-white border border-[#1A2B3C] text-[#1A2B3C] px-8 py-3 rounded-md font-bold uppercase tracking-widest hover:bg-[#1A2B3C] hover:text-white transition-all shadow-sm active:scale-95"
-                                    >
-                                        Xem thêm tin cũ
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* --- RIGHT COLUMN: SIDEBAR (4 Cols) --- */}
-                        <div className="lg:col-span-4 space-y-8">
-
-                            {/* Search Widget */}
-                            <div className="bg-white p-1 rounded-md border border-gray-200 shadow-sm flex items-center">
-                                <input
-                                    type="text"
-                                    placeholder="Tìm kiếm..."
-                                    className="w-full pl-4 pr-2 py-2 bg-transparent text-sm focus:outline-none text-[#1A2B3C]"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                />
-                                <button className="p-2 bg-[#228B22] text-white rounded-md hover:bg-[#1A2B3C] transition-colors">
-                                    <Search size={18} />
-                                </button>
-                            </div>
-
-                            {/* Trending Widget */}
-                            <SidebarWidget title="Đọc Nhiều Nhất">
-                                <ul className="space-y-4">
-                                    {trendingNews.map((item, idx) => (
-                                        <li key={item.id} className="group cursor-pointer flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-                                            <span className="text-3xl font-black text-gray-200 group-hover:text-[#228B22] transition-colors leading-none -mt-1">
-                                                0{idx + 1}
-                                            </span>
-                                            <div>
-                                                <h5 className="text-sm font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors line-clamp-2 mb-1">
-                                                    {item.title}
-                                                </h5>
-                                                <span className="text-xs text-gray-400 flex items-center">
-                                                    <Clock size={10} className="mr-1" /> {item.date}
-                                                </span>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </SidebarWidget>
-
-                            {/* Tag Cloud */}
-                            <SidebarWidget title="Từ Khóa Hot">
-                                <div className="flex flex-wrap gap-2">
-                                    {["Solar Farm", "Điện áp mái", "Biến tần", "Pin lưu trữ", "EPC", "ESCO", "Net Zero"].map((tag, i) => (
-                                        <span key={i} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-[#228B22] hover:text-white transition-colors cursor-pointer border border-gray-200">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </SidebarWidget>
-
-                            {/* NOTE: Contact Card Removed as requested */}
-
-                        </div>
                     </div>
                 </div>
+            </div>
 
-                {/* --- EXPERT CORNER SLIDER (Updated) --- */}
-                <section className="py-20 bg-[#F3F4F6] text-[#1A2B3C] relative overflow-hidden border-t border-gray-200">
-                    <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-                        <div className="flex items-center justify-between mb-12">
-                            <div>
-                                <span className="text-[#228B22] text-xs font-black uppercase tracking-[0.3em] block mb-2">Kiến Thức Chuyên Sâu</span>
-                                <h2 className="text-3xl lg:text-4xl font-black font-heading text-[#1A2B3C]">GÓC CHUYÊN GIA</h2>
-                            </div>
-
-                            {/* Navigation Controls */}
-                            <div className="flex gap-2">
-                                <button onClick={() => handleExpertSlide('prev')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
-                                    <ChevronLeft size={20} />
-                                </button>
-                                <button onClick={() => handleExpertSlide('next')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
-                                    <ChevronRight size={20} />
-                                </button>
-                            </div>
+            {/* --- EXPERT CORNER SLIDER (Updated) --- */}
+            <section className="py-20 bg-[#F3F4F6] text-[#1A2B3C] relative overflow-hidden border-t border-gray-200">
+                <div className="max-w-[1440px] mx-auto px-6 relative z-10">
+                    <div className="flex items-center justify-between mb-12">
+                        <div>
+                            <span className="text-[#228B22] text-xs font-black uppercase tracking-[0.3em] block mb-2">Kiến Thức Chuyên Sâu</span>
+                            <h2 className="text-3xl lg:text-4xl font-black font-heading text-[#1A2B3C]">GÓC CHUYÊN GIA</h2>
                         </div>
 
-                        {/* Slider Track */}
-                        <div className="overflow-hidden">
-                            <motion.div
-                                className="flex gap-8"
-                                animate={{ x: `-${expertIndex * 100}%` }}
-                            >
-                                {/* We map a larger array to allow sliding */}
-                                <div className="flex gap-8 w-full transition-transform duration-500 ease-out"
-                                    style={{ transform: `translateX(-${expertIndex * (100 / 1)}%)` }}
-                                >
-                                </div>
-                            </motion.div>
+                        {/* Navigation Controls */}
+                        <div className="flex gap-2">
+                            <button onClick={() => handleExpertSlide('prev')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
+                                <ChevronLeft size={20} />
+                            </button>
+                            <button onClick={() => handleExpertSlide('next')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
+                                <ChevronRight size={20} />
+                            </button>
+                        </div>
+                    </div>
 
-                            {/* ROBUST CSS SCROLL SNAP IMPLEMENTATION */}
-                            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
-                                ref={(el) => {
-                                    if (el) {
-                                        // Simple Imperative scroll based on index
-                                        const itemWidth = el.offsetWidth / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
-                                        el.scrollLeft = expertIndex * itemWidth;
-                                    }
-                                }}
+                    {/* Slider Track */}
+                    <div className="overflow-hidden">
+                        <motion.div
+                            className="flex gap-8"
+                            animate={{ x: `-${expertIndex * 100}%` }}
+                        >
+                            {/* We map a larger array to allow sliding */}
+                            <div className="flex gap-8 w-full transition-transform duration-500 ease-out"
+                                style={{ transform: `translateX(-${expertIndex * (100 / 1)}%)` }}
                             >
-                                {expertArticles.map((article) => (
-                                    <div key={article.id} className="min-w-full mb-1 md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
-                                        <div className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-transparent hover:border-[#228B22] flex flex-col h-full">
-                                            <div className="h-60 overflow-hidden relative">
-                                                <img
-                                                    src={article.img}
-                                                    alt={article.title}
-                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                                    loading="lazy"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                                <div className="absolute top-4 right-4 bg-[#1A2B3C] text-[#FFD700] text-[9px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-[#FFD700]/20">
-                                                    Tech Insight
-                                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* ROBUST CSS SCROLL SNAP IMPLEMENTATION */}
+                        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
+                            ref={(el) => {
+                                if (el) {
+                                    // Simple Imperative scroll based on index
+                                    const itemWidth = el.offsetWidth / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
+                                    el.scrollLeft = expertIndex * itemWidth;
+                                }
+                            }}
+                        >
+                            {expertArticles.map((article) => (
+                                <div key={article.id} className="min-w-full mb-1 md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                                    <div className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-transparent hover:border-[#228B22] flex flex-col h-full">
+                                        <div className="h-60 overflow-hidden relative">
+                                            <img
+                                                src={article.img}
+                                                alt={article.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                loading="lazy"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            <div className="absolute top-4 right-4 bg-[#1A2B3C] text-[#FFD700] text-[9px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-[#FFD700]/20">
+                                                Tech Insight
                                             </div>
-                                            <div className="p-8 flex flex-col flex-grow">
-                                                <h4 className="text-xl font-bold text-[#1A2B3C] leading-snug mb-4 group-hover:text-[#228B22] transition-colors line-clamp-2">
-                                                    {article.title}
-                                                </h4>
-                                                <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed flex-grow">
-                                                    {article.desc}
-                                                </p>
-                                                <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#228B22] text-xs font-black uppercase tracking-wider group/link">
-                                                    Đọc nghiên cứu <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
-                                                </div>
+                                        </div>
+                                        <div className="p-8 flex flex-col flex-grow">
+                                            <h4 className="text-xl font-bold text-[#1A2B3C] leading-snug mb-4 group-hover:text-[#228B22] transition-colors line-clamp-2">
+                                                {article.title}
+                                            </h4>
+                                            <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed flex-grow">
+                                                {article.desc}
+                                            </p>
+                                            <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#228B22] text-xs font-black uppercase tracking-wider group/link">
+                                                Đọc nghiên cứu <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-            </div>
-        </Layout>
+        </div>
     );
 }

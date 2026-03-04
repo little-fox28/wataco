@@ -112,9 +112,79 @@ export interface OurServicesSection {
     items: InfoItem[];
 }
 
+export interface ProjectProcessFlowSection {
+    title1: string;
+    title2: string;
+    steps: string[];
+}
+
 export interface ProjectPageTab {
     id: string;
     label: string;
+}
+
+export interface ProjectsPage {
+    heroSubtitle: string,
+    heroTitle: string,
+    heroDesc: string,
+    statsCapacity: string,
+    statsProjects: string,
+    statsProvinces: string,
+    mapNetwork: string,
+    libraryTitle: string,
+    categoryVietnam: string,
+    categoryInternational: string,
+    categoryAll: string,
+    noProjects: string,
+    showingProjects: string
+}
+
+export interface Job {
+    id: number;
+    title: string;
+    department: string;
+    location: string;
+    type: string;
+    salary: string;
+    deadline: string;
+    urgent: boolean;
+}
+
+export interface CareersPage {
+    hero: {
+        alt: string;
+        subtitle: string;
+        title1: string;
+        title2: string;
+        description: string;
+        button: string;
+    };
+    culture: {
+        subtitle: string;
+        title: string;
+        description: string;
+        values: {
+            title: string;
+            desc: string;
+        }[];
+    };
+    jobBoard: {
+        title: string;
+        description: string;
+        searchPlaceholder: string;
+        categories: string[];
+        noResults: string;
+        viewAllJobs: string;
+        ctaTitle: string;
+        ctaDescription: string;
+        ctaButton: string;
+    };
+    jobCard: {
+        urgent: string;
+        deadlinePrefix: string;
+        apply: string;
+    };
+    jobs: Job[];
 }
 
 export interface TranslationContent {
@@ -142,10 +212,33 @@ export interface TranslationContent {
     projectsTitle: string;
     projectsSub: string;
     projectTabs: ProjectPageTab[];
+    projectsPage: ProjectsPage;
     whySolar: WhySolarSection;
-    ppaSection: { title: string; subtitle: string; desc: string; benefits: string[] };
+    missionSection: {
+        subtitle: string;
+        title: string;
+        vision: {
+            title: string;
+            desc: string;
+        };
+        mission: {
+            title: string;
+            desc: string;
+        };
+        coreValues: {
+            title: string;
+            items: string[];
+        };
+    };
+    ppaSection: { title: string; subtitle: string; desc: string; benefits: string[], button: string };
     ourServices: OurServicesSection;
-    epcSection: { subtitle: string; title: string; desc: string; image: string; steps: { icon: LucideIcon; title: string; desc: string; }[] };
+    epcSection: {
+        subtitle: string; title: string; desc: string; image: string; steps: { icon: LucideIcon; title: string; desc: string; }[], qualityCommitment: string,
+        japanStandard: string,
+        epcProfile: string
+    };
+    projectProcessFlow: ProjectProcessFlowSection;
+    careersPage: CareersPage;
     projectsData: {
         [key: string]: ProjectData[];
     };

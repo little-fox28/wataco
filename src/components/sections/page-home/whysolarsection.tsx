@@ -1,10 +1,10 @@
-import { StaggerContainer, StaggerItem } from '../../common/StaggerAnimations';
-import type { TranslationContent } from '../../../types';
 import { Link } from 'react-router-dom';
+import type { TranslationContent } from '../../../types';
+import { StaggerContainer, StaggerItem } from '../../common/StaggerAnimations';
 
 const WhySolarSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
-  <section id="section-why-solar" className="py-20 lg:py-32 bg-white">
-    <div className="max-w-[1440px] mx-auto px-6">
+  <section id="section-why-solar" className="min-h-screen flex flex-col items-center justify-center bg-white py-12 sm:py-16 md:py-20">
+    <div className="max-w-[1440px] mx-auto px-6 w-full">
       <StaggerContainer className="text-center mb-16">
         <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading mb-4">
           {t.whySolar.title}

@@ -1,6 +1,6 @@
-import { StaggerContainer, StaggerItem } from "../../common/StaggerAnimations";
-import type { TranslationContent } from "../../../types";
 import { Link } from "react-router-dom";
+import type { TranslationContent } from "../../../types";
+import { StaggerContainer, StaggerItem } from "../../common/StaggerAnimations";
 
 const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
   <section
@@ -16,7 +16,7 @@ const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
       }}
     ></div>
 
-    <div className="max-w-[1440px] mx-auto px-6 relative z-10">
+    <div className="max-w-360 mx-auto px-6 relative z-10">
       <StaggerContainer className="text-center mb-16">
         <h3 className="text-xs font-black text-[#228B22] tracking-[0.6em] uppercase font-heading mb-4">
           WATACO SERVICES
@@ -28,7 +28,7 @@ const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
 
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {t.ourServices.items.map((item, idx) => (
-          <Link to={"posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi"}>
+          <Link key={idx} to={"posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi"}>
             <StaggerItem
               key={idx}
               className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center h-full justify-center border border-transparent hover:border-[#228B22] group"

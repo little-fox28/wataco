@@ -1,8 +1,7 @@
 import { BarChart3, Battery, Building2, Calendar, Cpu, DollarSign, Facebook, Factory, FileText, Home, Leaf, Linkedin, Mail, MapPin, Newspaper, Package, PenTool, Phone, Settings, Shield, Sprout, Sun, TrendingUp, Wallet, Wrench, Youtube, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { useLanguage, type Language } from '../contexts/LanguageContext';
 import type { Translations } from '../types';
 
-// --- DỮ LIỆU NGÔN NGỮ ---
 export const translations: Translations = {
   VN: {
     nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
@@ -44,12 +43,11 @@ export const translations: Translations = {
     section2Title: "Mạng Lưới\nDự Án",
     section2Description: "Cam kết chất lượng và hiệu suất vượt trội trên toàn lãnh thổ Việt Nam với hơn 500MWp tổng công suất lắp đặt.",
     section2ClientTitle: "Đối tác tin cậy",
-    // SECTION 1: HERITAGE
     introTitle: "Hành Trình Từ Sendai Đến Việt Nam",
     introSub: "DI SẢN WATANABE CREATE",
-    introContent1: "WATACO được thành lập dựa trên nền tảng của Tập đoàn WATANABE CREATE tại thành phố Sendai, Tỉnh Miyagi, Nhật Bản. Ra đời vào ngày 17/12/2015, tập đoàn WATANABE CREATE đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
-    introContent2: "Với phương châm chất lượng tạo nên uy tín bền vững, WATACO cam kết mang đến khách hàng những giải pháp tối ưu nhất phù hợp với yêu cầu của khách hàng đến từng chi tiết nhỏ của mỗi công trình.",
-    introContent3: "WATANABE CREATE ra đời vào ngày 17/12/2015, tập đoàn đã có những thành tựu nhất định trong lĩnh vực tư vấn - thiết kế - thi công các công trình điện năng lượng mặt trời tại Nhật Bản, đất nước đi đầu về ngành công nghệ sử dụng nguồn năng lượng tái tạo nhằm bảo vệ môi trường.",
+    introContent1: "WATACO được thành lập trên nền tảng của Tập đoàn WATANABE CREATE, Sendai, Nhật Bản. Ra đời vào ngày 17/12/2015, WATANABE CREATE đã đạt nhiều thành tựu trong tư vấn, thiết kế, thi công công trình điện năng lượng mặt trời tại Nhật Bản, nước tiên phong về công nghệ năng lượng tái tạo.",
+    introContent2: "WATACO thành lập năm 2021 tại Việt Nam, hoạt động trong lĩnh vực tư vấn, thiết kế, thi công các công trình điện năng lượng mặt trời tại Việt Nam với phương châm \"chất lượng tạo nên uy tín bền vững\". Chúng tôi cam kết mang đến những giải pháp tối ưu, phù hợp với yêu cầu của khách hàng đến từng chi tiết.",
+    introContent3: "Ngoài ra, WATACO còn hướng đến phát triển lĩnh vực xây dựng, cải tạo nhà ở, nội thất, mang lại không gian sống tiện nghi, hiện đại tại Việt Nam. Chúng tôi luôn lắng nghe ý muốn của khách hàng, kiến tạo những tác phẩm xứng tầm và không ngừng học hỏi, xứng đáng là sự lựa chọn hàng đầu.",
     benefitsTitle: "Giải Pháp Ứng Dụng",
     benefitsSub: "HIỆU QUẢ ĐẦU TƯ",
     benefitTabs: [
@@ -100,23 +98,23 @@ export const translations: Translations = {
     projectsSub: "CÔNG TRÌNH THỰC TẾ",
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "Đồng Văn 4, Ninh Bình", capacity: "0.80 MWp", production: "1,161 MWh/Năm", year: "2023", img: "public/project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "Đơn Dương, Lâm Đồng", capacity: "1.19 MWp", production: "1,723 MWh/Năm", year: "2023", img: "public/project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "0.34 MWp", production: "488 MWh/Năm", year: "2022", img: "public/project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2022", img: "public/project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "Mỹ Phước 3, Bình Dương", capacity: "0.48 MWp", production: "696 MWh/Năm", year: "2021", img: "public/project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "0.76 MWp", production: "1,099 MWh/Năm", year: "2021", img: "public/project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1.24 MWp", production: "1,801 MWh/Năm", year: "2020", img: "public/project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "TP. Thái Bình", capacity: "3.01 MWp", production: "4,362 MWh/Năm", year: "2020", img: "public/project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2023", img: "public/project/the-he-moi.png" },
-        { name: "Huong Sen", location: "Quỳnh Phụ, Thái Bình", capacity: "2.21 MWp", production: "3,201 MWh/Năm", year: "2022", img: "public/project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "Thanh Liêm, Ninh Bình", capacity: "1.24 MWp", production: "1,798 MWh/Năm", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "Tam Thăng, Đà Nẵng", capacity: "1.13 MWp", production: "1,637 MWh/Năm", year: "2020", img: "public/project/amann.png" }
+        { name: "Alpha Network", location: "Đồng Văn 4, Ninh Bình", capacity: "0.80 MWp", production: "1,161 MWh/Năm", year: "2023", img: "project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Đơn Dương, Lâm Đồng", capacity: "1.19 MWp", production: "1,723 MWh/Năm", year: "2023", img: "project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "0.34 MWp", production: "488 MWh/Năm", year: "2022", img: "project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2022", img: "project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "Mỹ Phước 3, Bình Dương", capacity: "0.48 MWp", production: "696 MWh/Năm", year: "2021", img: "project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "0.76 MWp", production: "1,099 MWh/Năm", year: "2021", img: "project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1.24 MWp", production: "1,801 MWh/Năm", year: "2020", img: "project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "TP. Thái Bình", capacity: "3.01 MWp", production: "4,362 MWh/Năm", year: "2020", img: "project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2023", img: "project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quỳnh Phụ, Thái Bình", capacity: "2.21 MWp", production: "3,201 MWh/Năm", year: "2022", img: "project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liêm, Ninh Bình", capacity: "1.24 MWp", production: "1,798 MWh/Năm", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thăng, Đà Nẵng", capacity: "1.13 MWp", production: "1,637 MWh/Năm", year: "2020", img: "project/amann.png" }
       ],
       'international': [
-        { name: "Dự án Marsushima", location: "Sendai, Nhật Bản", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "public/project/Matoba.jpg" },
-        { name: "Dự án Higashimatsushima", location: "Miyagi, Nhật Bản", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "public/project/Higashimatsushima.jpg" },
-        { name: "Dự án Nemawari Daini", location: "Osaka, Nhật Bản", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "public/project/Nemawari.jpg" },
+        { name: "Dự án Marsushima", location: "Sendai, Nhật Bản", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "project/Matoba.jpg" },
+        { name: "Dự án Higashimatsushima", location: "Miyagi, Nhật Bản", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "project/Higashimatsushima.jpg" },
+        { name: "Dự án Nemawari Daini", location: "Osaka, Nhật Bản", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "project/Nemawari.jpg" },
       ]
     },
     productsTitle: "Công Nghệ & Thiết Bị",
@@ -215,6 +213,21 @@ export const translations: Translations = {
       { id: 'vietnam', label: 'Việt Nam' },
       { id: 'international', label: 'Quốc Tế' },
     ],
+    projectsPage: {
+      heroSubtitle: "Hồ Sơ Năng Lực",
+      heroTitle: "DẤU ẤN\nCÔNG TRÌNH",
+      heroDesc: "Hơn 200 dự án đã triển khai, WATACO tự hào mang nguồn năng lượng xanh đến mọi miền tổ quốc.",
+      statsCapacity: "Tổng công suất (MWp)",
+      statsProjects: "Dự án hoàn thành",
+      statsProvinces: "Tỉnh thành phủ sóng",
+      mapNetwork: "Mạng lưới dự án toàn quốc",
+      libraryTitle: "Thư Viện Dự Án",
+      categoryVietnam: "Việt Nam",
+      categoryInternational: "Quốc tế",
+      categoryAll: "Tất cả dự án",
+      noProjects: "Không tìm thấy dự án phù hợp.",
+      showingProjects: "Hiển thị {current} trên tổng số {total} dự án"
+    },
     whySolar: {
       title: "TẠI SAO NÊN SỬ DỤNG ĐIỆN MẶT TRỜI?",
       tagline: "Điện mặt trời – Giải pháp năng lượng bền vững cho tương lai!",
@@ -225,20 +238,39 @@ export const translations: Translations = {
         { icon: Shield, title: "Độ bền cao – dễ bảo trì", desc: "Tuổi thọ hệ thống từ 25–30 năm, ít hỏng hóc, bảo hành dài hạn." }
       ]
     },
+    missionSection: {
+      subtitle: "ĐỊNH HƯỚNG PHÁT TRIỂN",
+      title: "Tầm Nhìn & Sứ Mệnh",
+      vision: {
+        title: "Tầm nhìn",
+        desc: "Kiến tạo tương lai bền vững qua việc xây dựng và đầu tư năng lượng mặt trời tiên tiến tại Việt Nam, hỗ trợ các doanh nghiệp phát triển và đồng hành cùng cộng đồng."
+      },
+      mission: {
+        title: "Sứ mệnh",
+        desc: "Cung cấp các giải pháp xây dựng và giải pháp đầu tư hệ thống năng lượng mặt trời chất lượng cao, tiên tiến và thân thiện với môi trường, góp phần nâng cao chất lượng cuộc sống và hỗ trợ sự phát triển bền vững của các doanh nghiệp tại Việt Nam."
+      },
+      coreValues: {
+        title: "Giá trị cốt lõi",
+        items: [
+          "Bền vững và thân thiện với môi trường",
+          "Chất lượng và tiên tiến",
+          "Trách nhiệm và minh bạch",
+          "Hợp tác và phát triển",
+          "Đổi mới và sáng tạo"
+        ]
+      }
+    },
     ppaSection: {
-      subtitle: "MÔ HÌNH HỢP TÁC",
-      title: "Giải pháp ESCO / Mô hình PPA",
-      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      subtitle: "ĐẦU TƯ 0 ĐỒNG - MUA BÁN ĐIỆN",
+      title: "GIẢI PHÁP ĐIỆN MẶT TRỜI CHẤT LƯỢNG CAO DÀNH CHO DOANH NGHIỆP",
+      desc: "Giải pháp hợp tác mua bán điện mặt trời trực tiếp, tận dụng phần mái nhà xưởng nhàn rỗi. Quỹ đầu tư đối tác sẽ chịu trách nhiệm 100% nguồn vốn, WATACO làm tổng thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
       benefits: [
-        "Không cần vốn đầu tư ban đầu.",
-        "Không lo về công nghệ và vòng đời thiết bị.",
-        "Miễn phí 100% chi phí vận hành bảo trì.",
-        "Giảm phụ thuộc vào lưới điện EVN.",
-        "Sử dụng điện với giá thấp hơn EVN.",
-        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
-        "Hưởng toàn bộ hệ thống sau hợp đồng.",
-        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
-      ]
+        "Không cần bỏ vốn đầu tư ban đầu (Zero Capex).",
+        "Sử dụng điện với giá thấp hơn lưới EVN.",
+        "Miễn phí 100% chi phí vận hành bảo trì (O&M).",
+        "Được cấp chứng chỉ năng lượng tái tạo (I-RECs)."
+      ],
+      button: "Mô hình PPA"
     },
     ourServices: {
       title: "Dịch vụ của chúng tôi",
@@ -260,6 +292,128 @@ export const translations: Translations = {
         { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
         { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
         { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
+      ],
+      qualityCommitment: "Cam kết chất lượng",
+      japanStandard: "Tiêu chuẩn Nhật Bản",
+      epcProfile: "Hồ sơ năng lực EPC"
+    },
+    projectProcessFlow: {
+      title1: "Sơ đồ quy trình",
+      title2: "thực hiện dự án",
+      steps: [
+        "KHẢO SÁT DỰ ÁN",
+        "THIẾT KẾ SƠ BỘ, MÔ PHỎNG & PHÂN TÍCH DỰ ÁN",
+        "ĐÁNH GIÁ KHẢ THI DỰ ÁN",
+        "THIẾT KẾ HỆ THỐNG",
+        "THI CÔNG LẮP ĐẶT",
+        "KIỂM TRA, CHẠY THỬ",
+        "VẬN HÀNH THƯƠNG MẠI & BÀN GIAO DỰ ÁN CHO CĐT",
+        "VẬN HÀNH VÀ BẢO TRÌ (O&M)"
+      ]
+    },
+    careersPage: {
+      hero: {
+        alt: "Đội ngũ làm việc chuyên nghiệp",
+        subtitle: "Gia Nhập WATACO",
+        title1: "KIẾN TẠO TƯƠNG LAI",
+        title2: "NĂNG LƯỢNG XANH",
+        description: "Chúng tôi tìm kiếm những cộng sự đam mê, nhiệt huyết để cùng nhau xây dựng nền tảng năng lượng bền vững cho Việt Nam.",
+        button: "Xem các vị trí đang mở"
+      },
+      culture: {
+        subtitle: "Giá Trị Cốt Lõi",
+        title: "Văn Hóa WATACO",
+        description: "Sức mạnh tập thể và định hướng phát triển bền vững của WATACO được xây dựng dựa trên 5 trụ cột văn hóa không thể tách rời.",
+        values: [
+          {
+            title: "Trung thực và minh bạch",
+            desc: "Chúng tôi luôn giữ vững giá trị đạo đức trong công việc, thể hiện sự rõ ràng, chính trực và cam kết thực hiện đúng các nguyên tắc, từ đó xây dựng niềm tin vững chắc với khách hàng và đối tác."
+          },
+          {
+            title: "Hợp tác",
+            desc: "Tinh thần hợp tác và làm việc nhóm là nền tảng của Wataco, chúng tôi luôn hướng đến việc tạo ra một môi trường gắn kết, giúp mọi người phát huy thế mạnh và đạt được thành công chung."
+          },
+          {
+            title: "Đổi mới sáng tạo",
+            desc: "Mỗi thành viên trong công ty đều khuyến khích sự sáng tạo và cải tiến liên tục, đóng góp ý tưởng mới mẻ để nâng cao chất lượng công việc và các giải pháp cho khách hàng."
+          },
+          {
+            title: "Quan tâm và Tôn trọng",
+            desc: "Tại Wataco, mỗi cá nhân đều được quý trọng và lắng nghe, chúng tôi luôn chú trọng đến sự phát triển cá nhân và bảo vệ lợi ích của cộng đồng, khách hàng và đối tác."
+          },
+          {
+            title: "Chủ động vượt qua thử thách",
+            desc: "Nhân viên Wataco luôn chủ động tìm kiếm giải pháp sáng tạo để vượt qua mọi khó khăn, không ngừng học hỏi và phát triển để đối mặt với thử thách một cách tự tin và hiệu quả."
+          }
+        ]
+      },
+      jobBoard: {
+        title: "Vị Trí Đang Tuyển",
+        description: "Hãy tìm kiếm cơ hội phù hợp với bạn.",
+        searchPlaceholder: "Tìm kiếm công việc...",
+        categories: ["Tất cả", "Kỹ thuật", "Kinh doanh", "Vận hành", "Văn phòng"],
+        noResults: "Không tìm thấy vị trí phù hợp.",
+        viewAllJobs: "Xem tất cả công việc",
+        ctaTitle: "Không tìm thấy vị trí phù hợp?",
+        ctaDescription: "Gửi CV của bạn vào kho dữ liệu nhân tài của chúng tôi. Chúng tôi sẽ liên hệ khi có cơ hội.",
+        ctaButton: "Gửi CV ngay"
+      },
+      jobCard: {
+        urgent: "Gấp",
+        deadlinePrefix: "Hạn nộp: ",
+        apply: "Ứng tuyển"
+      },
+      jobs: [
+        {
+          id: 1,
+          title: "Kỹ Sư Thiết Kế Điện Mặt Trời (Solar Design Engineer)",
+          department: "Kỹ thuật",
+          location: "TP. Hồ Chí Minh",
+          type: "Toàn thời gian",
+          salary: "Thỏa thuận",
+          deadline: "30/06/2024",
+          urgent: true
+        },
+        {
+          id: 2,
+          title: "Trưởng Nhóm Kinh Doanh B2B (Sales Team Leader)",
+          department: "Kinh doanh",
+          location: "Bình Dương",
+          type: "Toàn thời gian",
+          salary: "20 - 30 Triệu + HH",
+          deadline: "15/06/2024",
+          urgent: true
+        },
+        {
+          id: 3,
+          title: "Chuyên Viên Giám Sát An Toàn (HSE Supervisor)",
+          department: "Vận hành",
+          location: "Các tỉnh miền Nam",
+          type: "Toàn thời gian",
+          salary: "Thỏa thuận",
+          deadline: "30/06/2024",
+          urgent: false
+        },
+        {
+          id: 4,
+          title: "Kế Toán Tổng Hợp",
+          department: "Văn phòng",
+          location: "TP. Hồ Chí Minh",
+          type: "Toàn thời gian",
+          salary: "15 - 18 Triệu",
+          deadline: "20/06/2024",
+          urgent: false
+        },
+        {
+          id: 5,
+          title: "Thực Tập Sinh Kỹ Thuật Điện",
+          department: "Kỹ thuật",
+          location: "TP. Hồ Chí Minh",
+          type: "Bán thời gian / Thực tập",
+          salary: "Hỗ trợ lương",
+          deadline: "Liên tục tuyển",
+          urgent: false
+        }
       ]
     },
   },
@@ -305,9 +459,9 @@ export const translations: Translations = {
     section2ClientTitle: "Trusted Partners",
     introTitle: "Journey From Sendai to Vietnam",
     introSub: "WATANABE CREATE HERITAGE",
-    introContent1: "WATACO was established based on the foundation of WATANABE CREATE Group in Sendai City, Miyagi Prefecture, Japan. Founded on December 17, 2015, WATANABE CREATE has achieved significant success in consulting, design, and construction of solar energy projects in Japan.",
-    introContent2: "With quality as our sustainable prestige, WATACO commits to providing the most optimal solutions tailored to every small detail of each project.",
-    introContent3: "Established on December 17, 2015, WATANABE CREATE has achieved significant success in the consulting, design, and construction of solar energy projects in Japan—a leading nation in renewable energy technologies dedicated to environmental protection.",
+    introContent1: "WATACO was established on the foundation of WATANABE CREATE Group, Sendai,Japan. Founded on December 17 2015, WATANABE CREATE has achieved numerous successes in consulting, design and construction of solar‑power facilities in Japan, the forerunner nation in renewable‑energy technology.",
+    introContent2: "WATACO was founded in 2021 in Vietnam, operating in the fields of consulting, design and construction of solar‑power projects with the motto “quality creates sustainable prestige”. We are committed to delivering the most optimal solutions, tailored to every customer’s requirement down to the smallest detail.",
+    introContent3: "In addition, WATACO is expanding into residential construction, renovation and interior finishing, bringing comfortable, modern living spaces to Vietnam. We always listen to our customers’ wishes, craft works worthy of them, and continually learn to be the first choice.",
     benefitsTitle: "Application Solutions",
     benefitsSub: "INVESTMENT EFFICIENCY",
     benefitTabs: [
@@ -360,25 +514,40 @@ export const translations: Translations = {
       { id: 'vietnam', label: 'Vietnam' },
       { id: 'international', label: 'International' },
     ],
+    projectsPage: {
+      heroSubtitle: "Portfolio",
+      heroTitle: "PROJECT\nFOOTPRINT",
+      heroDesc: "Over 200 projects delivered, WATACO is proud to bring clean energy to every corner of Vietnam.",
+      statsCapacity: "Total Capacity (MWp)",
+      statsProjects: "Completed Projects",
+      statsProvinces: "Provinces Covered",
+      mapNetwork: "Nationwide Project Network",
+      libraryTitle: "Project Library",
+      categoryVietnam: "Vietnam",
+      categoryInternational: "International",
+      categoryAll: "All Projects",
+      noProjects: "No projects found.",
+      showingProjects: "Showing {current} of {total} projects"
+    },
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "Dong Van 4, Ninh Binh", capacity: "0.80 MWp", production: "1,161 MWh/Year", year: "2023", img: "public/project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "Don Duong, Lam Dong", capacity: "1.19 MWp", production: "1,723 MWh/Year", year: "2023", img: "public/project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "Tan Thuan EPZ, HCMC", capacity: "0.34 MWp", production: "488 MWh/Year", year: "2022", img: "public/project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2022", img: "public/project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "My Phuoc 3, Binh Duong", capacity: "0.48 MWp", production: "696 MWh/Year", year: "2021", img: "public/project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "Hi-Tech Park, HCMC", capacity: "0.76 MWp", production: "1,099 MWh/Year", year: "2021", img: "public/project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "Van Lam, Hung Yen", capacity: "1.24 MWp", production: "1,801 MWh/Year", year: "2020", img: "public/project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "Thai Binh City", capacity: "3.01 MWp", production: "4,362 MWh/Year", year: "2020", img: "public/project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2023", img: "public/project/the-he-moi.png" },
-        { name: "Huong Sen", location: "Quynh Phu, Thai Binh", capacity: "2.21 MWp", production: "3,201 MWh/Year", year: "2022", img: "public/project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "Thanh Liem, Ninh Binh", capacity: "1.24 MWp", production: "1,798 MWh/Year", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "Tam Thang, Da Nang", capacity: "1.13 MWp", production: "1,637 MWh/Year", year: "2020", img: "public/project/amann.png" }
+        { name: "Alpha Network", location: "Dong Van 4, Ninh Binh", capacity: "0.80 MWp", production: "1,161 MWh/Year", year: "2023", img: "project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "Don Duong, Lam Dong", capacity: "1.19 MWp", production: "1,723 MWh/Year", year: "2023", img: "project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "Tan Thuan EPZ, HCMC", capacity: "0.34 MWp", production: "488 MWh/Year", year: "2022", img: "project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2022", img: "project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "My Phuoc 3, Binh Duong", capacity: "0.48 MWp", production: "696 MWh/Year", year: "2021", img: "project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "Hi-Tech Park, HCMC", capacity: "0.76 MWp", production: "1,099 MWh/Year", year: "2021", img: "project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "Van Lam, Hung Yen", capacity: "1.24 MWp", production: "1,801 MWh/Year", year: "2020", img: "project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "Thai Binh City", capacity: "3.01 MWp", production: "4,362 MWh/Year", year: "2020", img: "project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2023", img: "project/the-he-moi.png" },
+        { name: "Huong Sen", location: "Quynh Phu, Thai Binh", capacity: "2.21 MWp", production: "3,201 MWh/Year", year: "2022", img: "project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "Thanh Liem, Ninh Binh", capacity: "1.24 MWp", production: "1,798 MWh/Year", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "Tam Thang, Da Nang", capacity: "1.13 MWp", production: "1,637 MWh/Year", year: "2020", img: "project/amann.png" }
       ],
       'international': [
-        { name: "Marsushima Solar", location: "Sendai, Japan", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "public/project/Matoba.jpg" },
-        { name: "Higashimatsushima Sholar", location: "Miyagi, Japan", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "public/project/Higashimatsushima.jpg" },
-        { name: "Nemawari Daini Sholar", location: "Osaka, Japan", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "public/project/Nemawari.jpg" }
+        { name: "Marsushima Solar", location: "Sendai, Japan", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "project/Matoba.jpg" },
+        { name: "Higashimatsushima Sholar", location: "Miyagi, Japan", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "project/Higashimatsushima.jpg" },
+        { name: "Nemawari Daini Sholar", location: "Osaka, Japan", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "project/Nemawari.jpg" }
       ]
     },
     productsTitle: "Technology",
@@ -479,20 +648,39 @@ export const translations: Translations = {
         }
       ]
     },
+    missionSection: {
+      subtitle: "DEVELOPMENT ORIENTATION",
+      title: "Vision & Mission",
+      vision: {
+        title: "Vision",
+        desc: "Creating a sustainable future through constructing and investing in advanced solar energy in Vietnam, supporting business growth and partnering with the community."
+      },
+      mission: {
+        title: "Mission",
+        desc: "Providing high-quality, advanced, and environmentally friendly solar energy construction and investment solutions, contributing to enhancing life quality and supporting the sustainable development of businesses in Vietnam."
+      },
+      coreValues: {
+        title: "Core Values",
+        items: [
+          "Sustainability and Eco-friendliness",
+          "Quality and Innovation",
+          "Responsibility and Transparency",
+          "Collaboration and Development",
+          "Innovation and Creativity"
+        ]
+      }
+    },
     ppaSection: {
-      subtitle: "MÔ HÌNH HỢP TÁC",
-      title: "Giải pháp ESCO / Mô hình PPA",
-      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      subtitle: "ZERO INVESTMENT - POWER PURCHASE AGREEMENT",
+      title: "HIGH QUALITY SOLAR POWER SOLUTIONS FOR BUSINESSES",
+      desc: "A direct solar power purchase cooperation solution that utilizes idle factory rooftops. Partner investment funds cover 100% of the capital, while WATACO acts as a comprehensive EPC contractor to ensure optimal operational efficiency.",
       benefits: [
-        "Không cần vốn đầu tư ban đầu.",
-        "Không lo về công nghệ và vòng đời thiết bị.",
-        "Miễn phí 100% chi phí vận hành bảo trì.",
-        "Giảm phụ thuộc vào lưới điện EVN.",
-        "Sử dụng điện với giá thấp hơn EVN.",
-        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
-        "Hưởng toàn bộ hệ thống sau hợp đồng.",
-        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
-      ]
+        "Zero initial capital investment (Zero Capex).",
+        "Electricity rates lower than the EVN grid.",
+        "100% free operation and maintenance (O&M) costs.",
+        "Obtain International Renewable Energy Certificates (I-RECs)."
+      ],
+      button: "PPA Model"
     },
     ourServices: {
       title: "Our Services",
@@ -505,15 +693,137 @@ export const translations: Translations = {
       ]
     },
     epcSection: {
-      subtitle: "GIẢI PHÁP CHÌA KHÓA TRAO TAY",
-      title: "Tổng thầu và quản lý EPC",
-      desc: "WATACO cung cấp dịch vụ triển khai hệ thống điện mặt trời mái nhà toàn diện từ giai đoạn tư vấn thiết kế đến vận hành, nhằm tối đa hóa lợi nhuận và hạn chế rủi ro cho doanh nghiệp.",
+      subtitle: "TURNKEY SOLUTIONS",
+      title: "EPC General Contracting & Management",
+      desc: "WATACO provides comprehensive rooftop solar implementation services, from design consultancy to operation, aimed at maximizing ROI and minimizing risks for businesses.",
       image: "sgs.png",
       steps: [
-        { icon: PenTool, title: "Tư Vấn & Thiết Kế (Engineering)", desc: "Khảo sát thực địa, đánh giá kết cấu chịu tải và ứng dụng phần mềm PVSyst/HelioScope mô phỏng 3D để tối ưu hóa vị trí lắp đặt và sản lượng điện." },
-        { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
-        { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
-        { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
+        { icon: PenTool, title: "Engineering", desc: "Site survey, structural load assessment, and 3D simulation using PVSyst/HelioScope to optimize installation layout and energy yield." },
+        { icon: Package, title: "Procurement", desc: "Direct distribution of Global Tier 1 solar equipment (Longi, Canadian Solar, Huawei, Sungrow) with full CO/CQ certification." },
+        { icon: Wrench, title: "Construction", desc: "Professional execution adhering strictly to HSE and Fire Safety standards without disrupting factory production activities." },
+        { icon: BarChart3, title: "Operation & Maintenance (O&M)", desc: "24/7 performance monitoring via our NOC center. Periodic maintenance and cleaning ensure system stability throughout its lifecycle." }
+      ],
+      qualityCommitment: "Quality Commitment",
+      japanStandard: "Japanese Standards",
+      epcProfile: "EPC Capability Profile"
+    },
+    projectProcessFlow: {
+      title1: "Project Implementation",
+      title2: "Process Flow",
+      steps: [
+        "PROJECT SURVEY",
+        "PRELIMINARY DESIGN, SIMULATION & ANALYSIS",
+        "FEASIBILITY ASSESSMENT",
+        "SYSTEM DESIGN",
+        "CONSTRUCTION & INSTALLATION",
+        "TESTING & COMMISSIONING",
+        "COMMERCIAL OPERATION & HANDOVER",
+        "OPERATION & MAINTENANCE (O&M)"
+      ]
+    },
+    careersPage: {
+      hero: {
+        alt: "Professional working team",
+        subtitle: "Join WATACO",
+        title1: "CREATE THE FUTURE",
+        title2: "OF GREEN ENERGY",
+        description: "We are looking for passionate and enthusiastic associates to build a sustainable energy foundation for Vietnam together.",
+        button: "View open positions"
+      },
+      culture: {
+        subtitle: "Core Values",
+        title: "WATACO Culture",
+        description: "The collective strength and sustainable development orientation of WATACO are built on 5 inseparable cultural pillars.",
+        values: [
+          {
+            title: "Honesty and Transparency",
+            desc: "We always uphold ethical values in our work, demonstrating clarity, integrity, and a commitment to following the principles, thereby building solid trust with customers and partners."
+          },
+          {
+            title: "Cooperation",
+            desc: "The spirit of cooperation and teamwork is the foundation of Wataco; we always aim to create a cohesive environment that helps everyone promote their strengths and achieve common success."
+          },
+          {
+            title: "Innovation",
+            desc: "Every member of the company is encouraged to be creative and continuously improve, contributing new ideas to enhance the quality of work and solutions for customers."
+          },
+          {
+            title: "Care and Respect",
+            desc: "At Wataco, every individual is valued and listened to; we always focus on personal development and protecting the interests of the community, customers, and partners."
+          },
+          {
+            title: "Proactively Overcoming Challenges",
+            desc: "Wataco employees are always proactive in seeking creative solutions to overcome all difficulties, constantly learning and developing to face challenges with confidence and efficiency."
+          }
+        ]
+      },
+      jobBoard: {
+        title: "Open Positions",
+        description: "Find the right opportunity for you.",
+        searchPlaceholder: "Search for jobs...",
+        categories: ["All", "Technical", "Sales", "Operation", "Office"],
+        noResults: "No suitable positions found.",
+        viewAllJobs: "View all jobs",
+        ctaTitle: "Can't find a suitable position?",
+        ctaDescription: "Submit your CV to our talent database. We will contact you when an opportunity arises.",
+        ctaButton: "Submit CV Now"
+      },
+      jobCard: {
+        urgent: "Urgent",
+        deadlinePrefix: "Apply by: ",
+        apply: "Apply"
+      },
+      jobs: [
+        {
+          id: 1,
+          title: "Solar Design Engineer",
+          department: "Technical",
+          location: "Ho Chi Minh City",
+          type: "Full-time",
+          salary: "Negotiable",
+          deadline: "30/06/2024",
+          urgent: true
+        },
+        {
+          id: 2,
+          title: "B2B Sales Team Leader",
+          department: "Sales",
+          location: "Binh Duong",
+          type: "Full-time",
+          salary: "20 - 30 Million + Commission",
+          deadline: "15/06/2024",
+          urgent: true
+        },
+        {
+          id: 3,
+          title: "HSE Supervisor",
+          department: "Operation",
+          location: "Southern provinces",
+          type: "Full-time",
+          salary: "Negotiable",
+          deadline: "30/06/2024",
+          urgent: false
+        },
+        {
+          id: 4,
+          title: "General Accountant",
+          department: "Office",
+          location: "Ho Chi Minh City",
+          type: "Full-time",
+          salary: "15 - 18 Million",
+          deadline: "20/06/2024",
+          urgent: false
+        },
+        {
+          id: 5,
+          title: "Electrical Engineering Intern",
+          department: "Technical",
+          location: "Ho Chi Minh City",
+          type: "Part-time / Internship",
+          salary: "Stipend",
+          deadline: "Continuous recruitment",
+          urgent: false
+        }
       ]
     },
   },
@@ -559,9 +869,9 @@ export const translations: Translations = {
     section2ClientTitle: "信頼できるパートナー",
     introTitle: "仙台からベトナムへ",
     introSub: "ワタナベクリエイトの遺産",
-    introContent1: "WATACOは、日本の宮城県仙台市にあるワタナベクリエイトグループの基盤の上に設立されました。",
-    introContent2: "「品質こそが持続可能な信頼を生む」という方針のもと、最適なソリューションを提供します。",
-    introContent3: "「WATANABE CREATEは2015年12月17日に設立されました。当社は、環境保護のための再生可能エネルギー技術における先進国である日本において、太陽光発電施設のコンサルティング・設計・施工の分野で確かな実績を築いてまいりました。」",
+    introContent1: "WATACOは、日本の宮城県仙台市に本拠を置くワタナベクリエイト グループの基盤の上に設立されました。2015年12月17日に創業したワタナベクリエイトは、 コンサルティング、設計、施工において多数の実績を挙げ、再生可能エネルギー技術の 先駆者として知られています。",
+    introContent2: "WATACOは2021年にベトナムで設立され、太陽光発電所の コンサルティング・設計・施工を手掛けています。「品質こそが持続可能な信頼を生む」 というモットーのもと、お客様のご要望に細部まで応える最適なソリューションを提供 することをお約束します。",
+    introContent3: "また、WATACOは住宅建築・リノベーション・インテリア分野にも 事業を広げ、ベトナムに快適でモダンな住環境を提供しています。常にお客様の ご期待に耳を傾け、ふさわしい作品を創り続け、第一の選択となるべく学び続けています。",
     benefitsTitle: "ソリューション",
     benefitsSub: "投資効率",
     benefitTabs: [
@@ -614,20 +924,35 @@ export const translations: Translations = {
       { id: 'vietnam', label: 'ベトナム' },
       { id: 'international', label: '国際' },
     ],
+    projectsPage: {
+      heroSubtitle: "実績",
+      heroTitle: "プロジェクト\nのフットプリント",
+      heroDesc: "200以上のプロジェクトをベトナム全土で完成させ、WATACOはクリーンエネルギーを提供しています。",
+      statsCapacity: "総設備容量 (MWp)",
+      statsProjects: "完了プロジェクト",
+      statsProvinces: "カバー省数",
+      mapNetwork: "全国プロジェクト網",
+      libraryTitle: "プロジェクトライブラリ",
+      categoryVietnam: "ベトナム",
+      categoryInternational: "国際",
+      categoryAll: "すべてのプロジェクト",
+      noProjects: "プロジェクトが見つかりません。",
+      showingProjects: "{current} / {total} 件のプロジェクトが表示されています"
+    },
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "ニンビン省、ドンバン4", capacity: "0.80 MWp", production: "1,161 MWh/年", year: "2023", img: "public/project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "ラムドン省、ドンズオン", capacity: "1.19 MWp", production: "1,723 MWh/年", year: "2023", img: "public/project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "ホーチミン市、タントゥアン輸出加工区", capacity: "0.34 MWp", production: "488 MWh/年", year: "2022", img: "public/project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2022", img: "public/project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "ビンズオン省、ミーフオック3", capacity: "0.48 MWp", production: "696 MWh/年", year: "2021", img: "public/project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "ホーチミン市、ハイテクパーク", capacity: "0.76 MWp", production: "1,099 MWh/年", year: "2021", img: "public/project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "フンイエン省、ヴァンラム", capacity: "1.24 MWp", production: "1,801 MWh/年", year: "2020", img: "public/project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "タイビン市", capacity: "3.01 MWp", production: "4,362 MWh/年", year: "2020", img: "public/project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2023", img: "public/project/the-he-moi.png" },
-        { name: "Huong Sen", location: "タイビン省、クインフー", capacity: "2.21 MWp", production: "3,201 MWh/年", year: "2022", img: "public/project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "ニンビン省、タンリエム", capacity: "1.24 MWp", production: "1,798 MWh/年", year: "2021", img: "public/project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "ダナン市、タムタン", capacity: "1.13 MWp", production: "1,637 MWh/年", year: "2020", img: "public/project/amann.png" }
+        { name: "Alpha Network", location: "ニンビン省、ドンバン4", capacity: "0.80 MWp", production: "1,161 MWh/年", year: "2023", img: "project/alpha.jpg" },
+        { name: "TH Milk Dalat", location: "ラムドン省、ドンズオン", capacity: "1.19 MWp", production: "1,723 MWh/年", year: "2023", img: "project/th.jpg" },
+        { name: "MK Seiko Vietnam", location: "ホーチミン市、タントゥアン輸出加工区", capacity: "0.34 MWp", production: "488 MWh/年", year: "2022", img: "project/mk.JPG" },
+        { name: "Kaifa Industry Vietnam", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2022", img: "project/kaifa.jpg" },
+        { name: "Sato Sangyo Vietnam", location: "ビンズオン省、ミーフオック3", capacity: "0.48 MWp", production: "696 MWh/年", year: "2021", img: "project/Sato.jpg" },
+        { name: "Ryobi Vietnam", location: "ホーチミン市、ハイテクパーク", capacity: "0.76 MWp", production: "1,099 MWh/年", year: "2021", img: "project/Ryobi.JPG" },
+        { name: "Stroman Plastic", location: "フンイエン省、ヴァンラム", capacity: "1.24 MWp", production: "1,801 MWh/年", year: "2020", img: "project/stroman.png" },
+        { name: "Tra Ly Yarn", location: "タイビン市", capacity: "3.01 MWp", production: "4,362 MWh/年", year: "2020", img: "project/tra-li.JPG" },
+        { name: "The He Moi Phu Tho", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2023", img: "project/the-he-moi.png" },
+        { name: "Huong Sen", location: "タイビン省、クインフー", capacity: "2.21 MWp", production: "3,201 MWh/年", year: "2022", img: "project/huong-sen.jpg" },
+        { name: "Tan A Dai Thanh Group", location: "ニンビン省、タンリエム", capacity: "1.24 MWp", production: "1,798 MWh/年", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
+        { name: "AMANN Vietnam", location: "ダナン市、タムタン", capacity: "1.13 MWp", production: "1,637 MWh/年", year: "2020", img: "project/amann.png" }
       ],
       'international': [
         {
@@ -636,7 +961,7 @@ export const translations: Translations = {
           capacity: "10 MWp",
           production: "12,000 MWh/年",
           year: "2022",
-          img: "public/project/Matoba.jpg"
+          img: "project/Matoba.jpg"
         },
         {
           name: "東松島ソーラー", // Higashimatsushima Solar
@@ -644,7 +969,7 @@ export const translations: Translations = {
           capacity: "5 MWp",
           production: "6,000 MWh/年",
           year: "2021",
-          img: "public/project/Higashimatsushima.jpg"
+          img: "project/Higashimatsushima.jpg"
         },
         {
           name: "根廻第二ソーラー", // Nemawari Daini Solar
@@ -652,7 +977,7 @@ export const translations: Translations = {
           capacity: "2 MWp",
           production: "2,400 MWh/年",
           year: "2023",
-          img: "public/project/Nemawari.jpg"
+          img: "project/Nemawari.jpg"
         }]
     },
     productsTitle: "技術と設備",
@@ -753,31 +1078,172 @@ export const translations: Translations = {
         }
       ]
     },
+    missionSection: {
+      subtitle: "開発の方向性",
+      title: "ビジョン ＆ ミッション",
+      vision: {
+        title: "ビジョン",
+        desc: "ベトナムにおいて先進的な太陽光エネルギーの建設と投資を通じて持続可能な未来を創造し、企業の発展を支援し、地域社会と共に歩みます。"
+      },
+      mission: {
+        title: "ミッション",
+        desc: "高品質で先進的、かつ環境に優しい太陽光発電システムの建設および投資ソリューションを提供し、生活の質の向上とベトナム企業の持続可能な発展に貢献します。"
+      },
+      coreValues: {
+        title: "コアバリュー",
+        items: [
+          "持続可能性と環境への配慮",
+          "品質と先進性",
+          "責任と透明性",
+          "協力と発展",
+          "革新と創造"
+        ]
+      }
+    },
     ppaSection: {
-      subtitle: "MÔ HÌNH HỢP TÁC",
-      title: "Giải pháp ESCO / Mô hình PPA",
-      desc: "Mô hình ESCO (Energy Service Company) là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC toàn diện nhằm đảm bảo hiệu quả vận hành tối ưu nhất.",
+      subtitle: "初期投資ゼロ - 電力売買ソリューション",
+      title: "ビジネス向けの高品質太陽光発電ソリューション",
+      desc: "工場の遊休屋根スペースを活用した太陽光発電の直接売買協力ソリューションです。パートナー投資ファンドが資金を100%負担し、WATACOが総合EPC請負業者として最適な運用効率を保証します。",
       benefits: [
-        "Không cần vốn đầu tư ban đầu.",
-        "Không lo về công nghệ và vòng đời thiết bị.",
-        "Miễn phí 100% chi phí vận hành bảo trì.",
-        "Giảm phụ thuộc vào lưới điện EVN.",
-        "Sử dụng điện với giá thấp hơn EVN.",
-        "Giảm nhiệt độ mái nhà xưởng lên đến 5 độ C.",
-        "Hưởng toàn bộ hệ thống sau hợp đồng.",
-        "Nâng tầm thương hiệu xanh, tăng cạnh tranh."
-      ]
+        "初期投資費用不要（Zero Capex）。",
+        "EVNグリッドよりも安価な電力価格を実現。",
+        "運用・保守（O&M）費用が100%無料。",
+        "再生可能エネルギー証明書（I-RECs）の取得が可能。"
+      ],
+      button: "PPAモデル"
     },
     epcSection: {
-      subtitle: "GIẢI PHÁP CHÌA KHÓA TRAO TAY",
-      title: "Tổng thầu và quản lý EPC",
-      desc: "WATACO cung cấp dịch vụ triển khai hệ thống điện mặt trời mái nhà toàn diện từ giai đoạn tư vấn thiết kế đến vận hành, nhằm tối đa hóa lợi nhuận và hạn chế rủi ro cho doanh nghiệp.",
+      subtitle: "ターンキーソリューション",
+      title: "EPC総括請負および管理",
+      desc: "WATACOは、設計コンサルティングから運用まで、屋上太陽光発電システムの包括的な導入サービスを提供し、企業の収益最大化とリスク低減を実現します。",
       image: "sgs.png",
       steps: [
-        { icon: PenTool, title: "Tư Vấn & Thiết Kế (Engineering)", desc: "Khảo sát thực địa, đánh giá kết cấu chịu tải và ứng dụng phần mềm PVSyst/HelioScope mô phỏng 3D để tối ưu hóa vị trí lắp đặt và sản lượng điện." },
-        { icon: Package, title: "Cung Ứng Vật Tư (Procurement)", desc: "Phân phối trực tiếp thiết bị năng lượng mặt trời chuẩn Tier 1 toàn cầu (Longi, Canadian Solar, Huawei, Sungrow) với đầy đủ chứng nhận CO/CQ." },
-        { icon: Wrench, title: "Thi Công Lắp Đặt (Construction)", desc: "Triển khai thi công chuyên nghiệp, tuân thủ tuyệt đối các tiêu chuẩn an toàn HSE và PCCC mà không làm gián đoạn hoạt động sản xuất của nhà máy." },
-        { icon: BarChart3, title: "Vận Hành & Bảo Trì (O&M)", desc: "Hệ thống được giám sát hiệu suất 24/7 qua trung tâm NOC. Bảo dưỡng, vệ sinh định kỳ đảm bảo hệ thống hoạt động ổn định trọn vòng đời." }
+        { icon: PenTool, title: "設計・エンジニアリング (Engineering)", desc: "現地調査、構造荷重評価、PVSyst/HelioScope 3Dシミュレーションによる設置場所と発電量の最適化。" },
+        { icon: Package, title: "資材調達 (Procurement)", desc: "グローバルTier 1基準の太陽光設備（Longi, Canadian Solar, Huawei, Sungrow）をCO/CQ証明書付きで直接提供。" },
+        { icon: Wrench, title: "施工・設置 (Construction)", desc: "工場の生産活動を妨げることなく、HSE（安全衛生環境）および防火基準を厳守した専門的な施工。" },
+        { icon: BarChart3, title: "運用・保守 (O&M)", desc: "NOCセンターによる24時間365日の監視。定期的なメンテナンスと洗浄により、ライフサイクル全体の安定稼働を保証。" }
+      ],
+      qualityCommitment: "品質保証",
+      japanStandard: "日本基準",
+      epcProfile: "EPC実績・会社概要"
+    },
+    projectProcessFlow: {
+      title1: "プロジェクト実施",
+      title2: "プロセスフロー",
+      steps: [
+        "プロジェクト調査",
+        "基本設計、シミュレーション、分析",
+        "実現可能性評価",
+        "システム設計",
+        "建設・設置",
+        "テストと試運転",
+        "商業運転と引き渡し",
+        "運用・保守（O&M）"
+      ]
+    },
+    careersPage: {
+      hero: {
+        alt: "プロフェッショナルな作業チーム",
+        subtitle: "WATACOに参加",
+        title1: "未来を創造する",
+        title2: "グリーンエネルギー",
+        description: "ベトナムの持続可能なエネルギー基盤を共に築くため、情熱と熱意にあふれる仲間を募集しています。",
+        button: "募集中のポジションを見る"
+      },
+      culture: {
+        subtitle: "コアバリュー",
+        title: "WATACOカルチャー",
+        description: "WATACOの集合的な強みと持続可能な開発志向は、切り離すことのできない5つの文化的柱の上に築かれています。",
+        values: [
+          {
+            title: "正直さと透明性",
+            desc: "私たちは常に仕事において倫理的価値観を堅持し、明確さ、誠実さ、原則に従うことへのコミットメントを示し、それによって顧客やパートナーとの固い信頼を築きます。"
+          },
+          {
+            title: "協力",
+            desc: "協力とチームワークの精神はWatacoの基盤です。私たちは常に、誰もが自分の強みを促進し、共通の成功を達成するのに役立つまとまりのある環境を作ることを目指しています。"
+          },
+          {
+            title: "イノベーション",
+            desc: "会社のすべてのメンバーは、創造的で継続的な改善を行うことが奨励されており、仕事の質と顧客向けのソリューションを向上させるための新しいアイデアを貢献しています。"
+          },
+          {
+            title: "配慮と尊重",
+            desc: "Watacoでは、すべての個人が尊重され、耳を傾けられます。私たちは常に個人の成長に焦点を当て、コミュニティ、顧客、パートナーの利益を保護します。"
+          },
+          {
+            title: "課題を積極的に克服する",
+            desc: "Watacoの従業員は、常にすべての困難を克服するための創造的な解決策を積極的に探し、自信と効率をもって課題に立ち向かうために絶えず学び、成長しています。"
+          }
+        ]
+      },
+      jobBoard: {
+        title: "募集中のポジション",
+        description: "あなたにぴったりの機会を見つけてください。",
+        searchPlaceholder: "仕事を検索...",
+        categories: ["すべて", "技術", "営業", "運営", "オフィス"],
+        noResults: "適切なポジションが見つかりませんでした。",
+        viewAllJobs: "すべての仕事を見る",
+        ctaTitle: "適切なポジションが見つかりませんか？",
+        ctaDescription: "あなたの履歴書を私たちのタレントデータベースに送信してください。機会があればご連絡いたします。",
+        ctaButton: "今すぐ履歴書を送信"
+      },
+      jobCard: {
+        urgent: "急募",
+        deadlinePrefix: "応募締め切り: ",
+        apply: "応募する"
+      },
+      jobs: [
+        {
+          id: 1,
+          title: "太陽光発電設計エンジニア",
+          department: "技術",
+          location: "ホーチミン市",
+          type: "フルタイム",
+          salary: "応相談",
+          deadline: "2024/06/30",
+          urgent: true
+        },
+        {
+          id: 2,
+          title: "B2Bセールスチームリーダー",
+          department: "営業",
+          location: "ビンズオン",
+          type: "フルタイム",
+          salary: "2000万～3000万+手数料",
+          deadline: "2024/06/15",
+          urgent: true
+        },
+        {
+          id: 3,
+          title: "HSEスーパーバイザー",
+          department: "運営",
+          location: "南部諸省",
+          type: "フルタイム",
+          salary: "応相談",
+          deadline: "2024/06/30",
+          urgent: false
+        },
+        {
+          id: 4,
+          title: "一般会計士",
+          department: "オフィス",
+          location: "ホーチミン市",
+          type: "フルタイム",
+          salary: "1500万～1800万",
+          deadline: "2024/06/20",
+          urgent: false
+        },
+        {
+          id: 5,
+          title: "電気工学インターン",
+          department: "技術",
+          location: "ホーチミン市",
+          type: "パートタイム/インターンシップ",
+          salary: "有給",
+          deadline: "随時募集",
+          urgent: false
+        }
       ]
     },
     ourServices: {
@@ -795,10 +1261,11 @@ export const translations: Translations = {
 };
 
 export const useTranslation = () => {
-  const [lang, setLang] = useState<Language>('VN');
+  const { lang, setLang } = useLanguage();
   const t = translations[lang];
 
   return { t, lang, setLang, icons: { Factory, Home, Sprout, Sun, Cpu, Battery, Zap, Building2, TrendingUp, Wallet, Newspaper, MapPin, Calendar, BarChart3, Linkedin, Facebook, Youtube, Mail, Phone } };
 };
 
-export type Language = 'VN' | 'EN' | 'JP';
+export type { Language };
+

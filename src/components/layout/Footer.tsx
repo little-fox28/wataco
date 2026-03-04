@@ -1,6 +1,7 @@
 import WatacoLogo from '../common/WatacoLogo';
 
 interface FooterProps {
+  t: any;
   icons: {
     Linkedin: React.ComponentType<any>;
     Facebook: React.ComponentType<any>;
@@ -11,7 +12,8 @@ interface FooterProps {
   };
 }
 
-const Footer: React.FC<FooterProps> = ({ icons }) => {
+const Footer: React.FC<FooterProps> = ({ t, icons }) => {
+  const footerNavLinks = ["/", "/projects", "/news", "/careers"];
   return (
     <footer className="bg-[#1A2B3C] text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden font-jp-style">
       {/* Background Texture/Pattern for "Modern" feel */}
@@ -25,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
           <div className="space-y-6">
             <WatacoLogo />
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Kiến tạo hạ tầng năng lượng bền vững tại Việt Nam dựa trên tinh hoa kỹ thuật từ thành phố Sendai, Nhật Bản.
+              {t.footer.description}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
@@ -42,45 +44,43 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
 
           {/* Col 2: Solutions */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Giải pháp</h4>
+            <h4 className="text-lg font-bold text-white mb-6 font-heading">{t.footer.solutionsTitle}</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Tổng thầu EPC</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Vận hành & Bảo dưỡng (O&M)</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Đầu tư ESCO</a></li>
-              <li><a href="#" className="hover:text-[#FFD700] transition-colors">Cung cấp thiết bị</a></li>
+              {t.footer.solutions.map((item: string, idx: number) => (
+                <li key={idx}><a href="#" className="hover:text-[#FFD700] transition-colors">{item}</a></li>
+              ))}
             </ul>
           </div>
 
           {/* Col 3: Company */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Về WATACO</h4>
+            <h4 className="text-lg font-bold text-white mb-6 font-heading">{t.footer.companyTitle}</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><a href="#section-1" className="hover:text-[#FFD700] transition-colors">Giới thiệu chung</a></li>
-              <li><a href="/wataco/projects" className="hover:text-[#FFD700] transition-colors">Dự án tiêu biểu</a></li>
-              <li><a href="/wataco/news" className="hover:text-[#FFD700] transition-colors">Tin tức & Sự kiện</a></li>
-              <li><a href="/wataco/careers" className="hover:text-[#FFD700] transition-colors">Tuyển dụng</a></li>
+              {t.footer.company.map((item: string, idx: number) => (
+                <li key={idx}><a href={footerNavLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</a></li>
+              ))}
             </ul>
           </div>
 
           {/* Col 4: Contact */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Liên hệ</h4>
+            <h4 className="text-lg font-bold text-white mb-6 font-heading">{t.footer.contactTitle}</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li className="flex items-start">
                 <icons.MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                <span>Trụ sở chính tại Việt Nam: 29 Nguyễn Khắc Nhu, Phường Cầu Ông Lãnh, Thành phố Hồ Chí Minh, Việt Nam</span>
+                <span>{t.footer.contact.address1}</span>
               </li>
               <li className="flex items-start">
                 <icons.MapPin size={18} className="mr-3 text-[#228B22] flex-shrink-0 mt-1" />
-                <span>Văn phòng đại diện Miền Bắc: Tầng 4, Số 44 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành phố Hà Nội, Việt Nam</span>
+                <span>{t.footer.contact.address2}</span>
               </li>
               <li className="flex items-center">
                 <icons.Mail size={18} className="mr-3 text-[#228B22]" />
-                <a href="mailto:info@wataco.net" className="hover:text-white">info@wataco.net</a>
+                <a href={`mailto:${t.footer.contact.email}`} className="hover:text-white">{t.footer.contact.email}</a>
               </li>
               <li className="flex items-center">
                 <icons.Phone size={18} className="mr-3 text-[#228B22]" />
-                <a href="tel:+84123456789" className="hover:text-white">078.678.8837</a>
+                <a href={`tel:${t.footer.contact.phone}`} className="hover:text-white">{t.footer.contact.phone}</a>
               </li>
             </ul>
           </div>
@@ -88,10 +88,10 @@ const Footer: React.FC<FooterProps> = ({ icons }) => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>© 2026 WATACO | MEMBER OF WATANABE CREATE GROUP JAPAN.</p>
+          <p>{t.footer.copyright}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Chính sách bảo mật</a>
-            <a href="#" className="hover:text-white transition-colors">Điều khoản sử dụng</a>
+            <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const EpcManagementSection: React.FC<{ t: TranslationContent }> = ({ t }) => {
     const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
     return (
-        <section id="section-epc" className="py-20 lg:py-32 bg-white relative overflow-hidden">
+        <section id="section-epc" className="min-h-screen flex flex-col items-center justify-center bg-white relative overflow-hidden py-12 sm:py-16 md:py-20">
             {/* Lightbox Modal for Certificate/Image */}
             <AnimatePresence>
                 {zoomedImage && (
@@ -39,7 +39,7 @@ const EpcManagementSection: React.FC<{ t: TranslationContent }> = ({ t }) => {
             {/* Subtle background decoration */}
             <div className="absolute top-0 left-0 w-full h-1/2 bg-linear-to-b from-[#F8FAFC] to-white pointer-events-none"></div>
 
-            <div className="max-w-360 mx-auto px-6 relative z-10">
+            <div className="max-w-360 mx-auto px-6 relative z-10 w-full">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
                     {/* Left Column (Sticky Title, Desc & Featured Image) */}
@@ -82,8 +82,8 @@ const EpcManagementSection: React.FC<{ t: TranslationContent }> = ({ t }) => {
                                             <Award size={24} />
                                         </div>
                                         <div>
-                                            <p className="text-white font-bold text-lg lg:text-xl leading-tight font-heading">Cam Kết Chất Lượng</p>
-                                            <p className="text-[#FFD700] text-xs uppercase tracking-widest mt-1 font-bold">Tiêu Chuẩn Nhật Bản</p>
+                                            <p className="text-white font-bold text-lg lg:text-xl leading-tight font-heading">{t.epcSection.qualityCommitment}</p>
+                                            <p className="text-[#FFD700] text-xs uppercase tracking-widest mt-1 font-bold">{t.epcSection.japanStandard}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ const EpcManagementSection: React.FC<{ t: TranslationContent }> = ({ t }) => {
                             <StaggerItem>
                                 <Link to={"/posts/tong-thau-va-quan-ly-epc"}>
                                     <button className="bg-[#1A2B3C] hover:bg-[#228B22] text-white px-8 py-4 rounded-md font-black uppercase tracking-widest text-xs transition-colors shadow-lg flex items-center group active:scale-95">
-                                        Hồ Sơ Năng Lực EPC
+                                        {t.epcSection.epcProfile}
                                         <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </Link>

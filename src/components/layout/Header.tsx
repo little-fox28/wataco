@@ -1,19 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingCart } from 'lucide-react';
-import { type Language } from '../../hooks/useTranslation';
-import WatacoLogo from '../common/WatacoLogo';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation, type Language } from '../../hooks/useTranslation';
+import WatacoLogo from '../common/WatacoLogo';
 
-interface HeaderProps {
-  t: any;
-  lang: Language;
-  setLang: (lang: Language) => void;
-  navLinks: string[];
-  isMobileMenuOpen: boolean;
-  setIsMobileMenuOpen: (isOpen: boolean) => void;
-}
+const Header: React.FC = () => {
+  const { t, lang, setLang } = useTranslation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navLinks = ["/", "/projects", "/careers", "/news"];
 
-const Header: React.FC<HeaderProps> = ({ t, lang, setLang, navLinks, isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <>
       {/* Header - Green Background (#228B22) */}

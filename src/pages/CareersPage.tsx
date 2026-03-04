@@ -2,15 +2,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
     ArrowRight,
     Briefcase, Clock,
+    Handshake,
     Heart,
+    Lightbulb,
     MapPin,
     Search,
-    TrendingUp,
-    Users, Zap
+    ShieldCheck,
+    TrendingUp
 } from 'lucide-react';
 import { forwardRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
+import { useTranslation } from '../hooks/useTranslation';
 
 // --- SHARED STYLES ---
 const FontStyles = () => (
@@ -44,7 +45,12 @@ const FontStyles = () => (
 );
 
 // --- ANIMATION COMPONENTS ---
-const FadeInUp = ({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) => (
+interface FadeInUpProps {
+    children: React.ReactNode;
+    delay?: number;
+    className?: string;
+}
+const FadeInUp = ({ children, delay = 0, className }: FadeInUpProps) => (
     <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,293 +62,237 @@ const FadeInUp = ({ children, delay = 0, className }: { children: React.ReactNod
     </motion.div>
 );
 
-// --- MOCK DATA ---
 
-const benefits = [
-    { icon: Zap, title: "Công Nghệ Tiên Tiến", desc: "Làm việc với các công nghệ năng lượng hàng đầu thế giới từ Nhật Bản." },
-    { icon: TrendingUp, title: "Lộ Trình Thăng Tiến", desc: "Đánh giá năng lực định kỳ 6 tháng/lần với cơ hội lên quản lý." },
-    { icon: Users, title: "Văn Hóa Cởi Mở", desc: "Môi trường làm việc tôn trọng sự khác biệt và khuyến khích sáng tạo." },
-    { icon: Heart, title: "Phúc Lợi Toàn Diện", desc: "Bảo hiểm sức khỏe cao cấp, du lịch hàng năm và thưởng dự án." }
-];
 
-const jobCategories = ["Tất cả", "Kỹ thuật", "Kinh doanh", "Vận hành", "Văn phòng"];
+// --- SUB COMPONENTS ---
 
-const jobsList = [
-    {
-        id: 1,
-        title: "Kỹ Sư Thiết Kế Điện Mặt Trời (Solar Design Engineer)",
-        department: "Kỹ thuật",
-        location: "TP. Hồ Chí Minh",
-        type: "Toàn thời gian",
-        salary: "Thỏa thuận",
-        deadline: "30/06/2024",
-        urgent: true
-    },
-    {
-        id: 2,
-        title: "Trưởng Nhóm Kinh Doanh B2B (Sales Team Leader)",
-        department: "Kinh doanh",
-        location: "Bình Dương",
-        type: "Toàn thời gian",
-        salary: "20 - 30 Triệu + HH",
-        deadline: "15/06/2024",
-        urgent: true
-    },
-    {
-        id: 3,
-        title: "Chuyên Viên Giám Sát An Toàn (HSE Supervisor)",
-        department: "Vận hành",
-        location: "Các tỉnh miền Nam",
-        type: "Toàn thời gian",
-        salary: "Thỏa thuận",
-        deadline: "30/06/2024",
-        urgent: false
-    },
-    {
-        id: 4,
-        title: "Kế Toán Tổng Hợp",
-        department: "Văn phòng",
-        location: "TP. Hồ Chí Minh",
-        type: "Toàn thời gian",
-        salary: "15 - 18 Triệu",
-        deadline: "20/06/2024",
-        urgent: false
-    },
-    {
-        id: 5,
-        title: "Thực Tập Sinh Kỹ Thuật Điện",
-        department: "Kỹ thuật",
-        location: "TP. Hồ Chí Minh",
-        type: "Bán thời gian / Thực tập",
-        salary: "Hỗ trợ lương",
-        deadline: "Liên tục tuyển",
-        urgent: false
-    }
-];
+import type { Job } from '../types';
 
-const hiringProcess = [
-    { step: "01", title: "Nộp Hồ Sơ", desc: "Gửi CV qua email hoặc form đăng ký." },
-    { step: "02", title: "Sơ Vấn", desc: "Trao đổi qua điện thoại với HR." },
-    { step: "03", title: "Phỏng Vấn", desc: "Gặp gỡ trực tiếp quản lý chuyên môn." },
-    { step: "04", title: "Tiếp Nhận", desc: "Nhận Offer và bắt đầu hành trình." }
-];
-
-// Fixed: Using forwardRef for AnimatePresence compatibility
 interface JobCardProps {
-    job: {
-        id: number;
-        title: string;
-        department: string;
-        location: string;
-        type: string;
-        salary: string;
-        deadline: string;
-        urgent: boolean;
-    };
+    job: Job;
 }
 
-const JobCard = forwardRef<HTMLDivElement, JobCardProps>(({ job }, ref) => (
-    <motion.div
-        ref={ref}
-        layout
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.2 }}
-        className="bg-white p-6 rounded-lg border border-gray-100 hover:border-[#228B22] hover:shadow-lg transition-all duration-300 group relative"
-    >
-        {job.urgent && (
-            <span className="absolute top-4 right-4 bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-red-100 animate-pulse">
-                Gấp
-            </span>
-        )}
-        <div className="mb-4">
-            <span className="text-[#228B22] text-xs font-bold uppercase tracking-widest mb-2 block">{job.department}</span>
-            <h3 className="text-lg font-bold text-[#1A2B3C] font-heading group-hover:text-[#228B22] transition-colors">{job.title}</h3>
-        </div>
-
-        <div className="space-y-2 mb-6">
-            <div className="flex items-center text-gray-500 text-sm">
-                <MapPin size={16} className="mr-2 text-gray-400" /> {job.location}
+const JobCard = forwardRef<HTMLDivElement, JobCardProps>(({ job }, ref) => {
+    const { t } = useTranslation();
+    return (
+        <motion.div
+            ref={ref}
+            layout
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white p-6 rounded-lg border border-gray-100 hover:border-[#228B22] hover:shadow-lg transition-all duration-300 group relative"
+        >
+            {job.urgent && (
+                <span className="absolute top-4 right-4 bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-red-100 animate-pulse">
+                    {t.careersPage.jobCard.urgent}
+                </span>
+            )}
+            <div className="mb-4">
+                <span className="text-[#228B22] text-xs font-bold uppercase tracking-widest mb-2 block">{job.department}</span>
+                <h3 className="text-lg font-bold text-[#1A2B3C] font-heading group-hover:text-[#228B22] transition-colors">{job.title}</h3>
             </div>
-            <div className="flex items-center text-gray-500 text-sm">
-                <Briefcase size={16} className="mr-2 text-gray-400" /> {job.type}
-            </div>
-            <div className="flex items-center text-gray-500 text-sm">
-                <Clock size={16} className="mr-2 text-gray-400" /> Hạn nộp: {job.deadline}
-            </div>
-        </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-            <span className="text-sm font-bold text-[#1A2B3C] font-mono">{job.salary}</span>
-            <button className="text-xs font-black uppercase tracking-widest text-[#228B22] flex items-center group/btn">
-                Ứng tuyển <ArrowRight size={16} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
-            </button>
-        </div>
-    </motion.div>
-));
+            <div className="space-y-2 mb-6">
+                <div className="flex items-center text-gray-500 text-sm">
+                    <MapPin size={16} className="mr-2 text-gray-400" /> {job.location}
+                </div>
+                <div className="flex items-center text-gray-500 text-sm">
+                    <Briefcase size={16} className="mr-2 text-gray-400" /> {job.type}
+                </div>
+                <div className="flex items-center text-gray-500 text-sm">
+                    <Clock size={16} className="mr-2 text-gray-400" /> {t.careersPage.jobCard.deadlinePrefix}{job.deadline}
+                </div>
+            </div>
 
-// --- MAIN PAGE ---
-export default function CareersPage() {
-    const [activeCategory, setActiveCategory] = useState("Tất cả");
+            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+                <span className="text-sm font-bold text-[#1A2B3C] font-mono">{job.salary}</span>
+                <button className="text-xs font-black uppercase tracking-widest text-[#228B22] flex items-center group/btn">
+                    {t.careersPage.jobCard.apply} <ArrowRight size={16} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+            </div>
+        </motion.div>
+    )
+});
+
+// --- PAGE SECTIONS ---
+
+const HeroSection = () => {
+    const { t } = useTranslation();
+    return (
+        <section className="relative h-100 lg:h-125 flex items-center justify-center overflow-hidden bg-[#F0FDF4]">
+            <div className="absolute inset-0">
+                <img
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2000"
+                    className="w-full h-full object-cover opacity-90"
+                    alt={t.careersPage.hero.alt}
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-[#228B22]/20 to-[#228B22]/40 backdrop-blur-[2px]"></div>
+            </div>
+
+            <div className="relative z-10 text-center px-6 max-w-4xl">
+                <FadeInUp>
+                    <h3 className="text-[#FFD700] font-black text-xs lg:text-sm uppercase tracking-[0.5em] mb-4 font-heading drop-shadow-md">
+                        {t.careersPage.hero.subtitle}
+                    </h3>
+                    <h1 className="text-4xl lg:text-7xl font-black text-white leading-tight font-heading mb-6 tracking-tight drop-shadow-lg">
+                        {t.careersPage.hero.title1}<br />{t.careersPage.hero.title2}
+                    </h1>
+                    <p className="text-white text-base lg:text-xl max-w-2xl mx-auto font-medium leading-relaxed mb-8 drop-shadow-md">
+                        {t.careersPage.hero.description}
+                    </p>
+                    <button onClick={() => {
+                        const jobsEl = document.getElementById('jobs');
+                        if (jobsEl) {
+                            jobsEl.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }} className="bg-[#FFD700] text-[#1A2B3C] px-8 py-4 rounded-md font-black uppercase tracking-widest hover:bg-white hover:text-[#228B22] transition-all shadow-xl">
+                        {t.careersPage.hero.button}
+                    </button>
+                </FadeInUp>
+            </div>
+        </section>
+    )
+};
+
+const CultureSection = () => {
+    const { t } = useTranslation();
+    const cultureValues = [
+        { icon: ShieldCheck, ...t.careersPage.culture.values[0] },
+        { icon: Handshake, ...t.careersPage.culture.values[1] },
+        { icon: Lightbulb, ...t.careersPage.culture.values[2] },
+        { icon: Heart, ...t.careersPage.culture.values[3] },
+        { icon: TrendingUp, ...t.careersPage.culture.values[4] },
+    ];
+    return (
+        <section className="py-20 bg-[#F8FAFC] border-t border-gray-100 relative overflow-hidden">
+            {/* Decorative background elements */}
+            <div className="absolute top-0 left-0 w-100 h-100 bg-[#228B22]/5 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-100 h-100 bg-[#FFD700]/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 translate-y-1/2"></div>
+
+            <div className="max-w-360 mx-auto px-6 relative z-10">
+                <FadeInUp className="text-center mb-16">
+                    <h3 className="text-[#228B22] font-black text-sm uppercase tracking-[0.5em] font-heading mb-4">{t.careersPage.culture.subtitle}</h3>
+                    <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading mb-4 uppercase">{t.careersPage.culture.title}</h2>
+                    <p className="text-gray-500 max-w-2xl mx-auto">{t.careersPage.culture.description}</p>
+                </FadeInUp>
+
+                <div className="flex flex-wrap justify-center gap-8">
+                    {cultureValues.map((item, idx) => (
+                        <FadeInUp
+                            key={idx}
+                            delay={idx * 0.1}
+                            className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#228B22] transition-all duration-300 group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.4rem)] flex flex-col items-center text-center"
+                        >
+                            {/* Hexagon shaped icon container */}
+                            <div className="w-24 h-24 mb-6 relative flex items-center justify-center">
+                                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#F0FDF4] drop-shadow-sm group-hover:text-[#228B22] transition-colors duration-500">
+                                    <polygon fill="currentColor" points="50 3, 93 25, 93 75, 50 97, 7 75, 7 25" />
+                                </svg>
+                                <item.icon size={36} className="relative z-10 text-[#228B22] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
+                            </div>
+                            <h4 className="text-xl font-bold text-[#1A2B3C] mb-4 group-hover:text-[#228B22] transition-colors leading-tight">{item.title}</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed font-light">{item.desc}</p>
+                        </FadeInUp>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+};
+
+const JobBoardSection = () => {
+    const { t } = useTranslation();
+    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
 
+    const activeCategory = t.careersPage.jobBoard.categories[activeCategoryIndex];
+
     // Filter Logic
-    const filteredJobs = jobsList.filter(job => {
-        const matchCat = activeCategory === "Tất cả" || job.department === activeCategory;
+    const filteredJobs = t.careersPage.jobs.filter(job => {
+        const matchCat = activeCategoryIndex === 0 || job.department === activeCategory;
         const matchSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase()) || job.location.toLowerCase().includes(searchQuery.toLowerCase());
         return matchCat && matchSearch;
     });
 
     return (
-        <Layout>
-            <div className="bg-[#F8FAFC] min-h-screen text-[#1A2B3C]">
-                <FontStyles />
-                {/* --- HERO SECTION --- */}
-                <section className="relative h-[500px] flex items-center justify-center overflow-hidden bg-[#1A2B3C]">
-                    <div className="absolute inset-0">
-                        <img
-                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
-                            className="w-full h-full object-cover opacity-30 mix-blend-screen grayscale"
-                            alt="Team working"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B3C] via-transparent to-transparent"></div>
+        <section id="jobs" className="py-20 bg-[#F8FAFC] border-t border-gray-100">
+            <div className="max-w-360 mx-auto px-6">
+
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6">
+                    <div>
+                        <h2 className="text-3xl font-black text-[#1A2B3C] font-heading mb-2">{t.careersPage.jobBoard.title}</h2>
+                        <p className="text-gray-500 text-sm">{t.careersPage.jobBoard.description}</p>
                     </div>
 
-                    <div className="relative z-10 text-center px-6 max-w-4xl">
-                        <FadeInUp>
-                            <h3 className="text-[#FFD700] font-black text-xs lg:text-sm uppercase tracking-[0.5em] mb-4 font-heading">
-                                Gia Nhập WATACO
-                            </h3>
-                            <h1 className="text-4xl lg:text-7xl font-black text-white leading-tight font-heading mb-6 tracking-tight">
-                                KIẾN TẠO TƯƠNG LAI<br />NĂNG LƯỢNG XANH
-                            </h1>
-                            <p className="text-gray-300 text-base lg:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-8">
-                                Chúng tôi tìm kiếm những cộng sự đam mê, nhiệt huyết để cùng nhau xây dựng nền tảng năng lượng bền vững cho Việt Nam.
-                            </p>
-                            <button className="bg-[#228B22] text-white px-8 py-4 rounded-md font-black uppercase tracking-widest hover:bg-white hover:text-[#1A2B3C] transition-all shadow-xl">
-                                Xem các vị trí đang mở
-                            </button>
-                        </FadeInUp>
-                    </div>
-                </section>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                        {/* Search */}
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder={t.careersPage.jobBoard.searchPlaceholder}
+                                className="pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#228B22] w-full sm:w-64 text-sm"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                        </div>
 
-                {/* --- CULTURE & BENEFITS --- */}
-                <section className="py-20 bg-white">
-                    <div className="max-w-[1440px] mx-auto px-6">
-                        <FadeInUp className="text-center mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-black text-[#1A2B3C] font-heading mb-4">Tại Sao Chọn WATACO?</h2>
-                            <p className="text-gray-500">Môi trường làm việc chuyên nghiệp chuẩn Nhật Bản với chế độ đãi ngộ hàng đầu.</p>
-                        </FadeInUp>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {benefits.map((item, idx) => (
-                                <FadeInUp key={idx} delay={idx * 0.1} className="p-6 bg-[#F8FAFC] rounded-xl border border-gray-100 hover:border-[#228B22] hover:shadow-lg transition-all text-center group cursor-default">
-                                    <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                                        <item.icon size={28} className="text-[#228B22]" />
-                                    </div>
-                                    <h4 className="text-lg font-bold text-[#1A2B3C] mb-3">{item.title}</h4>
-                                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-                                </FadeInUp>
+                        {/* Filter Button */}
+                        <div className="flex overflow-x-auto no-scrollbar gap-2">
+                            {t.careersPage.jobBoard.categories.map((cat, index) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategoryIndex(index)}
+                                    className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all ${activeCategoryIndex === index
+                                        ? 'bg-[#1A2B3C] text-white border-[#1A2B3C]'
+                                        : 'bg-white text-gray-500 border-gray-200 hover:border-[#228B22]'
+                                        }`}
+                                >
+                                    {cat}
+                                </button>
                             ))}
                         </div>
                     </div>
-                </section>
+                </div>
 
-                {/* --- HIRING PROCESS --- */}
-                <section className="py-20 bg-[#1A2B3C] text-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(#228B22_1px,transparent_1px)] [background-size:20px_20px] opacity-10"></div>
-                    <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-                        <div className="mb-12 text-center">
-                            <h2 className="text-3xl font-black font-heading">Quy Trình Tuyển Dụng</h2>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                            {/* Connection Line (Desktop) */}
-                            <div className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-white/10 -z-10"></div>
-
-                            {hiringProcess.map((step, idx) => (
-                                <FadeInUp key={idx} delay={idx * 0.2} className="relative text-center">
-                                    <div className="w-16 h-16 bg-[#1A2B3C] border-2 border-[#228B22] text-[#228B22] rounded-full flex items-center justify-center text-xl font-black font-heading mx-auto mb-6 shadow-[0_0_15px_rgba(34,139,34,0.3)]">
-                                        {step.step}
-                                    </div>
-                                    <h4 className="text-xl font-bold mb-2">{step.title}</h4>
-                                    <p className="text-sm text-gray-400">{step.desc}</p>
-                                </FadeInUp>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* --- JOB BOARD --- */}
-                <section id="jobs" className="py-20 bg-[#F8FAFC]">
-                    <div className="max-w-[1440px] mx-auto px-6">
-
-                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6">
-                            <div>
-                                <h2 className="text-3xl font-black text-[#1A2B3C] font-heading mb-2">Vị Trí Đang Tuyển</h2>
-                                <p className="text-gray-500 text-sm">Hãy tìm kiếm cơ hội phù hợp với bạn.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <AnimatePresence mode="popLayout">
+                        {filteredJobs.length > 0 ? (
+                            filteredJobs.map((job) => (
+                                <JobCard key={job.id} job={job} />
+                            ))
+                        ) : (
+                            <div className="col-span-full text-center py-16 bg-white rounded-lg border border-dashed border-gray-300">
+                                <p className="text-gray-500 mb-4">{t.careersPage.jobBoard.noResults}</p>
+                                <button onClick={() => { setActiveCategoryIndex(0); setSearchQuery("") }} className="text-[#228B22] font-bold underline">{t.careersPage.jobBoard.viewAllJobs}</button>
                             </div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                                {/* Search */}
-                                <div className="relative">
-                                    <input
-                                        type="text"
-                                        placeholder="Tìm kiếm công việc..."
-                                        className="pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#228B22] w-full sm:w-64 text-sm"
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                    />
-                                    <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                                </div>
+                <div className="mt-12 text-center p-8 bg-[#F0FDF4] rounded-xl border border-[#DCFCE7]">
+                    <h4 className="font-bold text-[#1A2B3C] mb-2">{t.careersPage.jobBoard.ctaTitle}</h4>
+                    <p className="text-sm text-gray-600 mb-4">{t.careersPage.jobBoard.ctaDescription}</p>
+                    <a href="" className="inline-flex items-center text-[#228B22] font-black uppercase tracking-widest text-xs border-b-2 border-[#228B22] pb-1 hover:text-[#1A2B3C] hover:border-[#1A2B3C] transition-all">
+                        {t.careersPage.jobBoard.ctaButton} <ArrowRight size={14} className="ml-2" />
+                    </a>
+                </div>
 
-                                {/* Filter Button (Visual only for now or simple toggle) */}
-                                <div className="flex overflow-x-auto no-scrollbar gap-2">
-                                    {jobCategories.map((cat) => (
-                                        <button
-                                            key={cat}
-                                            onClick={() => setActiveCategory(cat)}
-                                            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider whitespace-nowrap border transition-all ${activeCategory === cat
-                                                ? 'bg-[#1A2B3C] text-white border-[#1A2B3C]'
-                                                : 'bg-white text-gray-500 border-gray-200 hover:border-[#228B22]'
-                                                }`}
-                                        >
-                                            {cat}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <AnimatePresence mode="popLayout">
-                                {filteredJobs.length > 0 ? (
-                                    filteredJobs.map((job) => (
-                                        <Link to={"/posts/tuyen-dung-ky-su-thiet-ke-dien-mat-troi"} >
-                                            <JobCard key={job.id} job={job} />
-                                        </Link>
-                                    ))
-                                ) : (
-                                    <div className="col-span-full text-center py-16 bg-white rounded-lg border border-dashed border-gray-300">
-                                        <p className="text-gray-500 mb-4">Không tìm thấy vị trí phù hợp.</p>
-                                        <button onClick={() => { setActiveCategory("Tất cả"); setSearchQuery("") }} className="text-[#228B22] font-bold underline">Xem tất cả công việc</button>
-                                    </div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-                        <div className="mt-12 text-center p-8 bg-[#F0FDF4] rounded-xl border border-[#DCFCE7]">
-                            <h4 className="font-bold text-[#1A2B3C] mb-2">Không tìm thấy vị trí phù hợp?</h4>
-                            <p className="text-sm text-gray-600 mb-4">Gửi CV của bạn vào kho dữ liệu nhân tài của chúng tôi. Chúng tôi sẽ liên hệ khi có cơ hội.</p>
-                            <a href="mailto:hr@wataco.com" className="inline-flex items-center text-[#228B22] font-black uppercase tracking-widest text-xs border-b-2 border-[#228B22] pb-1 hover:text-[#1A2B3C] hover:border-[#1A2B3C] transition-all">
-                                Gửi CV ngay <ArrowRight size={14} className="ml-2" />
-                            </a>
-                        </div>
-
-                    </div>
-                </section>
             </div>
-        </Layout>
+        </section>
+    );
+};
+
+// --- MAIN PAGE (COMPOSED) ---
+export default function CareersPage() {
+    return (
+        <div className="bg-[#F8FAFC] min-h-screen text-[#1A2B3C]">
+            <FontStyles />
+            <HeroSection />
+            <CultureSection />
+            <JobBoardSection />
+        </div>
     );
 }
