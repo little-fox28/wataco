@@ -12,7 +12,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ t, lang, heroY }) => {
         <section id="section-0" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#1A2B3C]">
             <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
                 <video
-                    src="/wataco/hero-banner.webm"
+                    src="https://vuphong.vn/bgvpeg22-11-22-1.webm"
                     className="w-full h-full object-cover opacity-100"
                     autoPlay
                     muted

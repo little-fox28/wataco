@@ -416,6 +416,22 @@ export const translations: Translations = {
         }
       ]
     },
+    newsPage: {
+      heroBadge: "Tin Nổi Bật",
+      readMore: "Đọc tiếp",
+      noResults: "Không tìm thấy bài viết nào.",
+      clearFilter: "Xóa bộ lọc",
+      loadMore: "Xem thêm tin cũ",
+      searchPlaceholder: "Tìm kiếm...",
+      trendingTitle: "Đọc Nhiều Nhất",
+      tagsTitle: "Từ Khóa Hot",
+      tags: ["Solar Farm", "Điện áp mái", "Biến tần", "Pin lưu trữ", "EPC", "ESCO", "Net Zero"],
+      expertSubtitle: "Kiến Thức Chuyên Sâu",
+      expertTitle: "GÓC CHUYÊN GIA",
+      readResearch: "Đọc nghiên cứu",
+      categoryAll: "Tất cả tin tức",
+      categoryProject: "Hợp tác & Dự án",
+    },
   },
   EN: {
     nav: ["Home", "Projects", "Careers", "News"],
@@ -825,6 +841,22 @@ export const translations: Translations = {
           urgent: false
         }
       ]
+    },
+    newsPage: {
+      heroBadge: "Featured News",
+      readMore: "Read more",
+      noResults: "No articles found.",
+      clearFilter: "Clear filter",
+      loadMore: "Load more",
+      searchPlaceholder: "Search...",
+      trendingTitle: "Most Read",
+      tagsTitle: "Hot Topics",
+      tags: ["Solar Farm", "Rooftop Solar", "Inverter", "Energy Storage", "EPC", "ESCO", "Net Zero"],
+      expertSubtitle: "In-depth Knowledge",
+      expertTitle: "EXPERT CORNER",
+      readResearch: "Read research",
+      categoryAll: "All news",
+      categoryProject: "Partnerships & Projects",
     },
   },
   JP: {
@@ -1255,6 +1287,22 @@ export const translations: Translations = {
         { icon: Settings, title: "運用・保守 (O&M)" },
         { icon: TrendingUp, title: "金融・投資ソリューション" }
       ]
+    },
+    newsPage: {
+      heroBadge: "注目ニュース",
+      readMore: "続きを読む",
+      noResults: "記事が見つかりません。",
+      clearFilter: "フィルターをクリア",
+      loadMore: "さらに読み込む",
+      searchPlaceholder: "検索...",
+      trendingTitle: "よく読まれている記事",
+      tagsTitle: "人気タグ",
+      tags: ["Solar Farm", "屋根設置型太陽光", "インバーター", "蓄電システム", "EPC", "ESCO", "ネットゼロ"],
+      expertSubtitle: "専門知識",
+      expertTitle: "専門家コーナー",
+      readResearch: "研究を読む",
+      categoryAll: "すべてのニュース",
+      categoryProject: "提携 & プロジェクト",
     }
 
   }

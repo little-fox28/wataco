@@ -1,19 +1,3 @@
-/*
- * WATACO ENGINEERING WEBSITE - NEWS PAGE
- * Version: Wataco News Page (v.3.3)
- * Date: 2024
- * Changes in v.3.3:
- * - CONTENT UPDATE:
- * + Removed "Media Contact" widget from Sidebar as requested.
- * - FEATURE UPDATE (EXPERT CORNER):
- * + Converted "Expert Corner" from a static grid to an **Interactive Carousel**.
- * + Added navigation buttons (Prev/Next) for the slider.
- * + Expanded mock data to 6 articles to demonstrate scrolling capability.
- * + Responsive logic: Shows 1 item on mobile, 2 on tablet, 3 on desktop.
- * - Previous Features Retained:
- * + Hero Slider, Magazine Layout, Functional Filters.
- */
-
 import { AnimatePresence, motion } from 'framer-motion';
 import {
     ArrowRight, Calendar,
@@ -24,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../hooks/useTranslation';
 import type { Category, ExpertArticle, HeroSlide, HighlightWatacoProps, NewsItem, NewsListItemProps, SidebarWidgetProps, TrendingNewsItem } from '../types';
 
 // --- SHARED STYLES ---
@@ -82,79 +67,94 @@ const HighlightWataco: React.FC<HighlightWatacoProps> = ({ text }) => {
     );
 };
 
-// --- MOCK DATA ---
+// --- DATA FROM WATACO WORDPRESS EXPORT ---
 const heroSlides: HeroSlide[] = [
     {
-        id: 1,
-        title: "WATACO Đạt Cột Mốc 500MWp Tổng Công Suất Lắp Đặt Tại Việt Nam",
-        summary: "Hành trình 9 năm kiến tạo năng lượng xanh, khẳng định vị thế tổng thầu EPC hàng đầu.",
-        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=1600",
-        date: "15/05/2024"
+        id: 2530,
+        title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời: Đẩy mạnh sản xuất nông nghiệp bền vững",
+        summary: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
+        image: "https://wataco.net/wp-content/uploads/2025/07/Buoi-le-ky-ket-hop-dong-du-an-dien-nang-luong-mat-troi-ap-mai-tai-Nha-may-sua-TH-Da-Lat-Milk-1-scaled.jpg",
+        date: "22/07/2025"
     },
     {
-        id: 2,
-        title: "Khởi Công Dự Án Solar Rooftop Cho Chuỗi Nhà Máy Dệt May Thành Công",
-        summary: "Dự án trọng điểm giúp đối tác giảm phát thải CO2 và đạt chứng chỉ xanh quốc tế.",
-        image: "https://images.unsplash.com/photo-1566093097221-ac2335b09e70?auto=format&fit=crop&q=80&w=1600",
-        date: "12/05/2024"
+        id: 2452,
+        title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo",
+        summary: "Ngày 23/10/2024, Ryobi DS Việt Nam ký kết hợp đồng EPC với Wataco triển khai dự án điện mặt trời áp mái tại Khu Công nghệ cao TP.HCM, giảm khoảng 732,69t CO₂/năm.",
+        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-2.jpg",
+        date: "27/11/2024"
+    },
+    {
+        id: 2433,
+        title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1",
+        summary: "Wataco chính thức ký kết hợp đồng EPC và khởi công Dự án điện mặt trời áp mái Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương cùng Công ty TNHH Sato-Sangyo Việt Nam.",
+        image: "https://wataco.net/wp-content/uploads/2024/11/saoto-2.jpg",
+        date: "25/11/2024"
     }
-];
-
-const categories: Category[] = [
-    { id: 'all', label: 'Tất cả tin tức', count: 42 },
-    { id: 'market', label: 'Thị trường & Chính sách', count: 15 },
-    { id: 'tech', label: 'Công nghệ - Kỹ thuật', count: 12 },
-    { id: 'project', label: 'Tiến độ Dự án', count: 8 },
-    { id: 'internal', label: 'Văn hóa WATACO', count: 7 },
 ];
 
 const newsFeed: NewsItem[] = [
     {
-        id: 1,
-        title: "Phân tích tác động của Quy hoạch điện VIII đến doanh nghiệp FDI",
-        summary: "Cơ chế mua bán điện trực tiếp (DPPA) mở ra cơ hội lớn cho các doanh nghiệp sản xuất muốn sử dụng năng lượng sạch.",
-        category: "Thị trường", categoryId: 'market',
-        date: "10/05/2024", views: 1200,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c2f?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 2,
-        title: "Công nghệ Pin N-Type TOPCon: Xu hướng mới cho hiệu suất vượt trội",
-        summary: "Tại sao công nghệ N-Type đang dần thay thế P-Type truyền thống? Bài viết chuyên sâu từ đội ngũ R&D của WATACO.",
-        category: "Công nghệ", categoryId: 'tech',
-        date: "08/05/2024", views: 980,
-        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 3,
-        title: "Lễ ký kết hợp tác chiến lược WATACO x Huawei Digital Power",
-        summary: "Sự kiện đánh dấu bước ngoặt trong việc cung cấp các giải pháp biến tần và lưu trữ thông minh tại thị trường Việt Nam.",
-        category: "Nội bộ", categoryId: 'internal',
-        date: "05/05/2024", views: 2400,
-        image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 4,
-        title: "Cập nhật tiến độ dự án KCN VSIP III - Bình Dương",
-        summary: "Hoàn thành lắp đặt 80% khối lượng tấm pin, dự kiến đóng điện vào cuối quý 2/2024.",
+        id: 2530,
+        title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời: Đẩy mạnh sản xuất nông nghiệp bền vững",
+        summary: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
         category: "Dự án", categoryId: 'project',
-        date: "01/05/2024", views: 1850,
-        image: "https://images.unsplash.com/photo-1590247813693-5541d1c609fd?auto=format&fit=crop&q=80&w=600"
+        date: "22/07/2025", views: 1850,
+        image: "https://wataco.net/wp-content/uploads/2025/07/Buoi-le-ky-ket-hop-dong-du-an-dien-nang-luong-mat-troi-ap-mai-tai-Nha-may-sua-TH-Da-Lat-Milk-1-scaled.jpg"
     },
     {
-        id: 5,
-        title: "Giải pháp O&M: Tối ưu hóa vận hành hệ thống sau lắp đặt",
-        summary: "Quy trình bảo dưỡng tiêu chuẩn Nhật Bản giúp duy trì hiệu suất hệ thống trên 98% trong suốt vòng đời dự án.",
-        category: "Công nghệ", categoryId: 'tech',
-        date: "28/04/2024", views: 1100,
-        image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=600"
+        id: 2452,
+        title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo",
+        summary: "Ngày 23/10/2024, Công ty TNHH MTV Dịch Vụ Phân phối Ryobi (Việt Nam) chính thức ký kết hợp đồng EPC với Wataco để triển khai dự án điện mặt trời áp mái tại Khu Công nghệ cao TP.HCM.",
+        category: "Dự án", categoryId: 'project',
+        date: "27/11/2024", views: 2400,
+        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-2.jpg"
+    },
+    {
+        id: 2444,
+        title: "Wataco hợp tác triển khai Dự án Điện mặt trời áp mái cùng Ryobi DS",
+        summary: "Lễ ký kết Hợp đồng EPC và Lễ khởi công diễn ra tại Lô HC, Đường D2, Khu Công nghệ cao TP.HCM. Hệ thống giúp giảm khoảng 732,69t CO₂/năm với cam kết chất lượng và tiến độ cao nhất.",
+        category: "Dự án", categoryId: 'project',
+        date: "27/11/2024", views: 1650,
+        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-1.jpg"
+    },
+    {
+        id: 2433,
+        title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1",
+        summary: "Ngày 16/10/2024, Công ty TNHH Sato-Sangyo Việt Nam và Wataco chính thức ký kết hợp đồng EPC và khởi công Dự án Điện mặt trời áp mái nhà Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương.",
+        category: "Dự án", categoryId: 'project',
+        date: "25/11/2024", views: 1200,
+        image: "https://wataco.net/wp-content/uploads/2024/11/saoto-2.jpg"
+    },
+    {
+        id: 2418,
+        title: "Công Ty TNHH Sato Sangyo và Wataco hợp tác thúc đẩy năng lượng xanh",
+        summary: "Lễ ký hợp đồng EPC và Lễ khởi công Dự án Điện mặt trời áp mái Giai đoạn 1 giữa Sato-Sangyo Việt Nam và Wataco đánh dấu bước tiến quan trọng trong phát triển năng lượng tái tạo tại Việt Nam.",
+        category: "Dự án", categoryId: 'project',
+        date: "15/11/2024", views: 980,
+        image: "https://wataco.net/wp-content/uploads/2024/11/photo-1-17313150555211317666927-1731493186639-1731493191962613993936.png"
+    },
+    {
+        id: 2017,
+        title: "Công ty TNHH sợi dệt Hương Sen Comfor hợp tác cùng Wataco",
+        summary: "Dự án điện mặt trời áp mái công suất hơn 2.200 kWp do Wataco thi công tại nhà máy Hương Sen Comfor (Thái Bình), sử dụng công nghệ tiên tiến của Pháp và Nhật Bản, tổng vốn đầu tư khoảng 36 tỷ đồng.",
+        category: "Dự án", categoryId: 'project',
+        date: "08/05/2023", views: 1100,
+        image: "https://wataco.net/wp-content/uploads/2023/05/752526c4a74f7811215e-1.jpg"
+    },
+    {
+        id: 1950,
+        title: "Tân Á Đại Thành hợp tác cùng Wataco",
+        summary: "Tập đoàn Tân Á Đại Thành ký kết hợp đồng mua bán điện (PPA) với SkyX Solar, với sự tham dự của Wataco làm đơn vị tổng thầu xây dựng hệ thống nhà máy năng lượng sạch.",
+        category: "Dự án", categoryId: 'project',
+        date: "05/05/2023", views: 1350,
+        image: "https://wataco.net/wp-content/uploads/2023/05/1-6870.jpg"
     },
 ];
 
 const trendingNews: TrendingNewsItem[] = [
-    { id: 101, title: "Bảng giá lắp điện mặt trời áp mái 2024", date: "12/05" },
-    { id: 102, title: "Giải pháp ESCO: Đầu tư 0 đồng", date: "10/05" },
-    { id: 103, title: "Top 5 biến tần tốt nhất hiện nay", date: "08/05" },
+    { id: 2530, title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời áp mái", date: "22/07" },
+    { id: 2452, title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo", date: "27/11" },
+    { id: 2433, title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1", date: "25/11" },
 ];
 
 // Expanded Expert Data for Slider
@@ -200,7 +200,7 @@ const expertArticles: ExpertArticle[] = [
 // --- COMPONENTS ---
 
 // 1. Hero Carousel Component
-const HeroCarousel = () => {
+const HeroCarousel = ({ heroBadge }: { heroBadge: string }) => {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
@@ -211,7 +211,7 @@ const HeroCarousel = () => {
     }, []);
 
     return (
-        <div className="relative h-[400px] lg:h-[500px] overflow-hidden bg-[#1A2B3C] text-white">
+        <div className="relative h-100 lg:h-150 overflow-hidden bg-[#1A2B3C] text-white">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={current}
@@ -226,12 +226,12 @@ const HeroCarousel = () => {
                         alt={heroSlides[current].title}
                         className="w-full h-full object-cover opacity-60"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2B3C] via-transparent to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#1A2B3C] via-transparent to-transparent opacity-90" />
                 </motion.div>
             </AnimatePresence>
 
             <div className="absolute bottom-0 left-0 w-full p-8 lg:p-16 z-10">
-                <div className="max-w-[1440px] mx-auto">
+                <div className="max-w-360 mx-auto">
                     <motion.div
                         key={`text-${current}`}
                         initial={{ opacity: 0, y: 20 }}
@@ -240,7 +240,7 @@ const HeroCarousel = () => {
                         className="max-w-3xl"
                     >
                         <span className="bg-[#228B22] text-white px-3 py-1 text-xs font-black uppercase tracking-widest rounded-sm mb-4 inline-block">
-                            Tin Nổi Bật
+                            {heroBadge}
                         </span>
                         <h2 className="text-3xl lg:text-5xl font-black font-heading leading-tight mb-4 hover:text-[#FFD700] transition-colors cursor-pointer">
                             <HighlightWataco text={heroSlides[current].title} />
@@ -270,7 +270,7 @@ const HeroCarousel = () => {
 };
 
 // 2. News List Item
-const NewsListItem: React.FC<NewsListItemProps> = ({ item }) => (
+const NewsListItem: React.FC<NewsListItemProps & { readMore: string }> = ({ item, readMore }) => (
     <div className="group bg-white rounded-lg border border-gray-100 p-4 hover:shadow-lg hover:border-[#228B22] transition-all duration-300 flex flex-col sm:flex-row gap-6 cursor-pointer">
         {/* Thumbnail */}
         <div className="sm:w-1/3 lg:w-1/4 h-48 sm:h-auto rounded-md overflow-hidden relative shrink-0">
@@ -286,7 +286,7 @@ const NewsListItem: React.FC<NewsListItemProps> = ({ item }) => (
         </div>
 
         {/* Content */}
-        <div className="flex-grow flex flex-col justify-center">
+        <div className="grow flex flex-col justify-center">
             <div className="flex items-center text-xs text-gray-400 mb-2 font-mono">
                 <Calendar size={12} className="mr-1" /> {item.date}
                 <span className="mx-2">•</span>
@@ -299,7 +299,7 @@ const NewsListItem: React.FC<NewsListItemProps> = ({ item }) => (
                 {item.summary}
             </p>
             <div className="mt-auto flex items-center text-[#228B22] text-xs font-black uppercase tracking-wide group/link">
-                Đọc tiếp <ArrowRight size={14} className="ml-1 group-hover/link:translate-x-1 transition-transform" />
+                {readMore} <ArrowRight size={14} className="ml-1 group-hover/link:translate-x-1 transition-transform" />
             </div>
         </div>
     </div>
@@ -319,6 +319,14 @@ const SidebarWidget: React.FC<SidebarWidgetProps> = ({ title, children }) => (
 
 // --- MAIN PAGE ---
 export default function NewsPage() {
+    const { t } = useTranslation();
+    const np = t.newsPage;
+
+    const categories: Category[] = [
+        { id: 'all', label: np.categoryAll, count: 7 },
+        { id: 'project', label: np.categoryProject, count: 7 },
+    ];
+
     const [activeCategory, setActiveCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [visibleCount, setVisibleCount] = useState(5);
@@ -348,9 +356,9 @@ export default function NewsPage() {
             <FontStyles />
 
             {/* --- HERO SLIDER --- */}
-            <HeroCarousel />
+            <HeroCarousel heroBadge={np.heroBadge} />
 
-            <div className="max-w-[1440px] mx-auto px-6 py-16">
+            <div className="max-w-360 mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
                     {/* --- LEFT COLUMN: CONTENT (8 Cols) --- */}
@@ -382,15 +390,15 @@ export default function NewsPage() {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0 }}
                                         >
-                                            <Link to={'/posts/tai-sao-nen-su-dung-dien-mat-troi'}>
-                                                <NewsListItem item={item} />
+                                            <Link to={'/posts/wataco-hop-tac-cung-tap-doan-th-trien-khai-he-thong-dien-mat-troi-day-manh-san-xuat-nong-nghiep-ben-vung'}>
+                                                <NewsListItem item={item} readMore={np.readMore} />
                                             </Link>
                                         </motion.div>
                                     ))
                                 ) : (
                                     <div className="text-center py-20 bg-white rounded-lg border border-gray-100 border-dashed">
-                                        <p className="text-gray-400">Không tìm thấy bài viết nào.</p>
-                                        <button onClick={() => { setSearchQuery(''); setActiveCategory('all') }} className="text-[#228B22] font-bold mt-2 hover:underline">Xóa bộ lọc</button>
+                                        <p className="text-gray-400">{np.noResults}</p>
+                                        <button onClick={() => { setSearchQuery(''); setActiveCategory('all') }} className="text-[#228B22] font-bold mt-2 hover:underline">{np.clearFilter}</button>
                                     </div>
                                 )}
                             </AnimatePresence>
@@ -403,7 +411,7 @@ export default function NewsPage() {
                                     onClick={() => setVisibleCount(prev => prev + 3)}
                                     className="bg-white border border-[#1A2B3C] text-[#1A2B3C] px-8 py-3 rounded-md font-bold uppercase tracking-widest hover:bg-[#1A2B3C] hover:text-white transition-all shadow-sm active:scale-95"
                                 >
-                                    Xem thêm tin cũ
+                                    {np.loadMore}
                                 </button>
                             </div>
                         )}
@@ -416,7 +424,7 @@ export default function NewsPage() {
                         <div className="bg-white p-1 rounded-md border border-gray-200 shadow-sm flex items-center">
                             <input
                                 type="text"
-                                placeholder="Tìm kiếm..."
+                                placeholder={np.searchPlaceholder}
                                 className="w-full pl-4 pr-2 py-2 bg-transparent text-sm focus:outline-none text-[#1A2B3C]"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -427,7 +435,7 @@ export default function NewsPage() {
                         </div>
 
                         {/* Trending Widget */}
-                        <SidebarWidget title="Đọc Nhiều Nhất">
+                        <SidebarWidget title={np.trendingTitle}>
                             <ul className="space-y-4">
                                 {trendingNews.map((item, idx) => (
                                     <li key={item.id} className="group cursor-pointer flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
@@ -448,9 +456,9 @@ export default function NewsPage() {
                         </SidebarWidget>
 
                         {/* Tag Cloud */}
-                        <SidebarWidget title="Từ Khóa Hot">
+                        <SidebarWidget title={np.tagsTitle}>
                             <div className="flex flex-wrap gap-2">
-                                {["Solar Farm", "Điện áp mái", "Biến tần", "Pin lưu trữ", "EPC", "ESCO", "Net Zero"].map((tag, i) => (
+                                {np.tags.map((tag, i) => (
                                     <span key={i} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full hover:bg-[#228B22] hover:text-white transition-colors cursor-pointer border border-gray-200">
                                         #{tag}
                                     </span>
@@ -466,11 +474,11 @@ export default function NewsPage() {
 
             {/* --- EXPERT CORNER SLIDER (Updated) --- */}
             <section className="py-20 bg-[#F3F4F6] text-[#1A2B3C] relative overflow-hidden border-t border-gray-200">
-                <div className="max-w-[1440px] mx-auto px-6 relative z-10">
+                <div className="max-w-360 mx-auto px-6 relative z-10">
                     <div className="flex items-center justify-between mb-12">
                         <div>
-                            <span className="text-[#228B22] text-xs font-black uppercase tracking-[0.3em] block mb-2">Kiến Thức Chuyên Sâu</span>
-                            <h2 className="text-3xl lg:text-4xl font-black font-heading text-[#1A2B3C]">GÓC CHUYÊN GIA</h2>
+                            <span className="text-[#228B22] text-xs font-black uppercase tracking-[0.3em] block mb-2">{np.expertSubtitle}</span>
+                            <h2 className="text-3xl lg:text-4xl font-black font-heading text-[#1A2B3C]">{np.expertTitle}</h2>
                         </div>
 
                         {/* Navigation Controls */}
@@ -517,20 +525,20 @@ export default function NewsPage() {
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                 loading="lazy"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                             <div className="absolute top-4 right-4 bg-[#1A2B3C] text-[#FFD700] text-[9px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-[#FFD700]/20">
                                                 Tech Insight
                                             </div>
                                         </div>
-                                        <div className="p-8 flex flex-col flex-grow">
+                                        <div className="p-8 flex flex-col grow">
                                             <h4 className="text-xl font-bold text-[#1A2B3C] leading-snug mb-4 group-hover:text-[#228B22] transition-colors line-clamp-2">
                                                 {article.title}
                                             </h4>
-                                            <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed flex-grow">
+                                            <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed grow">
                                                 {article.desc}
                                             </p>
                                             <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#228B22] text-xs font-black uppercase tracking-wider group/link">
-                                                Đọc nghiên cứu <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                                                {np.readResearch} <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
                                     </div>

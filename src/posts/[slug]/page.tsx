@@ -1,14 +1,3 @@
-/*
- * WATACO ENGINEERING WEBSITE - ARTICLE DETAIL PAGE
- * Version: ArticleDetail-v.2.1 (Streamlined CSS & Decoupled Layout)
- * Date: 2024
- * Description: 
- * - LAYOUT FIX: Replaced fixed heights in Hero section with content-driven padding for a decoupled structure.
- * - CSS REFACTOR: Streamlined classes to make components (Hero, Main, Sidebar) independent and responsive.
- * - UNIFIED DATABASE: Merged Static Pages & News Articles into a single `contentDatabase`.
- * - UX: Kept TOC, Tag-based Related Articles, and No Header/Footer as requested.
- */
-
 import { motion, useScroll, useSpring } from 'framer-motion';
 import {
     ChevronRight,

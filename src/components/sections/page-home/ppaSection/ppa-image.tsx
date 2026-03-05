@@ -79,7 +79,7 @@ const PPAImage = () => {
                 </div>
 
                 {/* Process (Bottom) */}
-                <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] text-center font-bold text-gray-800 text-[clamp(8px,1.4vw,11px)] leading-relaxed">
+                <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[60%] text-center font-bold text-gray-800 text-[clamp(8px,1.4vw,10px)] leading-relaxed">
                     {t.process.map((item, index) => (
                         <div key={index}>{item}</div>
                     ))}

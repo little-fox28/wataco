@@ -1,4 +1,5 @@
 import { solarDesignEngineerJobPost } from "./jobs";
+import { wataco_TH_SolarPost } from "./news";
 import { thDalatMilkProjectPost } from "./projects/TH-TrueMilk";
 import { epcServicePost } from "./wataco-service/epc-service";
 import { watacoServicePost } from "./wataco-service/wataco-service";
@@ -17,5 +18,6 @@ export const contentDatabase = {
     [escoModelPost.slug]: escoModelPost,
     [thDalatMilkProjectPost.slug]: thDalatMilkProjectPost,
     [solarDesignEngineerJobPost.slug]: solarDesignEngineerJobPost,
-    [epcServicePost.slug]: epcServicePost
+    [epcServicePost.slug]: epcServicePost,
+    [wataco_TH_SolarPost.slug]: wataco_TH_SolarPost
 };

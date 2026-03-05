@@ -239,6 +239,7 @@ export interface TranslationContent {
     };
     projectProcessFlow: ProjectProcessFlowSection;
     careersPage: CareersPage;
+    newsPage: NewsPageContent;
     projectsData: {
         [key: string]: ProjectData[];
     };
@@ -279,6 +280,23 @@ export interface Translations {
     VN: TranslationContent;
     EN: TranslationContent;
     JP: TranslationContent;
+}
+
+export interface NewsPageContent {
+    heroBadge: string;
+    readMore: string;
+    noResults: string;
+    clearFilter: string;
+    loadMore: string;
+    searchPlaceholder: string;
+    trendingTitle: string;
+    tagsTitle: string;
+    tags: string[];
+    expertSubtitle: string;
+    expertTitle: string;
+    readResearch: string;
+    categoryAll: string;
+    categoryProject: string;
 }
 
 // NewsPage specific interfaces
