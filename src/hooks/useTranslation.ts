@@ -169,6 +169,120 @@ export const translations: Translations = {
         link: "#leasing"
       }
     ],
+    solutionsSub: "MÔ HÌNH HỢP TÁC LINH HOẠT",
+    solutionsTitle: "GIẢI PHÁP ĐẦU TƯ ĐA DẠNG",
+    solutionsLabels: {
+      chooseSolution: "Lựa chọn giải pháp",
+      benefitsTitle: "Lợi ích mang lại",
+      modelTitle: "Mô hình hoạt động",
+      detailCta: "Xem chi tiết giải pháp",
+      detailBasePath: "/bai-viet"
+    },
+    solutionsData: [
+      {
+        id: "esco",
+        shortTitle: "1. Mô hình ESCO",
+        title: "Giải pháp ESCO (Energy Service Company)",
+        desc: "Mô hình ESCO là giải pháp tận dụng phần mái nhàn rỗi của doanh nghiệp để lắp đặt hệ thống điện năng lượng mặt trời. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC (Tư Vấn Thiết Kế - Cung Cấp Vật Tư, Thi Công - Bảo Trì Bảo Hành) nhằm đảm bảo hiệu quả vận hành tối ưu cho hệ thống.",
+        benefits: [
+          "Không cần vốn đầu tư.",
+          "Không lo thiết bị công nghệ.",
+          "Không chi phí vận hành.",
+          "Sử dụng năng lượng sạch.",
+          "Giảm phụ thuộc vào EVN và không bị ảnh hưởng bởi việc tăng giá điện hàng năm.",
+          "Sử dụng giá điện thấp hơn của EVN, giảm chi phí năng lượng.",
+          "Hưởng toàn bộ thiết bị năng lượng.",
+          "Hệ thống điện mặt trời làm giảm nhiệt độ mái nhà xưởng hơn khoảng 5*C.",
+          "Tăng giá trị thương hiệu, tăng tính cạnh tranh trong sản xuất.",
+          "Doanh nghiệp được nằm trong khối doanh nghiệp sử dụng năng lượng xanh."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Khách Hàng",
+          partner: "Đối Tác Tài Chính"
+        },
+        flows: {
+          watacoToClient: "Tư vấn, thiết kế, EPC, O&M",
+          clientToPartner: "Trả tiền điện hàng tháng",
+          partnerToWataco: "Giải ngân tài chính"
+        },
+        linkSlug: "mo-hinh-esco"
+      },
+      {
+        id: "lease",
+        shortTitle: "2. Thuê mái xưởng",
+        title: "Giải pháp cho thuê mái xưởng",
+        desc: "Doanh nghiệp có mái xưởng nhàn rỗi và đáp ứng được các tiêu chí của việc lắp đặt hệ thống điện NLMT có thể cho thuê mái xưởng của mình để tăng thêm nguồn thu nhập. Đối tác đầu tư tài chính sẽ chịu toàn bộ chi phí lắp đặt. WATACO đảm nhận vai trò EPC.",
+        benefits: [
+          "Không tốn chi phí lắp đặt hệ thống điện năng lượng mặt trời.",
+          "Tăng thu nhập hàng tháng từ việc cho thuê mái.",
+          "Hưởng toàn bộ hệ thống điện năng lượng mặt trời sau 20 năm.",
+          "Hệ thống pin làm mát mái xưởng xuống khoảng 5*C, giảm điện sử dụng hệ thống điều hòa.",
+          "Doanh nghiệp được nằm trong khối doanh nghiệp sử dụng năng lượng xanh, nâng tầm thương hiệu."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Khách Hàng",
+          partner: "Đối Tác Tài Chính"
+        },
+        flows: {
+          watacoToClient: "Cài đặt, vận hành, bảo trì",
+          clientToPartner: "Nhận tiền thuê hàng tháng",
+          partnerToWataco: "Giải ngân tài chính"
+        },
+        note: "Khách hàng cho thuê mái nhàn rỗi, không rủi ro, có quyền ký cho thuê tiếp hoặc thừa hưởng lại hệ thống sau 20 năm.",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "invest",
+        shortTitle: "3. Giải pháp đầu tư",
+        title: "Giải pháp Đầu tư trực tiếp",
+        desc: "Đầu tư một lần, hưởng lợi trên 30 năm. Bằng việc đầu tư hệ thống điện năng lượng mặt trời, chủ đầu tư có thể tiết kiệm được tới 90% điện năng và có thể bán lại cho EVN lượng điện không sử dụng. WATACO sẽ cung cấp trọn gói EPC để hệ thống hoạt động với hiệu suất tối ưu.",
+        benefits: [
+          "Sau khi thu hồi vốn đầu tư ban đầu thì điện sử dụng từ hệ thống là điện miễn phí.",
+          "Lượng điện mua từ EVN ít đi, giảm chi phí năng lượng.",
+          "Bán được điện dư, tăng thu nhập hàng tháng.",
+          "Dùng vốn sẵn có để đầu tư, không cần lo về việc trả tiền lãi.",
+          "Giảm phụ thuộc vào EVN và không bị ảnh hưởng bởi việc tăng giá điện.",
+          "Có thể sử dụng và tự do quản lý hệ thống điện năng lượng mặt trời.",
+          "Làm mát mái nhà xưởng giảm xuống khoảng 5*C."
+        ],
+        diagramType: "two-party",
+        roles: {
+          client: "Chủ Đầu Tư"
+        },
+        flows: {
+          clientToWataco: "Cung cấp trọn gói EPC (Tư vấn, Thiết kế, Thi công, Bảo hành)"
+        },
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "finance",
+        shortTitle: "4. Cho thuê tài chính",
+        title: "Giải pháp cho thuê tài chính",
+        desc: "WATACO hỗ trợ doanh nghiệp kết nối với các ngân hàng có các gói dịch vụ ưu đãi tốt nhất. Doanh nghiệp chỉ cần đầu tư 20% chi phí hệ thống, 80% còn lại sẽ do ngân hàng đầu tư. WATACO sẽ chịu trách nhiệm làm nhà thầu EPC.",
+        benefits: [
+          "Không cần thế chấp bất động sản.",
+          "Chi phí ban đầu thấp (chỉ 20% chi phí hệ thống).",
+          "Được bàn giao hệ thống trong thời gian ngắn.",
+          "Hệ thống vận hành hiệu quả trên 30 năm.",
+          "Hệ thống pin làm mát mái xưởng xuống khoảng 5*C.",
+          "Doanh nghiệp sử dụng năng lượng xanh, nâng tầm thương hiệu và tăng giá trị cạnh tranh."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Khách Hàng",
+          partner: "Ngân Hàng"
+        },
+        flows: {
+          watacoToClient: "Tư vấn, thiết kế, EPC, O&M",
+          clientToPartner: "Trả tiền thuê (Gốc + Lãi) hàng tháng",
+          partnerToWataco: "Giải ngân 80% tài chính"
+        },
+        note: "WATACO đang liên kết với các đối tác ngân hàng uy tín để đưa ra dịch vụ với lãi suất ưu đãi.",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      }
+    ],
     newsTitle: "Báo chí nói về chúng tôi",
     newsSub: "TIN TỨC & TRUYỀN THÔNG",
     newsArticles: [
@@ -273,13 +387,14 @@ export const translations: Translations = {
       button: "Mô hình PPA"
     },
     ourServices: {
+      subtitle: "DỊCH VỤ WATACO",
       title: "Dịch vụ của chúng tôi",
       items: [
-        { icon: FileText, title: "Tư vấn và thiết kế hệ thống" },
-        { icon: Package, title: "Cung cấp vật tư, thiết bị" },
-        { icon: Wrench, title: "Thi công lắp đặt" },
-        { icon: Settings, title: "Vận hành và bảo trì" },
-        { icon: TrendingUp, title: "Giải pháp tài chính và đầu tư" }
+        { icon: FileText, title: "Tư vấn và thiết kế hệ thống", link: "/posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi" },
+        { icon: Package, title: "Cung cấp vật tư, thiết bị", link: "/posts/dich-vu-cua-chung-toi" },
+        { icon: Wrench, title: "Thi công lắp đặt", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: Settings, title: "Vận hành và bảo trì", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: TrendingUp, title: "Giải pháp tài chính và đầu tư", link: "/posts/giai-phap-esco" }
       ]
     },
     epcSection: {
@@ -598,6 +713,120 @@ export const translations: Translations = {
       { icon: TrendingUp, title: "Investment", desc: "Full-service EPC solutions for system owners.", link: "#investment" },
       { icon: Wallet, title: "Leasing", desc: "Financial support and green loans.", link: "#leasing" }
     ],
+    solutionsSub: "FLEXIBLE COOPERATION MODELS",
+    solutionsTitle: "DIVERSE INVESTMENT SOLUTIONS",
+    solutionsLabels: {
+      chooseSolution: "Choose a solution",
+      benefitsTitle: "Key benefits",
+      modelTitle: "Operating model",
+      detailCta: "View solution details",
+      detailBasePath: "/posts"
+    },
+    solutionsData: [
+      {
+        id: "esco",
+        shortTitle: "1. ESCO Model",
+        title: "ESCO (Energy Service Company) Solution",
+        desc: "The ESCO model uses idle factory rooftops to deploy solar systems. WATACO acts as EPC contractor (engineering, procurement, construction, maintenance, and warranty) to ensure optimal system performance.",
+        benefits: [
+          "No upfront investment required.",
+          "No concern about technology selection.",
+          "No operation cost burden.",
+          "Use clean energy.",
+          "Reduce dependence on EVN and avoid annual tariff increase impact.",
+          "Use lower electricity prices than EVN to cut energy costs.",
+          "Own the full solar equipment value over time.",
+          "Solar panels can reduce rooftop temperature by around 5*C.",
+          "Improve brand value and production competitiveness.",
+          "Position your business among green energy adopters."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Client",
+          partner: "Financial Partner"
+        },
+        flows: {
+          watacoToClient: "Consulting, design, EPC, O&M",
+          clientToPartner: "Monthly electricity payment",
+          partnerToWataco: "Financial disbursement"
+        },
+        linkSlug: "mo-hinh-esco"
+      },
+      {
+        id: "lease",
+        shortTitle: "2. Rooftop Leasing",
+        title: "Industrial Rooftop Leasing Solution",
+        desc: "Businesses with qualified idle rooftops can lease them to increase income. The financial partner covers the full installation cost while WATACO executes as EPC contractor.",
+        benefits: [
+          "No solar installation cost required.",
+          "Increase monthly income from rooftop leasing.",
+          "Receive full solar system ownership after 20 years.",
+          "Panels cool the roof by around 5*C, reducing HVAC electricity use.",
+          "Strengthen brand image as a green-energy business."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Client",
+          partner: "Financial Partner"
+        },
+        flows: {
+          watacoToClient: "Installation, operation, maintenance",
+          clientToPartner: "Receive monthly lease income",
+          partnerToWataco: "Financial disbursement"
+        },
+        note: "Clients lease idle rooftop space with low risk and can renew leasing or inherit the system after 20 years.",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "invest",
+        shortTitle: "3. Direct Investment",
+        title: "Direct Investment Solution",
+        desc: "Invest once and benefit for over 30 years. By investing in solar, owners can save up to 90% on electricity and may sell surplus electricity to EVN. WATACO provides full EPC to maximize performance.",
+        benefits: [
+          "After payback, electricity from the system is effectively free.",
+          "Purchase less electricity from EVN and reduce energy costs.",
+          "Sell surplus electricity for additional monthly income.",
+          "Use existing capital without loan-interest pressure.",
+          "Reduce EVN dependence and tariff volatility impact.",
+          "Freely operate and manage your own solar asset.",
+          "Reduce rooftop temperature by around 5*C."
+        ],
+        diagramType: "two-party",
+        roles: {
+          client: "Investor"
+        },
+        flows: {
+          clientToWataco: "Full EPC package (consulting, design, construction, warranty)"
+        },
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "finance",
+        shortTitle: "4. Financial Leasing",
+        title: "Financial Leasing Solution",
+        desc: "WATACO helps businesses connect with banks offering favorable packages. The business pays only 20% upfront, while the bank finances the remaining 80%. WATACO serves as EPC contractor.",
+        benefits: [
+          "No real-estate collateral required.",
+          "Low initial payment (only 20% of system cost).",
+          "Fast system handover timeline.",
+          "Efficient operation for 30+ years.",
+          "Panel systems cool factory roofs by around 5*C.",
+          "Use green energy to strengthen brand and competitive value."
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "Client",
+          partner: "Bank"
+        },
+        flows: {
+          watacoToClient: "Consulting, design, EPC, O&M",
+          clientToPartner: "Monthly lease payment (principal + interest)",
+          partnerToWataco: "80% financial disbursement"
+        },
+        note: "WATACO partners with trusted banks to provide preferential interest-rate services.",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      }
+    ],
     newsTitle: "Media Coverage",
     newsSub: "NEWS",
     newsArticles: [
@@ -699,13 +928,14 @@ export const translations: Translations = {
       button: "PPA Model"
     },
     ourServices: {
+      subtitle: "WATACO SERVICES",
       title: "Our Services",
       items: [
-        { icon: FileText, title: "System Consulting & Design" },
-        { icon: Package, title: "Equipment & Material Supply" },
-        { icon: Wrench, title: "Installation & Construction" },
-        { icon: Settings, title: "Operation & Maintenance (O&M)" },
-        { icon: TrendingUp, title: "Financial & Investment Solutions" }
+        { icon: FileText, title: "System Consulting & Design", link: "/posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi" },
+        { icon: Package, title: "Equipment & Material Supply", link: "/posts/dich-vu-cua-chung-toi" },
+        { icon: Wrench, title: "Installation & Construction", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: Settings, title: "Operation & Maintenance (O&M)", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: TrendingUp, title: "Financial & Investment Solutions", link: "/posts/giai-phap-esco" }
       ]
     },
     epcSection: {
@@ -1044,6 +1274,120 @@ export const translations: Translations = {
       { icon: TrendingUp, title: "投資 (EPC)", desc: "フルサービス。", link: "#investment" },
       { icon: Wallet, title: "リース", desc: "金融サポート。", link: "#leasing" }
     ],
+    solutionsSub: "柔軟な協業モデル",
+    solutionsTitle: "多様な投資ソリューション",
+    solutionsLabels: {
+      chooseSolution: "ソリューションを選択",
+      benefitsTitle: "主なメリット",
+      modelTitle: "運用モデル",
+      detailCta: "ソリューション詳細を見る",
+      detailBasePath: "/posts"
+    },
+    solutionsData: [
+      {
+        id: "esco",
+        shortTitle: "1. ESCOモデル",
+        title: "ESCO（Energy Service Company）ソリューション",
+        desc: "ESCOモデルは、企業の遊休屋根スペースを活用して太陽光発電設備を導入する方式です。WATACOはEPC請負（設計、調達、施工、保守、保証）を担い、最適な運用性能を実現します。",
+        benefits: [
+          "初期投資が不要。",
+          "設備技術の選定を心配する必要がない。",
+          "運用コスト負担がない。",
+          "クリーンエネルギーを利用できる。",
+          "EVNへの依存を減らし、毎年の電気料金上昇影響を抑えられる。",
+          "EVNより低い電力単価を活用し、エネルギーコストを削減できる。",
+          "長期的に設備価値の恩恵を受けられる。",
+          "屋根温度を約5度C低減し、室内環境改善に寄与する。",
+          "ブランド価値と生産競争力を高める。",
+          "グリーンエネルギー利用企業としての位置付けを強化できる。"
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "顧客",
+          partner: "金融パートナー"
+        },
+        flows: {
+          watacoToClient: "コンサル、設計、EPC、O&M",
+          clientToPartner: "毎月の電気料金支払い",
+          partnerToWataco: "資金実行"
+        },
+        linkSlug: "mo-hinh-esco"
+      },
+      {
+        id: "lease",
+        shortTitle: "2. 工場屋根リース",
+        title: "工場屋根賃貸ソリューション",
+        desc: "遊休屋根スペースが条件を満たす企業は、屋根を貸し出して追加収益を得られます。金融パートナーが設置費用を全額負担し、WATACOがEPCを担当します。",
+        benefits: [
+          "太陽光設備の設置費用が不要。",
+          "屋根賃貸により毎月の収入を増やせる。",
+          "20年後に太陽光設備全体を引き継げる。",
+          "パネルにより屋根温度が約5度C下がり、空調電力を削減できる。",
+          "グリーン企業としてブランド価値を向上できる。"
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "顧客",
+          partner: "金融パートナー"
+        },
+        flows: {
+          watacoToClient: "設置、運用、保守",
+          clientToPartner: "毎月の賃料受取",
+          partnerToWataco: "資金実行"
+        },
+        note: "顧客は遊休屋根を低リスクで賃貸でき、20年後に設備を継承または再契約が可能です。",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "invest",
+        shortTitle: "3. 直接投資",
+        title: "直接投資ソリューション",
+        desc: "一度の投資で30年以上の効果を得られます。太陽光発電へ投資することで最大90%の電力削減が可能で、余剰電力はEVNへ売電できます。WATACOがフルEPCを提供します。",
+        benefits: [
+          "初期投資回収後は実質的に無料電力として利用できる。",
+          "EVN購入電力量を減らし、エネルギーコストを削減。",
+          "余剰電力の売電で毎月収益を増やせる。",
+          "自己資金活用で金利負担を回避できる。",
+          "EVN依存と料金上昇リスクを抑制できる。",
+          "設備を自由に運用・管理できる。",
+          "屋根温度を約5度C下げられる。"
+        ],
+        diagramType: "two-party",
+        roles: {
+          client: "投資家"
+        },
+        flows: {
+          clientToWataco: "フルEPC提供（コンサル、設計、施工、保証）"
+        },
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      },
+      {
+        id: "finance",
+        shortTitle: "4. ファイナンスリース",
+        title: "ファイナンスリースソリューション",
+        desc: "WATACOは企業と優遇条件の銀行商品をつなぎます。企業は20%を自己負担し、残り80%を銀行が融資。WATACOがEPC請負を担当します。",
+        benefits: [
+          "不動産担保が不要。",
+          "初期費用が低い（システム費用の20%のみ）。",
+          "短期間でシステム引き渡しが可能。",
+          "30年以上の高効率運用が可能。",
+          "パネルで屋根温度を約5度C低減できる。",
+          "グリーンエネルギー活用でブランド価値と競争力を高められる。"
+        ],
+        diagramType: "three-party",
+        roles: {
+          client: "顧客",
+          partner: "銀行"
+        },
+        flows: {
+          watacoToClient: "コンサル、設計、EPC、O&M",
+          clientToPartner: "毎月のリース支払い（元本+利息）",
+          partnerToWataco: "80%資金実行"
+        },
+        note: "WATACOは信頼できる銀行パートナーと連携し、優遇金利サービスを提供しています。",
+        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+      }
+    ],
     newsTitle: "メディア掲載",
     newsSub: "ニュース",
     newsArticles: [
@@ -1279,13 +1623,14 @@ export const translations: Translations = {
       ]
     },
     ourServices: {
+      subtitle: "WATACOサービス",
       title: "当社のサービス",
       items: [
-        { icon: FileText, title: "システムのコンサルティング・設計" },
-        { icon: Package, title: "機材・設備の供給" },
-        { icon: Wrench, title: "設置・施工" },
-        { icon: Settings, title: "運用・保守 (O&M)" },
-        { icon: TrendingUp, title: "金融・投資ソリューション" }
+        { icon: FileText, title: "システムのコンサルティング・設計", link: "/posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi" },
+        { icon: Package, title: "機材・設備の供給", link: "/posts/dich-vu-cua-chung-toi" },
+        { icon: Wrench, title: "設置・施工", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: Settings, title: "運用・保守 (O&M)", link: "/posts/tong-thau-va-quan-ly-epc" },
+        { icon: TrendingUp, title: "金融・投資ソリューション", link: "/posts/giai-phap-esco" }
       ]
     },
     newsPage: {

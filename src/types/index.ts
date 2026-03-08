@@ -86,6 +86,35 @@ export interface FinanceSolution {
     link: string;
 }
 
+export interface InvestmentSolution {
+    id: string;
+    shortTitle: string;
+    title: string;
+    desc: string;
+    benefits: string[];
+    diagramType: 'three-party' | 'two-party';
+    roles: {
+        client: string;
+        partner?: string;
+    };
+    flows: {
+        watacoToClient?: string;
+        partnerToWataco?: string;
+        clientToPartner?: string;
+        clientToWataco?: string;
+    };
+    note?: string;
+    linkSlug?: string;
+}
+
+export interface InvestmentSolutionsLabels {
+    chooseSolution: string;
+    benefitsTitle: string;
+    modelTitle: string;
+    detailCta: string;
+    detailBasePath: string;
+}
+
 export interface NewsArticle {
     source: string;
     date: string;
@@ -99,6 +128,7 @@ export interface InfoItem {
     icon: any;
     title: string;
     desc?: string;
+    link?: string;
 }
 
 export interface WhySolarSection {
@@ -108,6 +138,7 @@ export interface WhySolarSection {
 }
 
 export interface OurServicesSection {
+    subtitle: string;
     title: string;
     items: InfoItem[];
 }
@@ -217,18 +248,9 @@ export interface TranslationContent {
     missionSection: {
         subtitle: string;
         title: string;
-        vision: {
-            title: string;
-            desc: string;
-        };
-        mission: {
-            title: string;
-            desc: string;
-        };
-        coreValues: {
-            title: string;
-            items: string[];
-        };
+        vision: { title: string; desc: string };
+        mission: { title: string; desc: string };
+        coreValues: { title: string; items: string[] };
     };
     ppaSection: { title: string; subtitle: string; desc: string; benefits: string[], button: string };
     ourServices: OurServicesSection;
@@ -252,6 +274,10 @@ export interface TranslationContent {
     financeTitle: string;
     financeSub: string;
     financeSolutions: FinanceSolution[];
+    solutionsSub: string;
+    solutionsTitle: string;
+    solutionsLabels: InvestmentSolutionsLabels;
+    solutionsData: InvestmentSolution[];
     newsTitle: string;
     newsSub: string;
     newsArticles: NewsArticle[];

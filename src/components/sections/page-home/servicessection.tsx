@@ -19,7 +19,7 @@ const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
     <div className="max-w-360 mx-auto px-6 relative z-10">
       <StaggerContainer className="text-center mb-16">
         <h3 className="text-xs font-black text-[#228B22] tracking-[0.6em] uppercase font-heading mb-4">
-          WATACO SERVICES
+          {t.ourServices.subtitle}
         </h3>
         <h2 className="text-3xl lg:text-5xl font-black text-[#1A2B3C] font-heading">
           {t.ourServices.title}
@@ -28,9 +28,8 @@ const ServicesSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
 
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {t.ourServices.items.map((item, idx) => (
-          <Link key={idx} to={"posts/tu-van-va-thiet-ke-he-thong-dien-mat-troi"}>
+          <Link key={idx} to={item.link || "/posts/dich-vu-cua-chung-toi"}>
             <StaggerItem
-              key={idx}
               className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center h-full justify-center border border-transparent hover:border-[#228B22] group"
             >
               <item.icon
