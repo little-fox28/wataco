@@ -94,6 +94,12 @@ export default function ProjectSection({ t }: ProjectSectionProps) {
                                     animate={cardStyle}
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                 >
+                                    {/* Status Badge - Green Text */}
+                                    <div className="absolute top-4 right-4 z-10">
+                                        <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-md shadow-md border bg-white text-[#228B22] border-[#228B22]">
+                                            {project.status}
+                                        </span>
+                                    </div>
                                     <img
                                         src={project.img}
                                         alt={project.name}

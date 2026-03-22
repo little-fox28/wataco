@@ -30,7 +30,7 @@ interface ProjectDataProjectsPage {
     location: string;
     capacity: string;
     year: string;
-    status: 'Hoàn thành' | 'Đang triển khai';
+    status: string;
     image: string;
 }
 
@@ -159,7 +159,7 @@ export default function ProjectsPage() {
             location: p.location,
             capacity: p.capacity,
             year: p.year,
-            status: 'Hoàn thành' as const,
+            status: p.status,
             image: p.img,
         })),
         ...t.projectsData.international.map((p, i) => ({
@@ -169,7 +169,7 @@ export default function ProjectsPage() {
             location: p.location,
             capacity: p.capacity,
             year: p.year,
-            status: 'Hoàn thành' as const,
+            status: p.status,
             image: p.img,
         })),
     ];
@@ -198,9 +198,15 @@ export default function ProjectsPage() {
     }, [activeCategory]);
 
     // IntersectionObserver lazy-load: add more when sentinel is visible
-    const filteredProjects = projectsList.filter(project =>
-        activeCategory === 'all' || project.category === activeCategory
-    );
+    const filteredProjects = projectsList
+        .filter(project => activeCategory === 'all' || project.category === activeCategory)
+        .sort((a, b) => {
+            const inProgressSet = new Set(['Đang triển khai', 'In Progress', '進行中']);
+            const aInProgress = inProgressSet.has(a.status);
+            const bInProgress = inProgressSet.has(b.status);
+            if (aInProgress === bInProgress) return 0;
+            return aInProgress ? -1 : 1;
+        });
 
     useEffect(() => {
         const el = sentinelRef.current;

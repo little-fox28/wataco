@@ -61,6 +61,7 @@ export interface ProjectData {
     capacity: string;
     production: string;
     year: string;
+    status: string;
     img: string;
 }
 
