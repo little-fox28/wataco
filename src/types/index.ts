@@ -76,7 +76,7 @@ export interface Product {
     eff: string;
     img: string;
     tag: string;
-    id?: string; // Added for generateFullProductList
+    id?: string;
 }
 
 export interface FinanceSolution {

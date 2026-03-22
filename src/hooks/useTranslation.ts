@@ -98,23 +98,25 @@ export const translations: Translations = {
     projectsSub: "CÔNG TRÌNH THỰC TẾ",
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "Đồng Văn 4, Ninh Bình", capacity: "0.80 MWp", production: "1,161 MWh/Năm", year: "2023", img: "project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "Đơn Dương, Lâm Đồng", capacity: "1.19 MWp", production: "1,723 MWh/Năm", year: "2023", img: "project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "0.34 MWp", production: "488 MWh/Năm", year: "2022", img: "project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2022", img: "project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "Mỹ Phước 3, Bình Dương", capacity: "0.48 MWp", production: "696 MWh/Năm", year: "2021", img: "project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "0.76 MWp", production: "1,099 MWh/Năm", year: "2021", img: "project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1.24 MWp", production: "1,801 MWh/Năm", year: "2020", img: "project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "TP. Thái Bình", capacity: "3.01 MWp", production: "4,362 MWh/Năm", year: "2020", img: "project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "Phú Thọ", capacity: "1.23 MWp", production: "1,779 MWh/Năm", year: "2023", img: "project/the-he-moi.png" },
-        { name: "Huong Sen", location: "Quỳnh Phụ, Thái Bình", capacity: "2.21 MWp", production: "3,201 MWh/Năm", year: "2022", img: "project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "Thanh Liêm, Ninh Bình", capacity: "1.24 MWp", production: "1,798 MWh/Năm", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "Tam Thăng, Đà Nẵng", capacity: "1.13 MWp", production: "1,637 MWh/Năm", year: "2020", img: "project/amann.png" }
+        { name: "Dự án Sợi Trà Lý - Nhà máy số 1", location: "TP. Thái Bình, Thái Bình", capacity: "1,002.8 kWp", production: "1,455 MWh/Năm", year: "2023", img: "project/tra-li-1.png" },
+        { name: "Dự án Sợi Trà Lý - Nhà máy số 2", location: "TP. Thái Bình, Thái Bình", capacity: "763 kWp", production: "1,107 MWh/Năm", year: "2023", img: "project/tra-li-2.png" },
+        { name: "Dự án Sợi Trà Lý - Nhà máy số 3", location: "TP. Thái Bình, Thái Bình", capacity: "1,242.6 kWp", production: "1,803 MWh/Năm", year: "2023", img: "project/tra-li-3.png" },
+        { name: "Dự án Hương Sen Comfor - Nhà máy số 2", location: "Quỳnh Phụ, Thái Bình", capacity: "2,207.7 kWp", production: "3,204 MWh/Năm", year: "2023", img: "project/huong-sen.jpg" },
+        { name: "Dự án Stroman Plastic", location: "Văn Lâm, Hưng Yên", capacity: "1,242.36 kWp", production: "1,803 MWh/Năm", year: "2024", img: "project/stroman.png" },
+        { name: "Dự án Ryobi Vietnam", location: "Khu công nghệ cao, TP.HCM", capacity: "758.1 kWp", production: "1,100 MWh/Năm", year: "2024", img: "project/Ryobi.png" },
+        { name: "Dự án Sato Sangyo Vietnam - Giai đoạn 01", location: "Mỹ Phước 3, Bình Dương", capacity: "479.7 kWp", production: "696 MWh/Năm", year: "2024", img: "project/Sato.jpg" },
+        { name: "Dự án Thế Hệ Mới Phú Thọ", location: "Phú Hộ, Phú Thọ", capacity: "1,227 kWp", production: "1,781 MWh/Năm", year: "2026", img: "project/the-he-moi.png" },
+        { name: "Dự án Kaifa Industry Vietnam - Nhà máy số 01", location: "Hố Nai, Đồng Nai", capacity: "339.84 kWp", production: "493 MWh/Năm", year: "2026", img: "project/kaifa-1.png" },
+        { name: "Dự án Kaifa Industry Vietnam - Nhà máy số 02", location: "Hố Nai, Đồng Nai", capacity: "441.32 kWp", production: "640 MWh/Năm", year: "2026", img: "project/kaifa-2.png" },
+        { name: "Dự án TH Đà Lạt Milk", location: "Đơn Dương, Lâm Đồng", capacity: "1,188 kWp", production: "1,724 MWh/Năm", year: "2025", img: "project/th.png" },
+        { name: "Dự án MK Seiko Vietnam", location: "KCX Tân Thuận, TP.HCM", capacity: "336.69 kWp", production: "489 MWh/Năm", year: "2025", img: "project/mk.JPG" },
+        { name: "Dự án Takao Granite", location: "Hiền Quan, Phú Thọ", capacity: "10,012.86 kWp", production: "14,531 MWh/Năm", year: "2026", img: "project/takao.jpg" },
+        { name: "Dự án Tân Á Đại Thành Group", location: "Thanh Liêm, Ninh Bình", capacity: "1,240.32 kWp", production: "1,800 MWh/Năm", year: "2026", img: "project/tan-a-dai-thanh.JPG" }
       ],
       'international': [
-        { name: "Dự án Marsushima", location: "Sendai, Nhật Bản", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "project/Matoba.jpg" },
-        { name: "Dự án Higashimatsushima", location: "Miyagi, Nhật Bản", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "project/Higashimatsushima.jpg" },
-        { name: "Dự án Nemawari Daini", location: "Osaka, Nhật Bản", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "project/Nemawari.jpg" },
+        { name: "Dự án Matsushima Solar", location: "Nhật Bản", capacity: "DC 1,248 kWp | AC 999 kW", production: "1,498 MWh/Năm", year: "2016", img: "project/Matoba.jpg" },
+        { name: "Dự án Higashimatsushima Solar", location: "Nhật Bản", capacity: "DC 1,930 kWp | AC 1,500 kW", production: "2,316 MWh/Năm", year: "2021", img: "project/Higashimatsushima.jpg" },
+        { name: "Dự án Nemawari Daini Solar", location: "Nhật Bản", capacity: "DC 97 kWp | AC 49.5 kW", production: "116 MWh/Năm", year: "2019", img: "project/Nemawari.jpg" }
       ]
     },
     productsTitle: "Công Nghệ & Thiết Bị",
@@ -755,23 +757,25 @@ export const translations: Translations = {
     },
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "Dong Van 4, Ninh Binh", capacity: "0.80 MWp", production: "1,161 MWh/Year", year: "2023", img: "project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "Don Duong, Lam Dong", capacity: "1.19 MWp", production: "1,723 MWh/Year", year: "2023", img: "project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "Tan Thuan EPZ, HCMC", capacity: "0.34 MWp", production: "488 MWh/Year", year: "2022", img: "project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2022", img: "project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "My Phuoc 3, Binh Duong", capacity: "0.48 MWp", production: "696 MWh/Year", year: "2021", img: "project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "Hi-Tech Park, HCMC", capacity: "0.76 MWp", production: "1,099 MWh/Year", year: "2021", img: "project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "Van Lam, Hung Yen", capacity: "1.24 MWp", production: "1,801 MWh/Year", year: "2020", img: "project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "Thai Binh City", capacity: "3.01 MWp", production: "4,362 MWh/Year", year: "2020", img: "project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "Phu Tho", capacity: "1.23 MWp", production: "1,779 MWh/Year", year: "2023", img: "project/the-he-moi.png" },
-        { name: "Huong Sen", location: "Quynh Phu, Thai Binh", capacity: "2.21 MWp", production: "3,201 MWh/Year", year: "2022", img: "project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "Thanh Liem, Ninh Binh", capacity: "1.24 MWp", production: "1,798 MWh/Year", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "Tam Thang, Da Nang", capacity: "1.13 MWp", production: "1,637 MWh/Year", year: "2020", img: "project/amann.png" }
+        { name: "Tra Ly Yarn Project - Plant No. 1", location: "Thai Binh City, Thai Binh", capacity: "1,002.8 kWp", production: "1,455 MWh/Year", year: "2023", img: "project/tra-li-1.png" },
+        { name: "Tra Ly Yarn Project - Plant No. 2", location: "Thai Binh City, Thai Binh", capacity: "763 kWp", production: "1,107 MWh/Year", year: "2023", img: "project/tra-li-2.png" },
+        { name: "Tra Ly Yarn Project - Plant No. 3", location: "Thai Binh City, Thai Binh", capacity: "1,242.6 kWp", production: "1,803 MWh/Year", year: "2023", img: "project/tra-li-3.png" },
+        { name: "Huong Sen Comfor Project - Plant No. 2", location: "Quynh Phu, Thai Binh", capacity: "2,207.7 kWp", production: "3,204 MWh/Year", year: "2023", img: "project/huong-sen.jpg" },
+        { name: "Stroman Plastic Project", location: "Van Lam, Hung Yen", capacity: "1,242.36 kWp", production: "1,803 MWh/Year", year: "2024", img: "project/stroman.png" },
+        { name: "Ryobi Vietnam Project", location: "Hi-Tech Park, HCMC", capacity: "758.1 kWp", production: "1,100 MWh/Year", year: "2024", img: "project/Ryobi.png" },
+        { name: "Sato Sangyo Vietnam Project - Phase 01", location: "My Phuoc 3, Binh Duong", capacity: "479.7 kWp", production: "696 MWh/Year", year: "2024", img: "project/Sato.jpg" },
+        { name: "The He Moi Phu Tho Project", location: "Phu Ho, Phu Tho", capacity: "1,227 kWp", production: "1,781 MWh/Year", year: "2026", img: "project/the-he-moi.png" },
+        { name: "Kaifa Industry Vietnam Project - Plant No. 01", location: "Ho Nai, Dong Nai", capacity: "339.84 kWp", production: "493 MWh/Year", year: "2026", img: "project/kaifa-1.png" },
+        { name: "Kaifa Industry Vietnam Project - Plant No. 02", location: "Ho Nai, Dong Nai", capacity: "441.32 kWp", production: "640 MWh/Year", year: "2026", img: "project/kaifa-2.png" },
+        { name: "TH Da Lat Milk Project", location: "Don Duong, Lam Dong", capacity: "1,188 kWp", production: "1,724 MWh/Year", year: "2025", img: "project/th.png" },
+        { name: "MK Seiko Vietnam Project", location: "Tan Thuan EPZ, HCMC", capacity: "336.69 kWp", production: "489 MWh/Year", year: "2025", img: "project/mk.JPG" },
+        { name: "Takao Granite Project", location: "Hien Quan, Phu Tho", capacity: "10,012.86 kWp", production: "14,531 MWh/Year", year: "2026", img: "project/takao.jpg" },
+        { name: "Tan A Dai Thanh Group Project", location: "Thanh Liem, Ninh Binh", capacity: "1,240.32 kWp", production: "1,800 MWh/Year", year: "2026", img: "project/tan-a-dai-thanh.JPG" }
       ],
       'international': [
-        { name: "Marsushima Solar", location: "Sendai, Japan", capacity: "10 MWp", production: "12,000 MWh/Year", year: "2022", img: "project/Matoba.jpg" },
-        { name: "Higashimatsushima Sholar", location: "Miyagi, Japan", capacity: "5 MWp", production: "6,000 MWh/Year", year: "2021", img: "project/Higashimatsushima.jpg" },
-        { name: "Nemawari Daini Sholar", location: "Osaka, Japan", capacity: "2 MWp", production: "2,400 MWh/Year", year: "2023", img: "project/Nemawari.jpg" }
+        { name: "Matsushima Solar Project", location: "Japan", capacity: "DC 1,248 kWp | AC 999 kW", production: "1,498 MWh/Year", year: "2016", img: "project/Matoba.jpg" },
+        { name: "Higashimatsushima Solar Project", location: "Japan", capacity: "DC 1,930 kWp | AC 1,500 kW", production: "2,316 MWh/Year", year: "2021", img: "project/Higashimatsushima.jpg" },
+        { name: "Nemawari Daini Solar Project", location: "Japan", capacity: "DC 97 kWp | AC 49.5 kW", production: "116 MWh/Year", year: "2019", img: "project/Nemawari.jpg" }
       ]
     },
     productsTitle: "Technology",
@@ -1389,44 +1393,26 @@ export const translations: Translations = {
     },
     projectsData: {
       'vietnam': [
-        { name: "Alpha Network", location: "ニンビン省、ドンバン4", capacity: "0.80 MWp", production: "1,161 MWh/年", year: "2023", img: "project/alpha.jpg" },
-        { name: "TH Milk Dalat", location: "ラムドン省、ドンズオン", capacity: "1.19 MWp", production: "1,723 MWh/年", year: "2023", img: "project/th.jpg" },
-        { name: "MK Seiko Vietnam", location: "ホーチミン市、タントゥアン輸出加工区", capacity: "0.34 MWp", production: "488 MWh/年", year: "2022", img: "project/mk.JPG" },
-        { name: "Kaifa Industry Vietnam", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2022", img: "project/kaifa.jpg" },
-        { name: "Sato Sangyo Vietnam", location: "ビンズオン省、ミーフオック3", capacity: "0.48 MWp", production: "696 MWh/年", year: "2021", img: "project/Sato.jpg" },
-        { name: "Ryobi Vietnam", location: "ホーチミン市、ハイテクパーク", capacity: "0.76 MWp", production: "1,099 MWh/年", year: "2021", img: "project/Ryobi.JPG" },
-        { name: "Stroman Plastic", location: "フンイエン省、ヴァンラム", capacity: "1.24 MWp", production: "1,801 MWh/年", year: "2020", img: "project/stroman.png" },
-        { name: "Tra Ly Yarn", location: "タイビン市", capacity: "3.01 MWp", production: "4,362 MWh/年", year: "2020", img: "project/tra-li.JPG" },
-        { name: "The He Moi Phu Tho", location: "フート省", capacity: "1.23 MWp", production: "1,779 MWh/年", year: "2023", img: "project/the-he-moi.png" },
-        { name: "Huong Sen", location: "タイビン省、クインフー", capacity: "2.21 MWp", production: "3,201 MWh/年", year: "2022", img: "project/huong-sen.jpg" },
-        { name: "Tan A Dai Thanh Group", location: "ニンビン省、タンリエム", capacity: "1.24 MWp", production: "1,798 MWh/年", year: "2021", img: "project/tan-a-dai-thanh.JPG" },
-        { name: "AMANN Vietnam", location: "ダナン市、タムタン", capacity: "1.13 MWp", production: "1,637 MWh/年", year: "2020", img: "project/amann.png" }
+        { name: "チャーリー糸工場プロジェクト 第1工場", location: "タイビン市、タイビン省", capacity: "1,002.8 kWp", production: "1,455 MWh/年", year: "2023", img: "project/tra-li-1.png" },
+        { name: "チャーリー糸工場プロジェクト 第2工場", location: "タイビン市、タイビン省", capacity: "763 kWp", production: "1,107 MWh/年", year: "2023", img: "project/tra-li-2.png" },
+        { name: "チャーリー糸工場プロジェクト 第3工場", location: "タイビン市、タイビン省", capacity: "1,242.6 kWp", production: "1,803 MWh/年", year: "2023", img: "project/tra-li-3.png" },
+        { name: "フオンセン・コンフォー プロジェクト 第2工場", location: "クインフー、タイビン省", capacity: "2,207.7 kWp", production: "3,204 MWh/年", year: "2023", img: "project/huong-sen.jpg" },
+        { name: "ストローマン・プラスチック プロジェクト", location: "ヴァンラム、フンイエン省", capacity: "1,242.36 kWp", production: "1,803 MWh/年", year: "2024", img: "project/stroman.png" },
+        { name: "リョービベトナム プロジェクト", location: "ホーチミン市ハイテクパーク", capacity: "758.1 kWp", production: "1,100 MWh/年", year: "2024", img: "project/Ryobi.png" },
+        { name: "サトサンギョウベトナム プロジェクト 第1期", location: "ミーフオック3、ビンズオン省", capacity: "479.7 kWp", production: "696 MWh/年", year: "2024", img: "project/Sato.jpg" },
+        { name: "テーヘモイ・フート プロジェクト", location: "フーホー、フート省", capacity: "1,227 kWp", production: "1,781 MWh/年", year: "2026", img: "project/the-he-moi.png" },
+        { name: "カイファ・インダストリー・ベトナム プロジェクト 第01工場", location: "ホーナイ、ドンナイ省", capacity: "339.84 kWp", production: "493 MWh/年", year: "2026", img: "project/kaifa-1.png" },
+        { name: "カイファ・インダストリー・ベトナム プロジェクト 第02工場", location: "ホーナイ、ドンナイ省", capacity: "441.32 kWp", production: "640 MWh/年", year: "2026", img: "project/kaifa-2.png" },
+        { name: "THダラットミルク プロジェクト", location: "ドンズオン、ラムドン省", capacity: "1,188 kWp", production: "1,724 MWh/年", year: "2025", img: "project/th.png" },
+        { name: "MKセイコーベトナム プロジェクト", location: "タンスアン輸出加工区、ホーチミン市", capacity: "336.69 kWp", production: "489 MWh/年", year: "2025", img: "project/mk.JPG" },
+        { name: "タカオグラナイト プロジェクト", location: "ヒエンクアン、フート省", capacity: "10,012.86 kWp", production: "14,531 MWh/年", year: "2026", img: "project/takao.jpg" },
+        { name: "タンア・ダイタン・グループ プロジェクト", location: "タンリエム、ニンビン省", capacity: "1,240.32 kWp", production: "1,800 MWh/年", year: "2026", img: "project/tan-a-dai-thanh.JPG" }
       ],
       'international': [
-        {
-          name: "マルシマ・ソーラー", // Hoặc "松島ソーラー" (Matsushima) nếu tên gốc là Matsushima
-          location: "日本、仙台市",
-          capacity: "10 MWp",
-          production: "12,000 MWh/年",
-          year: "2022",
-          img: "project/Matoba.jpg"
-        },
-        {
-          name: "東松島ソーラー", // Higashimatsushima Solar
-          location: "日本、宮城県",
-          capacity: "5 MWp",
-          production: "6,000 MWh/年",
-          year: "2021",
-          img: "project/Higashimatsushima.jpg"
-        },
-        {
-          name: "根廻第二ソーラー", // Nemawari Daini Solar
-          location: "日本、大阪府",
-          capacity: "2 MWp",
-          production: "2,400 MWh/年",
-          year: "2023",
-          img: "project/Nemawari.jpg"
-        }]
+        { name: "松島ソーラープロジェクト", location: "日本", capacity: "DC 1,248 kWp | AC 999 kW", production: "1,498 MWh/年", year: "2016", img: "project/Matoba.jpg" },
+        { name: "東松島ソーラープロジェクト", location: "日本", capacity: "DC 1,930 kWp | AC 1,500 kW", production: "2,316 MWh/年", year: "2021", img: "project/Higashimatsushima.jpg" },
+        { name: "根廻第二ソーラープロジェクト", location: "日本", capacity: "DC 97 kWp | AC 49.5 kW", production: "116 MWh/年", year: "2019", img: "project/Nemawari.jpg" }
+      ]
     },
     productsTitle: "技術と設備",
     productsSub: "パートナー",
