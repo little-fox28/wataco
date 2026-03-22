@@ -8,7 +8,6 @@ import MissionSection from '../components/sections/page-home/MissionSection';
 import NewsSection from '../components/sections/page-home/NewsSection';
 import PpaModelSection from '../components/sections/page-home/ppaSection';
 import ProjectSection from '../components/sections/page-home/projectSection';
-import ServicesSection from '../components/sections/page-home/ServicesSection';
 import StatsSection from '../components/sections/page-home/StatsSection';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -27,8 +26,6 @@ export default function HomePage() {
       <HeritageSection t={t} />
 
       <MissionSection t={t} />
-
-      <ServicesSection t={t} />
 
       <InvestmentSolutionsSection t={t} />
 

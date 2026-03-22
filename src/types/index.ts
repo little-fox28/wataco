@@ -218,6 +218,56 @@ export interface CareersPage {
     jobs: Job[];
 }
 
+export interface AboutUsPageContent {
+    hero: {
+        badge: string;
+        titlePrefix: string;
+        titleHighlight: string;
+        description: string;
+        imageAlt: string;
+    };
+    recognition: {
+        subtitle: string;
+        title: string;
+        description: string;
+    };
+    recognitions: {
+        type: string;
+        name: string;
+        role: string;
+        desc: string;
+    }[];
+    awards: {
+        subtitle: string;
+        title: string;
+        description: string;
+        sectionImageAlt: string;
+        items: {
+            title: string;
+            desc: string;
+        }[];
+    };
+    culture: {
+        subtitle: string;
+        title: string;
+        description: string;
+    };
+    dailyActivities: {
+        title: string;
+        category: string;
+    }[];
+    community: {
+        subtitle: string;
+        title: string;
+        description: string;
+        activities: {
+            title: string;
+            category: string;
+            desc: string;
+        }[];
+    };
+}
+
 export interface TranslationContent {
     viewAllArticles: ReactNode;
     section2ClientTitle: ReactNode;
@@ -261,6 +311,7 @@ export interface TranslationContent {
     };
     projectProcessFlow: ProjectProcessFlowSection;
     careersPage: CareersPage;
+    aboutUsPage: AboutUsPageContent;
     newsPage: NewsPageContent;
     projectsData: {
         [key: string]: ProjectData[];

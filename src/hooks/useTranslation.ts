@@ -4,7 +4,7 @@ import type { Translations } from '../types';
 
 export const translations: Translations = {
   VN: {
-    nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
+    nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức", "Về Chúng Tôi"],
     heroH1: "KỸ THUẬT\nNHẬT BẢN.\nNĂNG LƯỢNG\nVIỆT NAM.",
     heroSub: "Kế thừa di sản kỹ thuật từ Watanabe Create Group (Sendai, Nhật Bản) để thúc đẩy quá trình chuyển đổi năng lượng công nghiệp tại Việt Nam.",
     ctaMain: "NHẬN TƯ VẤN KỸ THUẬT",
@@ -531,6 +531,99 @@ export const translations: Translations = {
         }
       ]
     },
+    aboutUsPage: {
+      hero: {
+        badge: "Câu chuyện của chúng tôi",
+        titlePrefix: "CON NGƯỜI",
+        titleHighlight: "WATACO",
+        description: "Hơn cả một nơi làm việc, WATACO là một gia đình nơi mỗi cá nhân được tôn trọng, phát triển và ghi nhận. Chúng tôi chung tay kiến tạo một tương lai năng lượng xanh bền vững.",
+        imageAlt: "Đội ngũ Wataco"
+      },
+      recognition: {
+        subtitle: "Tôn vinh & Ghi nhận",
+        title: "Bảng Vàng Thành Tích",
+        description: "Tại WATACO, mọi sự nỗ lực và cống hiến đều được nhìn nhận xứng đáng. Xin chúc mừng những cá nhân và tập thể đã tỏa sáng trong thời gian qua."
+      },
+      recognitions: [
+        {
+          type: "Nhân Viên Xuất Sắc Nhất Quý",
+          name: "Trần Hưng Thịnh",
+          role: "Kỹ sư Giám sát Thi công",
+          desc: "Đã hoàn thành xuất sắc dự án vượt tiến độ 15 ngày, đảm bảo an toàn lao động 100% tại công trường."
+        },
+        {
+          type: "Tập Thể Tiêu Biểu",
+          name: "Phòng Thiết Kế Kỹ Thuật",
+          role: "Khối Kỹ Thuật - R&D",
+          desc: "Sáng tạo trong việc tối ưu hóa Layout tấm pin, giúp tiết kiệm 5% chi phí vật tư cho các dự án lớn."
+        },
+        {
+          type: "Ngôi Sao Triển Vọng",
+          name: "Trần Thị Lan",
+          role: "Chuyên viên Kinh doanh B2B",
+          desc: "Đạt doanh số kỷ lục trong tháng đầu tiên làm việc, mang về 2 hợp đồng ESCO giá trị cao."
+        }
+      ],
+      awards: {
+        subtitle: "Khẳng Định Vị Thế",
+        title: "Giải Thưởng Uy Tín",
+        description: "Những nỗ lực không ngừng nghỉ của WATACO trong việc mang lại giải pháp năng lượng sạch đã được ghi nhận bằng những giải thưởng danh giá.",
+        sectionImageAlt: "WATACO Awards Background",
+        items: [
+          {
+            title: "Top 10 Doanh nghiệp Năng lượng Xanh 2023",
+            desc: "Giải thưởng uy tín do Hiệp hội Năng lượng Việt Nam trao tặng cho các tổng thầu EPC có đóng góp vượt trội trong quá trình chuyển đổi năng lượng sạch."
+          },
+          {
+            title: "Thương hiệu Quốc gia (Viet Value) giải pháp Net-Zero",
+            desc: "Khẳng định chất lượng và uy tín của WATACO trong việc cung cấp các hệ thống điện mặt trời đạt tiêu chuẩn cao nhất về an toàn và hiệu suất."
+          },
+          {
+            title: "Giải thưởng Đổi mới Sáng tạo Năng lượng Châu Á",
+            desc: "Ghi nhận cho các giải pháp thiết kế tối ưu và ứng dụng công nghệ giám sát thông minh AI vào vận hành hệ thống O&M."
+          },
+          {
+            title: "Chứng nhận Doanh nghiệp Thực hành ESG Xuất Sắc",
+            desc: "Được vinh danh nhờ cam kết bảo vệ môi trường, trách nhiệm xã hội và quản trị doanh nghiệp minh bạch theo tiêu chuẩn quốc tế."
+          }
+        ]
+      },
+      culture: {
+        subtitle: "Môi Trường Làm Việc",
+        title: "Nhịp Sống \nTại WATACO",
+        description: "Những khoảnh khắc đời thường, những chuyến đi và nụ cười trên công trường chính là nguồn năng lượng tích cực nhất của chúng tôi."
+      },
+      dailyActivities: [
+        { title: "Team Building 2023", category: "Văn hóa" },
+        { title: "Giám sát công trình", category: "Công việc" },
+        { title: "Đào tạo nội bộ", category: "Phát triển" },
+        { title: "Họp chiến lược Quý", category: "Văn phòng" },
+        { title: "Nghiệm thu dự án", category: "Công việc" },
+        { title: "Hoạt động thể thao", category: "Gắn kết" }
+      ],
+      community: {
+        subtitle: "Trách Nhiệm Xã Hội",
+        title: "Hoạt Động Cộng Đồng",
+        description: "Chúng tôi tin rằng doanh nghiệp phát triển bền vững là doanh nghiệp biết sẻ chia và tạo ra những tác động tích cực cho xã hội.",
+        activities: [
+          {
+            title: "Mang Nắng Lên Bản",
+            category: "Năng Lượng Xanh",
+            desc: "Tài trợ và lắp đặt hoàn toàn miễn phí hệ thống điện mặt trời độc lập (Off-grid) cho các điểm trường vùng sâu vùng xa chưa có điện lưới tại Tây Bắc."
+          },
+          {
+            title: "Nước Sạch Cho Em",
+            category: "Hỗ Trợ Cộng Đồng",
+            desc: "Lắp đặt hệ thống máy lọc nước RO vận hành bằng năng lượng mặt trời, giải quyết tình trạng thiếu nước sạch cho bà con tại khu vực Đồng bằng Sông Cửu Long."
+          },
+          {
+            title: "Quỹ Học Bổng WATACO",
+            category: "Giáo Dục",
+            desc: "Chương trình học bổng thường niên dành cho sinh viên ngành Năng lượng tái tạo và kỹ thuật có hoàn cảnh khó khăn, ươm mầm tài năng trẻ."
+          }
+        ]
+      }
+    },
     newsPage: {
       heroBadge: "Tin Nổi Bật",
       readMore: "Đọc tiếp",
@@ -549,7 +642,7 @@ export const translations: Translations = {
     },
   },
   EN: {
-    nav: ["Home", "Projects", "Careers", "News"],
+    nav: ["Home", "Projects", "Careers", "News", "About Us"],
     heroH1: "JAPANESE\nENGINEERING.\nVIETNAMESE\nENERGY.",
     heroSub: "Leveraging 30+ years of Watanabe Create heritage from Sendai to power Vietnam's industrial transition.",
     ctaMain: "REQUEST CONSULTING",
@@ -1072,6 +1165,99 @@ export const translations: Translations = {
         }
       ]
     },
+    aboutUsPage: {
+      hero: {
+        badge: "Our Story",
+        titlePrefix: "THE PEOPLE OF",
+        titleHighlight: "WATACO",
+        description: "More than a workplace, WATACO is a family where each individual is respected, developed, and recognized. Together, we are building a sustainable green-energy future.",
+        imageAlt: "Wataco team"
+      },
+      recognition: {
+        subtitle: "Honoring & Recognition",
+        title: "Hall of Achievement",
+        description: "At WATACO, every effort and contribution is properly recognized. Congratulations to the individuals and teams who have shined recently."
+      },
+      recognitions: [
+        {
+          type: "Quarterly Outstanding Employee",
+          name: "Tran Hung Thinh",
+          role: "Construction Supervision Engineer",
+          desc: "Completed a project 15 days ahead of schedule while maintaining 100% labor safety at the site."
+        },
+        {
+          type: "Outstanding Team",
+          name: "Engineering Design Department",
+          role: "Engineering - R&D Division",
+          desc: "Innovated panel layout optimization, helping save 5% in material costs for major projects."
+        },
+        {
+          type: "Rising Star",
+          name: "Tran Thi Lan",
+          role: "B2B Sales Specialist",
+          desc: "Achieved record sales in the first month and secured two high-value ESCO contracts."
+        }
+      ],
+      awards: {
+        subtitle: "Affirming Our Position",
+        title: "Prestigious Awards",
+        description: "WATACO's relentless efforts to deliver clean-energy solutions have been recognized with prestigious awards.",
+        sectionImageAlt: "WATACO Awards Background",
+        items: [
+          {
+            title: "Top 10 Green Energy Enterprises 2023",
+            desc: "Presented by the Vietnam Energy Association to EPC contractors with outstanding contributions to the clean-energy transition."
+          },
+          {
+            title: "National Brand (Viet Value) Net-Zero Solution",
+            desc: "Affirms WATACO's quality and credibility in delivering solar systems that meet top standards of safety and performance."
+          },
+          {
+            title: "Asia Energy Innovation Award",
+            desc: "Recognizes optimized design solutions and AI-based smart monitoring technology in O&M operations."
+          },
+          {
+            title: "Excellent ESG Practice Certification",
+            desc: "Honored for commitment to environmental protection, social responsibility, and transparent governance under international standards."
+          }
+        ]
+      },
+      culture: {
+        subtitle: "Working Environment",
+        title: "Life Rhythm \nAt WATACO",
+        description: "Everyday moments, field trips, and smiles on-site are the most positive source of energy for us."
+      },
+      dailyActivities: [
+        { title: "Team Building 2023", category: "Culture" },
+        { title: "Site Supervision", category: "Work" },
+        { title: "Internal Training", category: "Development" },
+        { title: "Quarterly Strategy Meeting", category: "Office" },
+        { title: "Project Acceptance", category: "Work" },
+        { title: "Sports Activities", category: "Connection" }
+      ],
+      community: {
+        subtitle: "Social Responsibility",
+        title: "Community Activities",
+        description: "We believe a sustainably growing business is one that shares and creates positive social impact.",
+        activities: [
+          {
+            title: "Bringing Sunshine to Mountain Villages",
+            category: "Green Energy",
+            desc: "Sponsored and installed fully free off-grid solar systems for remote schools in the Northwest that still lack grid electricity."
+          },
+          {
+            title: "Clean Water for Children",
+            category: "Community Support",
+            desc: "Installed solar-powered RO water filtration systems to address clean-water shortages in the Mekong Delta."
+          },
+          {
+            title: "WATACO Scholarship Fund",
+            category: "Education",
+            desc: "An annual scholarship program for disadvantaged students in renewable-energy and engineering majors, nurturing young talent."
+          }
+        ]
+      }
+    },
     newsPage: {
       heroBadge: "Featured News",
       readMore: "Read more",
@@ -1090,7 +1276,7 @@ export const translations: Translations = {
     },
   },
   JP: {
-    nav: ["ホーム", "プロジェクト", "キャリア", "ニュース"],
+    nav: ["ホーム", "プロジェクト", "キャリア", "ニュース", "私たちについて"],
     heroH1: "日本の\n技術。\nベトナムの\nエネルギー。",
     heroSub: "仙台のワタナベクリエイトグループの30年以上の技術遺産を継承。",
     ctaMain: "技術相談",
@@ -1621,6 +1807,99 @@ export const translations: Translations = {
           urgent: false
         }
       ]
+    },
+    aboutUsPage: {
+      hero: {
+        badge: "私たちのストーリー",
+        titlePrefix: "WATACOの",
+        titleHighlight: "仲間たち",
+        description: "WATACOは単なる職場ではなく、一人ひとりが尊重され、成長し、評価される家族のような場所です。私たちは持続可能なグリーンエネルギーの未来を共に築いています。",
+        imageAlt: "WATACOチーム"
+      },
+      recognition: {
+        subtitle: "称賛と評価",
+        title: "栄誉の実績",
+        description: "WATACOでは、すべての努力と貢献が正当に評価されます。最近活躍した個人とチームを称えます。"
+      },
+      recognitions: [
+        {
+          type: "四半期最優秀社員",
+          name: "チャン・フン・ティン",
+          role: "施工監理エンジニア",
+          desc: "現場で100%の安全を維持しながら、プロジェクトを15日前倒しで完了しました。"
+        },
+        {
+          type: "優秀チーム",
+          name: "技術設計部",
+          role: "技術・R&D部門",
+          desc: "パネルレイアウト最適化で革新を生み、大型案件の資材コストを5%削減しました。"
+        },
+        {
+          type: "ライジングスター",
+          name: "チャン・ティ・ラン",
+          role: "B2B営業スペシャリスト",
+          desc: "入社初月で過去最高の売上を達成し、高額なESCO契約を2件獲得しました。"
+        }
+      ],
+      awards: {
+        subtitle: "確かな実績",
+        title: "権威ある受賞歴",
+        description: "クリーンエネルギーソリューションの提供に向けたWATACOの継続的な取り組みは、数々の権威ある賞として評価されています。",
+        sectionImageAlt: "WATACO Awards Background",
+        items: [
+          {
+            title: "2023年 グリーンエネルギー企業トップ10",
+            desc: "ベトナムエネルギー協会より、クリーンエネルギー転換に卓越した貢献をしたEPC企業として表彰。"
+          },
+          {
+            title: "国家ブランド（Viet Value）Net-Zeroソリューション",
+            desc: "安全性と性能の最高水準を満たす太陽光システム提供におけるWATACOの品質と信頼性を証明。"
+          },
+          {
+            title: "アジア・エネルギー・イノベーション賞",
+            desc: "最適設計とAIスマート監視技術を活用したO&M運用が評価されました。"
+          },
+          {
+            title: "ESG優良実践企業認証",
+            desc: "環境保護、社会的責任、透明なガバナンスへの取り組みが国際基準で高く評価されました。"
+          }
+        ]
+      },
+      culture: {
+        subtitle: "働く環境",
+        title: "WATACOでの\n日々",
+        description: "日常のひとコマ、出張、現場での笑顔こそが、私たちの前向きなエネルギーの源です。"
+      },
+      dailyActivities: [
+        { title: "チームビルディング 2023", category: "文化" },
+        { title: "現場監督", category: "業務" },
+        { title: "社内研修", category: "成長" },
+        { title: "四半期戦略会議", category: "オフィス" },
+        { title: "プロジェクト検収", category: "業務" },
+        { title: "スポーツ活動", category: "つながり" }
+      ],
+      community: {
+        subtitle: "社会的責任",
+        title: "コミュニティ活動",
+        description: "持続的に成長する企業とは、分かち合い、社会に前向きな影響を生み出す企業だと私たちは考えます。",
+        activities: [
+          {
+            title: "山間部に太陽の光を",
+            category: "グリーンエネルギー",
+            desc: "電力網が未整備の北西部の遠隔地学校に、オフグリッド太陽光システムを無償で提供・設置しました。"
+          },
+          {
+            title: "子どもたちに安全な水を",
+            category: "地域支援",
+            desc: "メコンデルタの水不足解消に向け、太陽光で稼働するRO浄水システムを設置しました。"
+          },
+          {
+            title: "WATACO奨学金基金",
+            category: "教育",
+            desc: "再生可能エネルギー・工学分野の学生を支援する年次奨学金プログラムで、若い才能を育成します。"
+          }
+        ]
+      }
     },
     ourServices: {
       subtitle: "WATACOサービス",

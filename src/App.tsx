@@ -4,6 +4,7 @@ import FloatingContact from './components/common/FloatingContact';
 import ScrollToTop from './components/common/ScrollToTop';
 import Layout from './components/layout/Layout';
 import { LanguageProvider } from './contexts/LanguageContext';
+import AboutUsPage from './pages/AboutUsPage';
 import CareersPage from './pages/CareersPage';
 import NewsPage from './pages/NewsPage';
 import ProjectsPage from './pages/ProjectsPage';
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/posts/:slug" element={<ArticleDetail />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
           </Routes>
         </Layout>
         <FloatingContact />

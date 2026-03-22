@@ -8,7 +8,7 @@ import WatacoLogo from '../common/WatacoLogo';
 const Header: React.FC = () => {
   const { t, lang, setLang } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navLinks = ["/", "/projects", "/careers", "/news"];
+  const navLinks = ["/", "/projects", "/careers", "/news", "/about-us"];
 
   return (
     <>
