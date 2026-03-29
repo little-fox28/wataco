@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation, type Language } from '../../hooks/useTranslation';
 import WatacoLogo from '../common/WatacoLogo';
@@ -8,12 +8,22 @@ import WatacoLogo from '../common/WatacoLogo';
 const Header: React.FC = () => {
   const { t, lang, setLang } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const navLinks = ["/", "/projects", "/careers", "/news", "/about-us"];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       {/* Header - Green Background (#228B22) */}
-      <header className="fixed top-0 w-full z-50 bg-[#228B22]/95 backdrop-blur-md border-b border-white/5 shadow-lg transition-colors duration-300">
+      <header className={`w-full z-50 transition-all duration-300 ${isSticky ? 'fixed top-0 bg-[#228B22]/95 backdrop-blur-md shadow-lg' : 'relative bg-[#228B22]'} border-b border-white/5`}>
         <div className="max-w-[1440px] mx-auto px-6 h-16 lg:h-20 flex justify-between items-center">
           <WatacoLogo />
 
