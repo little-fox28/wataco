@@ -1,13 +1,4 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {
-    BookOpen,
-    Droplets,
-    Medal,
-    ShieldCheck,
-    Star,
-    SunMedium,
-    Trophy
-} from 'lucide-react';
 import type { ReactNode } from 'react';
 import React, { forwardRef } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
@@ -67,12 +58,12 @@ const FadeInUp = forwardRef<HTMLDivElement, { children: ReactNode; className?: s
     </motion.div>
 ));
 
-const awardsMeta = [Trophy, ShieldCheck, Star, Medal];
-const communityMeta = [
-    { img: "https://plus.unsplash.com/premium_photo-1679500295467-51b10bd019ec?auto=format&fit=crop&q=80&w=800", icon: SunMedium },
-    { img: "https://images.unsplash.com/photo-1556074851-baee07a28b14?auto=format&fit=crop&q=80&w=800", icon: Droplets },
-    { img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&q=80&w=800", icon: BookOpen }
-];
+// const awardsMeta = [Trophy, ShieldCheck, Star, Medal];
+// const communityMeta = [
+//     { img: "https://plus.unsplash.com/premium_photo-1679500295467-51b10bd019ec?auto=format&fit=crop&q=80&w=800", icon: SunMedium },
+//     { img: "https://images.unsplash.com/photo-1556074851-baee07a28b14?auto=format&fit=crop&q=80&w=800", icon: Droplets },
+//     { img: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&q=80&w=800", icon: BookOpen }
+// ];
 const recognitionsMeta = [
     { img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400", color: "#FFD700" },
     { img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400", color: "#228B22" },
@@ -93,9 +84,9 @@ export default function AboutUsPage() {
     const { t } = useTranslation();
 
     const about = t.aboutUsPage;
-    const awardsData = about.awards.items.map((item, idx) => ({ ...item, icon: awardsMeta[idx] ?? Trophy }));
+    // const awardsData = about.awards.items.map((item, idx) => ({ ...item, icon: awardsMeta[idx] ?? Trophy }));
     const recognitions = about.recognitions.map((item, idx) => ({ ...item, img: recognitionsMeta[idx]?.img ?? recognitionsMeta[0].img, color: recognitionsMeta[idx]?.color ?? "#FFD700" }));
-    const communityActivities = about.community.activities.map((item, idx) => ({ ...item, img: communityMeta[idx]?.img ?? communityMeta[0].img, icon: communityMeta[idx]?.icon ?? SunMedium }));
+    // const communityActivities = about.community.activities.map((item, idx) => ({ ...item, img: communityMeta[idx]?.img ?? communityMeta[0].img, icon: communityMeta[idx]?.icon ?? SunMedium }));
     const dailyActivities = about.dailyActivities.map((item, idx) => ({ ...item, id: dailyActivitiesMeta[idx]?.id ?? idx + 1, img: dailyActivitiesMeta[idx]?.img ?? dailyActivitiesMeta[0].img, span: dailyActivitiesMeta[idx]?.span ?? "md:col-span-1 md:row-span-1" }));
 
     return (
