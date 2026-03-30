@@ -8,8 +8,8 @@ import {
     SunMedium,
     Trophy
 } from 'lucide-react';
-import React, { forwardRef } from 'react';
 import type { ReactNode } from 'react';
+import React, { forwardRef } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 
 const FontStyles: React.FC = () => (
@@ -170,7 +170,7 @@ export default function AboutUsPage() {
                 </div>
             </section>
 
-            <section className="py-24 lg:py-36 relative overflow-hidden text-white">
+            {/* <section className="py-24 lg:py-36 relative overflow-hidden text-white">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=2000"
@@ -207,7 +207,7 @@ export default function AboutUsPage() {
                         })}
                     </StaggerContainer>
                 </div>
-            </section>
+            </section> */}
 
             <section className="py-20 lg:py-32 bg-white border-b border-gray-100 overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-6">
@@ -239,7 +239,7 @@ export default function AboutUsPage() {
                 </div>
             </section>
 
-            <section className="py-20 lg:py-32 bg-[#F0FDF4] relative overflow-hidden">
+            {/* <section className="py-20 lg:py-32 bg-[#F0FDF4] relative overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-6 relative z-10">
                     <StaggerContainer className="text-center mb-20">
                         <h3 className="text-[#228B22] font-black text-sm uppercase tracking-[0.5em] font-heading mb-4">{about.community.subtitle}</h3>
@@ -282,7 +282,7 @@ export default function AboutUsPage() {
                         })}
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     );
 }
