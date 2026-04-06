@@ -67,95 +67,36 @@ const HighlightWataco: React.FC<HighlightWatacoProps> = ({ text }) => {
     );
 };
 
+import { allNewsPosts } from '../data/posts/news';
+
 // --- DATA FROM WATACO WORDPRESS EXPORT ---
-const heroSlides: HeroSlide[] = [
-    {
-        id: 2530,
-        title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời: Đẩy mạnh sản xuất nông nghiệp bền vững",
-        summary: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
-        image: "https://wataco.net/wp-content/uploads/2025/07/Buoi-le-ky-ket-hop-dong-du-an-dien-nang-luong-mat-troi-ap-mai-tai-Nha-may-sua-TH-Da-Lat-Milk-1-scaled.jpg",
-        date: "22/07/2025"
-    },
-    {
-        id: 2452,
-        title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo",
-        summary: "Ngày 23/10/2024, Ryobi DS Việt Nam ký kết hợp đồng EPC với Wataco triển khai dự án điện mặt trời áp mái tại Khu Công nghệ cao TP.HCM, giảm khoảng 732,69t CO₂/năm.",
-        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-2.jpg",
-        date: "27/11/2024"
-    },
-    {
-        id: 2433,
-        title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1",
-        summary: "Wataco chính thức ký kết hợp đồng EPC và khởi công Dự án điện mặt trời áp mái Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương cùng Công ty TNHH Sato-Sangyo Việt Nam.",
-        image: "https://wataco.net/wp-content/uploads/2024/11/saoto-2.jpg",
-        date: "25/11/2024"
-    }
-];
+const heroSlides: HeroSlide[] = allNewsPosts.slice(0, 3).map(post => ({
+    id: post.id,
+    title: post.title,
+    summary: post.summary,
+    image: post.heroImage,
+    date: post.date,
+    slug: post.slug
+}));
 
-const newsFeed: NewsItem[] = [
-    {
-        id: 2530,
-        title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời: Đẩy mạnh sản xuất nông nghiệp bền vững",
-        summary: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
-        category: "Dự án", categoryId: 'project',
-        date: "22/07/2025", views: 1850,
-        image: "https://wataco.net/wp-content/uploads/2025/07/Buoi-le-ky-ket-hop-dong-du-an-dien-nang-luong-mat-troi-ap-mai-tai-Nha-may-sua-TH-Da-Lat-Milk-1-scaled.jpg"
-    },
-    {
-        id: 2452,
-        title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo",
-        summary: "Ngày 23/10/2024, Công ty TNHH MTV Dịch Vụ Phân phối Ryobi (Việt Nam) chính thức ký kết hợp đồng EPC với Wataco để triển khai dự án điện mặt trời áp mái tại Khu Công nghệ cao TP.HCM.",
-        category: "Dự án", categoryId: 'project',
-        date: "27/11/2024", views: 2400,
-        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-2.jpg"
-    },
-    {
-        id: 2444,
-        title: "Wataco hợp tác triển khai Dự án Điện mặt trời áp mái cùng Ryobi DS",
-        summary: "Lễ ký kết Hợp đồng EPC và Lễ khởi công diễn ra tại Lô HC, Đường D2, Khu Công nghệ cao TP.HCM. Hệ thống giúp giảm khoảng 732,69t CO₂/năm với cam kết chất lượng và tiến độ cao nhất.",
-        category: "Dự án", categoryId: 'project',
-        date: "27/11/2024", views: 1650,
-        image: "https://wataco.net/wp-content/uploads/2024/11/wataco-1.jpg"
-    },
-    {
-        id: 2433,
-        title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1",
-        summary: "Ngày 16/10/2024, Công ty TNHH Sato-Sangyo Việt Nam và Wataco chính thức ký kết hợp đồng EPC và khởi công Dự án Điện mặt trời áp mái nhà Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương.",
-        category: "Dự án", categoryId: 'project',
-        date: "25/11/2024", views: 1200,
-        image: "https://wataco.net/wp-content/uploads/2024/11/saoto-2.jpg"
-    },
-    {
-        id: 2418,
-        title: "Công Ty TNHH Sato Sangyo và Wataco hợp tác thúc đẩy năng lượng xanh",
-        summary: "Lễ ký hợp đồng EPC và Lễ khởi công Dự án Điện mặt trời áp mái Giai đoạn 1 giữa Sato-Sangyo Việt Nam và Wataco đánh dấu bước tiến quan trọng trong phát triển năng lượng tái tạo tại Việt Nam.",
-        category: "Dự án", categoryId: 'project',
-        date: "15/11/2024", views: 980,
-        image: "https://wataco.net/wp-content/uploads/2024/11/photo-1-17313150555211317666927-1731493186639-1731493191962613993936.png"
-    },
-    {
-        id: 2017,
-        title: "Công ty TNHH sợi dệt Hương Sen Comfor hợp tác cùng Wataco",
-        summary: "Dự án điện mặt trời áp mái công suất hơn 2.200 kWp do Wataco thi công tại nhà máy Hương Sen Comfor (Thái Bình), sử dụng công nghệ tiên tiến của Pháp và Nhật Bản, tổng vốn đầu tư khoảng 36 tỷ đồng.",
-        category: "Dự án", categoryId: 'project',
-        date: "08/05/2023", views: 1100,
-        image: "https://wataco.net/wp-content/uploads/2023/05/752526c4a74f7811215e-1.jpg"
-    },
-    {
-        id: 1950,
-        title: "Tân Á Đại Thành hợp tác cùng Wataco",
-        summary: "Tập đoàn Tân Á Đại Thành ký kết hợp đồng mua bán điện (PPA) với SkyX Solar, với sự tham dự của Wataco làm đơn vị tổng thầu xây dựng hệ thống nhà máy năng lượng sạch.",
-        category: "Dự án", categoryId: 'project',
-        date: "05/05/2023", views: 1350,
-        image: "https://wataco.net/wp-content/uploads/2023/05/1-6870.jpg"
-    },
-];
+const newsFeed: NewsItem[] = allNewsPosts.map(post => ({
+    id: post.id,
+    title: post.title,
+    summary: post.summary,
+    category: post.category,
+    categoryId: post.categoryId,
+    date: post.date,
+    views: post.views,
+    image: post.heroImage,
+    slug: post.slug
+}));
 
-const trendingNews: TrendingNewsItem[] = [
-    { id: 2530, title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời áp mái", date: "22/07" },
-    { id: 2452, title: "Ryobi DS hợp tác cùng Wataco - Bước tiến lớn trong ngành năng lượng tái tạo", date: "27/11" },
-    { id: 2433, title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1", date: "25/11" },
-];
+const trendingNews: TrendingNewsItem[] = allNewsPosts.slice(0, 3).map(post => ({
+    id: post.id,
+    title: post.title,
+    date: post.date.split('/').slice(0, 2).join('/'),
+    slug: post.slug
+}));
 
 // Expanded Expert Data for Slider
 const expertArticles: ExpertArticle[] = [
@@ -242,9 +183,11 @@ const HeroCarousel = ({ heroBadge }: { heroBadge: string }) => {
                         <span className="bg-[#228B22] text-white px-3 py-1 text-xs font-black uppercase tracking-widest rounded-sm mb-4 inline-block">
                             {heroBadge}
                         </span>
-                        <h2 className="text-3xl lg:text-5xl font-black font-heading leading-tight mb-4 hover:text-[#FFD700] transition-colors cursor-pointer">
-                            <HighlightWataco text={heroSlides[current].title} />
-                        </h2>
+                        <Link to={`/posts/${heroSlides[current].slug}`}>
+                            <h2 className="text-3xl lg:text-5xl font-black font-heading leading-tight mb-4 hover:text-[#FFD700] transition-colors cursor-pointer">
+                                <HighlightWataco text={heroSlides[current].title} />
+                            </h2>
+                        </Link>
                         <p className="text-gray-300 text-lg line-clamp-2 mb-6 border-l-4 border-[#FFD700] pl-4">
                             {heroSlides[current].summary}
                         </p>
@@ -390,7 +333,7 @@ export default function NewsPage() {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0 }}
                                         >
-                                            <Link to={'/posts/wataco-hop-tac-cung-tap-doan-th-trien-khai-he-thong-dien-mat-troi-day-manh-san-xuat-nong-nghiep-ben-vung'}>
+                                            <Link to={`/posts/${item.slug}`}>
                                                 <NewsListItem item={item} readMore={np.readMore} />
                                             </Link>
                                         </motion.div>
@@ -438,19 +381,21 @@ export default function NewsPage() {
                         <SidebarWidget title={np.trendingTitle}>
                             <ul className="space-y-4">
                                 {trendingNews.map((item, idx) => (
-                                    <li key={item.id} className="group cursor-pointer flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-                                        <span className="text-3xl font-black text-gray-200 group-hover:text-[#228B22] transition-colors leading-none -mt-1">
-                                            0{idx + 1}
-                                        </span>
-                                        <div>
-                                            <h5 className="text-sm font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors line-clamp-2 mb-1">
-                                                {item.title}
-                                            </h5>
-                                            <span className="text-xs text-gray-400 flex items-center">
-                                                <Clock size={10} className="mr-1" /> {item.date}
+                                    <Link key={item.id} to={`/posts/${item.slug}`}>
+                                        <li className="group cursor-pointer flex items-start gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
+                                            <span className="text-3xl font-black text-gray-200 group-hover:text-[#228B22] transition-colors leading-none -mt-1">
+                                                0{idx + 1}
                                             </span>
-                                        </div>
-                                    </li>
+                                            <div>
+                                                <h5 className="text-sm font-bold text-[#1A2B3C] group-hover:text-[#228B22] transition-colors line-clamp-2 mb-1">
+                                                    {item.title}
+                                                </h5>
+                                                <span className="text-xs text-gray-400 flex items-center">
+                                                    <Clock size={10} className="mr-1" /> {item.date}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </Link>
                                 ))}
                             </ul>
                         </SidebarWidget>

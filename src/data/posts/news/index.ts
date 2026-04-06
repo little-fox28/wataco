@@ -1,7 +1,12 @@
 export const wataco_TH_SolarPost = {
+    id: 2530,
     slug: "wataco-hop-tac-cung-tap-doan-th-trien-khai-he-thong-dien-mat-troi-day-manh-san-xuat-nong-nghiep-ben-vung",
-    category: "Tin Tức",
+    category: "Dự án",
+    categoryId: "project",
+    date: "22/07/2025",
+    views: 1850,
     title: "Wataco hợp tác cùng Tập đoàn TH triển khai hệ thống điện mặt trời: Đẩy mạnh sản xuất nông nghiệp bền vững",
+    summary: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
     metaDescription: "Wataco cùng Quỹ TMG ký kết hợp tác với Tập đoàn TH triển khai hệ thống điện mặt trời áp mái 1,188 MWp tại Nhà máy sữa TH Dalat Milk, giảm 1.500 tấn CO₂ mỗi năm.",
     heroImage: "https://wataco.net/wp-content/uploads/2025/07/Buoi-le-ky-ket-hop-dong-du-an-dien-nang-luong-mat-troi-ap-mai-tai-Nha-may-sua-TH-Da-Lat-Milk-1-scaled.jpg",
     tags: ["Tin tức", "Hợp tác", "Tập đoàn TH", "Điện mặt trời áp mái", "ESG", "Lâm Đồng"],
@@ -38,3 +43,103 @@ export const wataco_TH_SolarPost = {
         { id: "hop-tac-chien-luoc-esg", label: "Hợp tác chiến lược – Mô hình ESG" },
     ]
 };
+
+export const wataco_Ryobi_SolarPost = {
+    id: 2444,
+    slug: "wataco-hop-tac-trien-khai-du-an-dien-mat-troi-ap-mai-cung-ryobi-ds",
+    category: "Dự án",
+    categoryId: "project",
+    date: "27/11/2024",
+    views: 1650,
+    title: "Wataco hợp tác triển khai Dự án Điện mặt trời áp mái cùng Ryobi DS",
+    summary: "Lễ ký kết Hợp đồng EPC và Lễ khởi công diễn ra tại Lô HC, Đường D2, Khu Công nghệ cao TP.HCM. Hệ thống giúp giảm khoảng 732,69t CO₂/năm với cam kết chất lượng và tiến độ cao nhất.",
+    metaDescription: "Lễ ký kết Hợp đồng EPC và Lễ khởi công diễn ra tại Lô HC, Đường D2, Khu Công nghệ cao TP.HCM. Hệ thống giúp giảm khoảng 732,69t CO₂/năm.",
+    heroImage: "https://wataco.net/wp-content/uploads/2024/11/wataco-1.jpg",
+    tags: ["Tin tức", "Ryobi DS", "EPC", "Điện mặt trời áp mái", "Khu công nghệ cao"],
+    contentHTML: `
+    <p>Ngày 23/10/2024, <strong>Công ty TNHH Wataco</strong> và Ryobi DS Việt Nam đã chính thức ký kết hợp đồng EPC và tổ chức Lễ khởi công dự án điện mặt trời áp mái tại Khu Công nghệ cao TP.HCM.</p>
+    
+    <p>Dự án đánh dấu bước tiến quan trọng trong việc ứng dụng năng lượng tái tạo vào sản xuất công nghiệp, giúp giảm phát thải khoảng 732,69 tấn CO₂ mỗi năm. Wataco cam kết đảm bảo chất lượng và tiến độ thi công cao nhất cho dự án này.</p>
+    `,
+    toc: [
+        { id: "ky-ket-hop-tac", label: "Ký kết hợp tác cùng Ryobi DS" },
+        { id: "loi-ich-moi-truong", label: "Lợi ích môi trường và phát triển bền vững" }
+    ]
+};
+
+export const wataco_SatoSangyo_P1_SolarPost = {
+    id: 2433,
+    slug: "wataco-cung-sato-sangyo-viet-nam-khoi-dong-du-an-dien-mat-troi-ap-mai-giai-doan-1",
+    category: "Dự án",
+    categoryId: "project",
+    date: "25/11/2024",
+    views: 1200,
+    title: "Wataco cùng Sato-Sangyo Việt Nam khởi động Dự án Điện mặt trời áp mái Giai đoạn 1",
+    summary: "Ngày 16/10/2024, Công ty TNHH Sato-Sangyo Việt Nam và Wataco chính thức ký kết hợp đồng EPC và khởi công Dự án Điện mặt trời áp mái nhà Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương.",
+    metaDescription: "Ngày 16/10/2024, Sato-Sangyo Việt Nam và Wataco ký kết hợp đồng EPC và khởi công Dự án Điện mặt trời áp mái Giai đoạn 1 tại KCN Mỹ Phước 3, Bình Dương.",
+    heroImage: "https://wataco.net/wp-content/uploads/2024/11/saoto-2.jpg",
+    tags: ["Tin tức", "Sato-Sangyo", "Bình Dương", "Năng lượng xanh"],
+    contentHTML: `
+    <p>Vào ngày 16/10/2024, Công ty TNHH Sato-Sangyo Việt Nam cùng với <strong>Wataco</strong> đã chính thức thực hiện nghi thức ký kết hợp đồng EPC và khởi công Giai đoạn 1 của dự án điện mặt trời áp mái.</p>
+    
+    <p>Dự án được triển khai tại nhà máy của Sato-Sangyo trong Khu công nghiệp Mỹ Phước 3, tỉnh Bình Dương, hướng tới mục tiêu tự chủ năng lượng và giảm thiểu dấu chân carbon trong quy trình sản xuất.</p>
+    `,
+    toc: [
+        { id: "khoi-dong-du-an", label: "Khởi động Dự án Giai đoạn 1" },
+        { id: "tam-nhin-ben-vung", label: "Tầm nhìn phát triển bền vững" }
+    ]
+};
+
+export const wataco_HuongSenComfor_SolarPost = {
+    id: 2017,
+    slug: "cong-ty-tnhh-soi-det-huong-sen-comfor-hop-tac-cung-wataco",
+    category: "Dự án",
+    categoryId: "project",
+    date: "08/05/2023",
+    views: 1100,
+    title: "Công ty TNHH sợi dệt Hương Sen Comfor hợp tác cùng Wataco",
+    summary: "Dự án điện mặt trời áp mái công suất hơn 2.200 kWp do Wataco thi công tại nhà máy Hương Sen Comfor (Thái Bình), sử dụng công nghệ tiên tiến của Pháp và Nhật Bản, tổng vốn đầu tư khoảng 36 tỷ đồng.",
+    metaDescription: "Dự án điện mặt trời áp mái công suất hơn 2.200 kWp tại Thái Bình, tổng vốn đầu tư 36 tỷ đồng do Wataco thi công.",
+    heroImage: "https://wataco.net/wp-content/uploads/2023/05/752526c4a74f7811215e-1.jpg",
+    tags: ["Tin tức", "Hương Sen Comfor", "Thái Bình", "Sợi dệt"],
+    contentHTML: `
+    <p>Dự án điện mặt trời áp mái tại nhà máy Hương Sen Comfor (Thái Bình) có công suất hơn 2.200 kWp, sử dụng công nghệ tiên tiến từ Pháp và Nhật Bản.</p>
+    
+    <p>Với tổng vốn đầu tư khoảng 36 tỷ đồng, <strong>Wataco</strong> đảm nhiệm vai trò đơn vị thi công, giúp nhà máy tối ưu hóa chi phí năng lượng và đáp ứng các tiêu chuẩn xanh quốc tế.</p>
+    `,
+    toc: [
+        { id: "quy-mo-du-an", label: "Quy mô và công nghệ" },
+        { id: "hieu-qua-kinh-te", label: "Hiệu quả kinh tế và môi trường" }
+    ]
+};
+
+export const wataco_TanADaiThanh_SolarPost = {
+    id: 1950,
+    slug: "tan-a-dai-thanh-hop-tac-cung-wataco",
+    category: "Dự án",
+    categoryId: "project",
+    date: "05/05/2023",
+    views: 1350,
+    title: "Tân Á Đại Thành hợp tác cùng Wataco",
+    summary: "Tập đoàn Tân Á Đại Thành ký kết hợp đồng mua bán điện (PPA) với SkyX Solar, với sự tham dự của Wataco làm đơn vị tổng thầu xây dựng hệ thống nhà máy năng lượng sạch.",
+    metaDescription: "Tập đoàn Tân Á Đại Thành ký kết hợp đồng PPA với SkyX Solar, với Wataco là đơn vị tổng thầu EPC xây dựng hệ thống năng lượng sạch.",
+    heroImage: "https://wataco.net/wp-content/uploads/2023/05/1-6870.jpg",
+    tags: ["Tin tức", "Tân Á Đại Thành", "PPA", "SkyX Solar"],
+    contentHTML: `
+    <p>Tập đoàn Tân Á Đại Thành đã ký kết hợp đồng mua bán điện (PPA) với SkyX Solar, trong đó <strong>Wataco</strong> vinh dự đồng hành với vai trò đơn vị tổng thầu EPC.</p>
+    
+    <p>Sự hợp tác này khẳng định uy tín của Wataco trong việc triển khai các hệ thống năng lượng sạch quy mô lớn for các tập đoàn hàng đầu tại Việt Nam.</p>
+    `,
+    toc: [
+        { id: "hop-tac-chien-luoc", label: "Hợp tác chiến lược" },
+        { id: "vai-tro-wataco", label: "Vai trò của Wataco" }
+    ]
+};
+
+export const allNewsPosts = [
+    wataco_TH_SolarPost,
+    wataco_Ryobi_SolarPost,
+    wataco_SatoSangyo_P1_SolarPost,
+    wataco_HuongSenComfor_SolarPost,
+    wataco_TanADaiThanh_SolarPost
+];

@@ -384,6 +384,7 @@ export interface HeroSlide {
     summary: string;
     image: string;
     date: string;
+    slug: string;
 }
 
 export interface Category {
@@ -401,12 +402,14 @@ export interface NewsItem {
     date: string;
     views: number;
     image: string;
+    slug: string;
 }
 
 export interface TrendingNewsItem {
     id: number;
     title: string;
     date: string;
+    slug: string;
 }
 
 export interface ExpertArticle {

@@ -5,7 +5,6 @@ import HeroSection from '../components/sections/page-home/heroSection/HeroSectio
 import InvestmentSolutionsSection from '../components/sections/page-home/InvestmentSolutionSection';
 import MapAndClientsSection from '../components/sections/page-home/MapAndClientsSection';
 import MissionSection from '../components/sections/page-home/MissionSection';
-import NewsSection from '../components/sections/page-home/NewsSection';
 import PpaModelSection from '../components/sections/page-home/ppaSection';
 import ProjectSection from '../components/sections/page-home/projectSection';
 import StatsSection from '../components/sections/page-home/StatsSection';
@@ -37,7 +36,7 @@ export default function HomePage() {
 
       <ProjectSection t={t} />
 
-      <NewsSection t={t} />
+      {/* <NewsSection t={t} /> */}
 
     </div>
   );

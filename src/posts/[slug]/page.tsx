@@ -147,15 +147,21 @@ export default function ArticleDetail() {
     const [currentSlug, setCurrentSlug] = useState(slug || "");
     const [copied, setCopied] = useState(false);
 
+    useEffect(() => {
+        if (slug) {
+            setCurrentSlug(slug);
+        }
+    }, [slug]);
+
     const pageData = contentDatabase[currentSlug];
 
     // Derived state for related articles
     const currentTags = pageData?.tags || [];
     const relatedArticles = Object.values(contentDatabase)
         .filter(article => article.slug !== currentSlug)
-        .filter(article => article.tags?.some(tag => currentTags.includes(tag)))
+        .filter(article => article.tags?.some((tag: string) => currentTags.includes(tag)))
         .map(article => {
-            const matchCount = article.tags.filter(tag => currentTags.includes(tag)).length;
+            const matchCount = article.tags.filter((tag: string) => currentTags.includes(tag)).length;
             return { ...article, matchCount };
         })
         .sort((a, b) => b.matchCount - a.matchCount)
@@ -314,7 +320,7 @@ export default function ArticleDetail() {
                                         </div>
                                         <nav aria-label="Table of contents" className="p-6">
                                             <ul className="space-y-3 m-0 p-0 list-none">
-                                                {pageData.toc.map((item, idx) => (
+                                                {pageData.toc.map((item: { id: string; label: string }, idx: number) => (
                                                     <li key={idx} className="m-0 p-0 before:hidden">
                                                         <button
                                                             onClick={() => handleScrollToToc(item.id)}
