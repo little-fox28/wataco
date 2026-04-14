@@ -6,11 +6,15 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ heroY }) => {
+    const videoSrc = import.meta.env.DEV
+        ? "/video_banner.mp4"
+        : "https://pub-97eda7c36ee5433890d3d2112ed13a81.r2.dev/video_banner.mp4";
+
     return (
         <section id="section-0" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#1A2B3C]">
             <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
                 <video
-                    src="/wataco/video_banner.mp4"
+                    src={videoSrc}
                     className="w-full h-full object-cover opacity-100"
                     autoPlay
                     muted

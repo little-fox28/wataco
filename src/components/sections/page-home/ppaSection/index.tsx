@@ -52,7 +52,7 @@ const PpaModelSection: React.FC<{ t: TranslationContent }> = ({ t }) => (
                     </div>
 
                     <StaggerItem className="mt-12 pt-8 border-t border-white/10">
-                        <Link to={"/posts/giai-phap-esco"}>
+                        <Link to={"/posts/mo-hinh-ppa-dien-mat-troi-0-dong"}>
                             <button className="bg-[#228B22] hover:bg-[#FFD700] hover:text-[#1A2B3C] text-white px-8 py-4 rounded-md font-black uppercase tracking-widest text-xs transition-colors shadow-lg shadow-[#228B22]/20 active:scale-95">
                                 {t.ppaSection.button}
                             </button>

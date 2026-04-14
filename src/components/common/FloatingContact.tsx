@@ -4,7 +4,7 @@ const FloatingContact = () => (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
         {/* Facebook Button */}
         <a
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/profile.php?id=61584943418127"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 rounded-full bg-[#1877F2] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 relative group"

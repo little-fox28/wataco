@@ -18,17 +18,21 @@ const projectLocations = [
 ];
 
 const clientsList = [
-    { name: "TH True Milk", logo: '/wataco/client-logo/TH.svg', color: "#013C78" },
-    { name: "ALPHA", logo: '/wataco/client-logo/alpha.svg', color: "#00469B" },
-    { name: "AMANN", logo: '/wataco/client-logo/amann.svg', color: "#028AD2" },
-    { name: "FGC", logo: '/wataco/client-logo/fgc.svg', color: "#42851F" },
-    { name: "HAWA-EXPO", logo: '/wataco/client-logo/hawa-expo.svg', color: "#A13538" },
-    { name: "HUONG SEN", logo: '/wataco/client-logo/huong-sen.svg', color: "#9CA3AF" },
-    { name: "KAIFA", logo: '/wataco/client-logo/kaifa.svg', color: "#1D2088" },
-    { name: "MKVN", logo: '/wataco/client-logo/mkvn.svg', color: "#00A650" },
-    { name: "RYOBI", logo: '/wataco/client-logo/ryobi.svg', color: "#1456A1" },
-    { name: "STROMAN", logo: '/wataco/client-logo/stroman.svg', color: "#0F75BC" },
-    { name: "TRALYTEX", logo: '/wataco/client-logo/tralytex.svg', color: "#9CA3AF" },
+    { name: "TH True Milk", logo: '/client-logo/TH.svg', color: "#013C78" },
+    { name: "ALPHA", logo: '/client-logo/alpha.svg', color: "#00469B" },
+    { name: "AMANN", logo: '/client-logo/amann.svg', color: "#028AD2" },
+    { name: "ja", logo: '/client-logo/ja.svg', color: "#9CA3AF" },
+    { name: "FGC", logo: '/client-logo/fgc.svg', color: "#42851F" },
+    { name: "HAWA-EXPO", logo: '/client-logo/hawa-expo.svg', color: "#A13538" },
+    { name: "HUONG SEN", logo: '/client-logo/huong-sen.svg', color: "#9CA3AF" },
+    { name: "KAIFA", logo: '/client-logo/kaifa.svg', color: "#1D2088" },
+    { name: "MKVN", logo: '/client-logo/mkvn.svg', color: "#00A650" },
+    { name: "longi", logo: '/client-logo/longi.svg', color: "#9CA3AF" },
+    { name: "RYOBI", logo: '/client-logo/ryobi.svg', color: "#1456A1" },
+    { name: "STROMAN", logo: '/client-logo/stroman.svg', color: "#0F75BC" },
+    { name: "TRALYTEX", logo: '/client-logo/tralytex.svg', color: "#9CA3AF" },
+    { name: "jinko", logo: '/client-logo/jinko.svg', color: "#9CA3AF" },
+    { name: "trina", logo: '/client-logo/trina.svg', color: "#9CA3AF" },
 ];
 
 interface ClientLogoBoxProps {
@@ -118,7 +122,7 @@ const MapAndClientsSection: React.FC<MapAndClientsSectionProps> = ({ t }) => {
 
                     <div className="lg:col-span-8 relative h-87.5 sm:h-112.5 lg:h-150 flex items-center justify-center">
                         <div className="relative grow flex items-center justify-center p-0 lg:p-8 w-full">
-                            <img src='/wataco/client-logo/vietnam-maps.png' className='h-full w-[62%]' />
+                            <img src='/client-logo/vietnam-maps.png' className='h-full w-[62%]' />
 
                             {projectLocations.map((loc, i) => (
                                 <div

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import CertificateCard from '../common/CertificateCard';
 import WatacoLogo from '../common/WatacoLogo';
 
 interface FooterProps {
@@ -13,7 +15,8 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ t, icons }) => {
-  const footerNavLinks = ["/", "/projects", "/news", "/careers"];
+  const navLinks = ["/about-us", "/", "/projects", "/careers", "/news"];
+
   return (
     <footer className="bg-[#1A2B3C] text-white pt-24 pb-12 border-t border-white/10 relative overflow-hidden font-jp-style">
       {/* Background Texture/Pattern for "Modern" feel */}
@@ -30,14 +33,11 @@ const Footer: React.FC<FooterProps> = ({ t, icons }) => {
               {t.footer.description}
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
+              <a href="https://www.linkedin.com/company/wataco/" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
                 <icons.Linkedin size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
+              <a href="https://www.facebook.com/profile.php?id=61584943418127" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
                 <icons.Facebook size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#228B22] transition-colors text-white">
-                <icons.Youtube size={18} />
               </a>
             </div>
           </div>
@@ -50,16 +50,33 @@ const Footer: React.FC<FooterProps> = ({ t, icons }) => {
                 <li key={idx}><a href="#" className="hover:text-[#FFD700] transition-colors">{item}</a></li>
               ))}
             </ul>
+            <h4 className="text-lg font-bold text-white mb-6 mt-8 font-heading">{t.footer.certificatesTitle}</h4>
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { src: '/iso/iso9001.svg', title: 'ISO 9001' },
+                { src: '/iso/iso14001.svg', title: 'ISO 14001' },
+                { src: '/iso/iso45001.svg', title: 'ISO 45001' },
+              ].map((cert, index) => (
+                <CertificateCard key={index} imageSrc={cert.src} title={cert.title} />
+              ))}
+            </div>
           </div>
 
           {/* Col 3: Company */}
           <div>
             <h4 className="text-lg font-bold text-white mb-6 font-heading">{t.footer.companyTitle}</h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              {t.footer.company.map((item: string, idx: number) => (
-                <li key={idx}><a href={footerNavLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</a></li>
+              {t.nav.map((item: string, idx: number) => (
+                navLinks[idx].startsWith('/') ? (
+                  <li>
+                    <Link key={idx} to={navLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</Link>
+                  </li>
+                ) : (
+                  <a key={idx} href={navLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</a>
+                )
               ))}
             </ul>
+
           </div>
 
           {/* Col 4: Contact */}

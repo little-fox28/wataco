@@ -137,7 +137,7 @@ const InvestmentSolutionsSection: React.FC<{ t: TranslationContent }> = ({ t }) 
                                 {/* CTA Link to Details */}
                                 {activeSolution.linkSlug && (
                                     <div className="mt-10 flex justify-end border-t border-gray-100 pt-6">
-                                        <a href={"/wataco/posts/giai-phap-esco"} className="inline-flex items-center text-white bg-[#228B22] px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-xs hover:bg-[#1A2B3C] transition-colors shadow-md group">
+                                        <a href={`/posts/${activeSolution.linkSlug}`} className="inline-flex items-center text-white bg-[#228B22] px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-xs hover:bg-[#1A2B3C] transition-colors shadow-md group">
                                             {t.solutionsLabels.detailCta}
                                             <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                                         </a>

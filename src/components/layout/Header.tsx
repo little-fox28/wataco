@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const { t, lang, setLang } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const navLinks = ["/", "/projects", "/careers", "/news", "/about-us"];
+  const navLinks = ["/about-us", "/", "/projects", "/careers", "/news"];
 
   useEffect(() => {
     const handleScroll = () => {

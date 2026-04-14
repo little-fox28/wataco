@@ -4,7 +4,7 @@ import type { Translations } from '../types';
 
 export const translations: Translations = {
   VN: {
-    nav: ["Trang chủ", "Dự án", "Tuyển dụng", "Tin tức", "Về Chúng Tôi"],
+    nav: ["Về Chúng Tôi", "Trang chủ", "Dự án", "Tuyển dụng", "Tin tức"],
     heroH1: "KỸ THUẬT\nNHẬT BẢN.\nNĂNG LƯỢNG\nVIỆT NAM.",
     heroSub: "Kế thừa di sản kỹ thuật từ Watanabe Create Group (Sendai, Nhật Bản) để thúc đẩy quá trình chuyển đổi năng lượng công nghiệp tại Việt Nam.",
     ctaMain: "NHẬN TƯ VẤN KỸ THUẬT",
@@ -208,7 +208,7 @@ export const translations: Translations = {
           clientToPartner: "Trả tiền điện hàng tháng",
           partnerToWataco: "Giải ngân tài chính"
         },
-        linkSlug: "mo-hinh-esco"
+        linkSlug: "giai-phap-esco"
       },
       {
         id: "lease",
@@ -233,7 +233,7 @@ export const translations: Translations = {
           partnerToWataco: "Giải ngân tài chính"
         },
         note: "Khách hàng cho thuê mái nhàn rỗi, không rủi ro, có quyền ký cho thuê tiếp hoặc thừa hưởng lại hệ thống sau 20 năm.",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-mai-xuong-lap-dien-mat-troi"
       },
       {
         id: "invest",
@@ -256,7 +256,7 @@ export const translations: Translations = {
         flows: {
           clientToWataco: "Cung cấp trọn gói EPC (Tư vấn, Thiết kế, Thi công, Bảo hành)"
         },
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "giai-phap-dau-tu-he-thong-dien-mat-troi-tu-do-tai-chinh"
       },
       {
         id: "finance",
@@ -282,7 +282,7 @@ export const translations: Translations = {
           partnerToWataco: "Giải ngân 80% tài chính"
         },
         note: "WATACO đang liên kết với các đối tác ngân hàng uy tín để đưa ra dịch vụ với lãi suất ưu đãi.",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-tai-chinh-dien-mat-troi-dau-tu-20-phan-tram"
       }
     ],
     newsTitle: "Báo chí nói về chúng tôi",
@@ -644,7 +644,7 @@ export const translations: Translations = {
     },
   },
   EN: {
-    nav: ["Home", "Projects", "Careers", "News", "About Us"],
+    nav: ["About Us", "Home", "Projects", "Careers", "News"],
     heroH1: "JAPANESE\nENGINEERING.\nVIETNAMESE\nENERGY.",
     heroSub: "Leveraging 30+ years of Watanabe Create heritage from Sendai to power Vietnam's industrial transition.",
     ctaMain: "REQUEST CONSULTING",
@@ -847,7 +847,7 @@ export const translations: Translations = {
           clientToPartner: "Monthly electricity payment",
           partnerToWataco: "Financial disbursement"
         },
-        linkSlug: "mo-hinh-esco"
+        linkSlug: "giai-phap-esco"
       },
       {
         id: "lease",
@@ -872,7 +872,7 @@ export const translations: Translations = {
           partnerToWataco: "Financial disbursement"
         },
         note: "Clients lease idle rooftop space with low risk and can renew leasing or inherit the system after 20 years.",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-mai-xuong-lap-dien-mat-troi"
       },
       {
         id: "invest",
@@ -895,7 +895,7 @@ export const translations: Translations = {
         flows: {
           clientToWataco: "Full EPC package (consulting, design, construction, warranty)"
         },
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "giai-phap-dau-tu-he-thong-dien-mat-troi-tu-do-tai-chinh"
       },
       {
         id: "finance",
@@ -921,7 +921,7 @@ export const translations: Translations = {
           partnerToWataco: "80% financial disbursement"
         },
         note: "WATACO partners with trusted banks to provide preferential interest-rate services.",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-tai-chinh-dien-mat-troi-dau-tu-20-phan-tram"
       }
     ],
     newsTitle: "Media Coverage",
@@ -1280,7 +1280,7 @@ export const translations: Translations = {
     },
   },
   JP: {
-    nav: ["ホーム", "プロジェクト", "キャリア", "ニュース", "私たちについて"],
+    nav: ["私たちについて", "ホーム", "プロジェクト", "キャリア", "ニュース"],
     heroH1: "日本の\n技術。\nベトナムの\nエネルギー。",
     heroSub: "仙台のワタナベクリエイトグループの30年以上の技術遺産を継承。",
     ctaMain: "技術相談",
@@ -1483,7 +1483,7 @@ export const translations: Translations = {
           clientToPartner: "毎月の電気料金支払い",
           partnerToWataco: "資金実行"
         },
-        linkSlug: "mo-hinh-esco"
+        linkSlug: "giai-phap-esco"
       },
       {
         id: "lease",
@@ -1508,7 +1508,7 @@ export const translations: Translations = {
           partnerToWataco: "資金実行"
         },
         note: "顧客は遊休屋根を低リスクで賃貸でき、20年後に設備を継承または再契約が可能です。",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-mai-xuong-lap-dien-mat-troi"
       },
       {
         id: "invest",
@@ -1531,7 +1531,7 @@ export const translations: Translations = {
         flows: {
           clientToWataco: "フルEPC提供（コンサル、設計、施工、保証）"
         },
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "giai-phap-dau-tu-he-thong-dien-mat-troi-tu-do-tai-chinh"
       },
       {
         id: "finance",
@@ -1557,7 +1557,7 @@ export const translations: Translations = {
           partnerToWataco: "80%資金実行"
         },
         note: "WATACOは信頼できる銀行パートナーと連携し、優遇金利サービスを提供しています。",
-        linkSlug: "giai-phap-tai-chinh-va-dau-tu-dien-mat-troi"
+        linkSlug: "cho-thue-tai-chinh-dien-mat-troi-dau-tu-20-phan-tram"
       }
     ],
     newsTitle: "メディア掲載",

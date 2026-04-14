@@ -48,7 +48,7 @@ const PPAImage = () => {
     return (
         <div className="relative w-[85%] max-w-225 mx-auto font-sans select-none">
             {/* Base Image */}
-            <img src={"/wataco/ppa.png"} alt="PPA Model Base" className="w-full block rounded-2xl" />
+            <img src={"/ppa.png"} alt="PPA Model Base" className="w-full block rounded-2xl" />
 
             {/* Text Overlay */}
             <div className="absolute inset-0">

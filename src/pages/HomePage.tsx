@@ -4,7 +4,6 @@ import HeritageSection from '../components/sections/page-home/HeritageSection';
 import HeroSection from '../components/sections/page-home/heroSection/HeroSection';
 import InvestmentSolutionsSection from '../components/sections/page-home/InvestmentSolutionSection';
 import MapAndClientsSection from '../components/sections/page-home/MapAndClientsSection';
-import MissionSection from '../components/sections/page-home/MissionSection';
 import PpaModelSection from '../components/sections/page-home/ppaSection';
 import ProjectSection from '../components/sections/page-home/projectSection';
 import StatsSection from '../components/sections/page-home/StatsSection';
@@ -23,8 +22,6 @@ export default function HomePage() {
       <StatsSection t={t} />
 
       <HeritageSection t={t} />
-
-      <MissionSection t={t} />
 
       <InvestmentSolutionsSection t={t} />
 

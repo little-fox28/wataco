@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import React, { forwardRef } from 'react';
+import MissionSection from '../components/sections/page-home/MissionSection';
 import { useTranslation } from '../hooks/useTranslation';
 
 const FontStyles: React.FC = () => (
@@ -73,6 +74,9 @@ export default function AboutUsPage() {
     return (
         <div className="bg-[#F8FAFC] min-h-screen text-[#1A2B3C] selection:bg-[#FFD700] selection:text-[#1A2B3C] font-sans">
             <FontStyles />
+
+            <MissionSection t={t} />
+
 
             <section className="py-20 lg:py-32 bg-white border-b border-gray-100 overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-6">

@@ -16,7 +16,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const App = () => {
   return (
     <LanguageProvider>
-      <Router basename="/wataco/">
+      <Router basename="/">
         <Layout>
           <ScrollToTop />
           <Routes>
