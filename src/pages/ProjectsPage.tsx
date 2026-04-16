@@ -32,6 +32,7 @@ interface ProjectDataProjectsPage {
     year: string;
     status: string;
     image: string;
+    slug: string;
 }
 
 interface ProjectCardProps {
@@ -161,6 +162,7 @@ export default function ProjectsPage() {
             year: p.year,
             status: p.status,
             image: p.img,
+            slug: p.slug
         })),
         ...t.projectsData.international.map((p, i) => ({
             id: t.projectsData.vietnam.length + i,
@@ -171,6 +173,7 @@ export default function ProjectsPage() {
             year: p.year,
             status: p.status,
             image: p.img,
+            slug: p.slug
         })),
     ];
 
@@ -274,7 +277,7 @@ export default function ProjectsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div className="contents">
                             {visibleProjects.map((project) => (
-                                <Link to={"/posts/du-an-dien-mat-troi-th-da-lat-milk"} key={project.id}>
+                                <Link to={`/posts/${project.slug}`} key={project.id}>
                                     <ProjectCard project={project} />
                                 </Link>
                             ))}

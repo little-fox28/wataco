@@ -3,7 +3,7 @@ import { investmentSolutionPost } from "./invest-solutions/invesment-solution";
 import { roofLeasingService } from "./invest-solutions/roof-leasing";
 import { solarDesignEngineerJobPost } from "./jobs";
 import { allNewsPosts } from "./news";
-import { thDalatMilkProjectPost } from "./projects/TH-TrueMilk";
+import { allProjectPosts } from "./projects";
 import { epcServicePost } from "./wataco-service/epc-service";
 import { ppaModelPost } from "./wataco-service/ppa-model";
 import { watacoServicePost } from "./wataco-service/wataco-service";
@@ -14,6 +14,11 @@ import { whySolarPost } from "./why-solar/why-solar";
 
 // Helper to convert array to slug-mapped object
 const newsPostsMap = allNewsPosts.reduce((acc, post) => {
+    acc[post.slug] = post;
+    return acc;
+}, {} as Record<string, any>);
+
+const allProjectPostsMap = allProjectPosts.reduce((acc, post) => {
     acc[post.slug] = post;
     return acc;
 }, {} as Record<string, any>);
@@ -30,7 +35,7 @@ export const contentDatabase = {
     [ppaModelPost.slug]: ppaModelPost,
     [strategicPartnershipPost.slug]: strategicPartnershipPost,
     [watacoServicePost.slug]: watacoServicePost,
-    [thDalatMilkProjectPost.slug]: thDalatMilkProjectPost,
+    ...allProjectPostsMap,
     [solarDesignEngineerJobPost.slug]: solarDesignEngineerJobPost,
     [epcServicePost.slug]: epcServicePost,
     ...newsPostsMap

@@ -54,7 +54,7 @@ const StaggerItem = forwardRef<HTMLDivElement, { children: ReactNode; className?
 ));
 
 const dailyActivitiesMeta = [
-    { id: 1, img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800", span: "md:col-span-2 md:row-span-2" },
+    { id: 1, img: "/team_building.jpg", span: "md:col-span-2 md:row-span-2" },
     { id: 2, img: "https://images.unsplash.com/photo-1759922378222-47ad736a174d?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-1" },
     { id: 3, img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-1" },
     { id: 4, img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-2" },
@@ -66,9 +66,6 @@ export default function AboutUsPage() {
     const { t } = useTranslation();
 
     const about = t.aboutUsPage;
-    // const awardsData = about.awards.items.map((item, idx) => ({ ...item, icon: awardsMeta[idx] ?? Trophy }));
-    // const recognitions = about.recognitions.map((item, idx) => ({ ...item, img: recognitionsMeta[idx]?.img ?? recognitionsMeta[0].img, color: recognitionsMeta[idx]?.color ?? "#FFD700" }));
-    // const communityActivities = about.community.activities.map((item, idx) => ({ ...item, img: communityMeta[idx]?.img ?? communityMeta[0].img, icon: communityMeta[idx]?.icon ?? SunMedium }));
     const dailyActivities = about.dailyActivities.map((item, idx) => ({ ...item, id: dailyActivitiesMeta[idx]?.id ?? idx + 1, img: dailyActivitiesMeta[idx]?.img ?? dailyActivitiesMeta[0].img, span: dailyActivitiesMeta[idx]?.span ?? "md:col-span-1 md:row-span-1" }));
 
     return (

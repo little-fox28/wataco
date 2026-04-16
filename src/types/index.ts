@@ -63,6 +63,7 @@ export interface ProjectData {
     year: string;
     status: string;
     img: string;
+    slug: string
 }
 
 export interface ProductTab {
@@ -123,6 +124,11 @@ export interface NewsArticle {
     link: string;
     tag: string;
     img: string;
+}
+
+export interface HeroSlideContent {
+    title: string;
+    description: string;
 }
 
 export interface InfoItem {
@@ -257,16 +263,6 @@ export interface AboutUsPageContent {
         title: string;
         category: string;
     }[];
-    community: {
-        subtitle: string;
-        title: string;
-        description: string;
-        activities: {
-            title: string;
-            category: string;
-            desc: string;
-        }[];
-    };
 }
 
 export interface TranslationContent {
@@ -280,6 +276,8 @@ export interface TranslationContent {
     heroSub: string;
     ctaMain: string;
     ctaSub: string;
+    heroSliderCta: string;
+    heroSlides: HeroSlideContent[];
     viewProject: string;
     stats: Stat[];
     mapStats: MapStats[];

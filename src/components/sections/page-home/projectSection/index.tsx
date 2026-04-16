@@ -46,12 +46,12 @@ export default function ProjectSection({ t }: ProjectSectionProps) {
                         <h3 className="text-[#228B22] font-black text-xs sm:text-sm uppercase tracking-[0.5em] font-heading mb-2">{t.projectsSub}</h3>
                         <h2 className="text-2xl sm:text-3xl lg:text-6xl font-black tracking-tighter leading-none text-[#1A2B3C] font-heading">{t.projectsTitle}</h2>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex items-center gap-2">
                         {t.projectTabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => handleProjectTabChange(tab.id)}
-                                className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300  ${activeProjectTab === tab.id
+                                className={`px-5 py-2.5 sm:px-2.5 sm:py:2.5 text-sm font-semibold rounded-full transition-all duration-300  ${activeProjectTab === tab.id
                                     ? 'bg-[#1A2B3C] text-white shadow-lg shadow-blue-900/20 transform scale-105'
                                     : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} 
                   `}
@@ -135,7 +135,7 @@ export default function ProjectSection({ t }: ProjectSectionProps) {
                                                 <span className="text-sm font-bold font-tech">{project.production}</span>
                                             </div>
                                             <button className="ml-auto bg-white/10 hover:bg-[#228b22] text-white px-6 py-2 text-[9px] font-black uppercase tracking-widest transition-colors border border-white/20 hover:border-[#228b22] rounded-md min-h-[44px] active:scale-95">
-                                                <Link to={"posts/du-an-dien-mat-troi-th-da-lat-milk"}>
+                                                <Link to={`posts/${project.slug}`}>
                                                     {t.viewProject}
                                                 </Link>
                                             </button>

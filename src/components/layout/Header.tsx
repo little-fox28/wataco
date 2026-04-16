@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingCart } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, Menu, ShoppingCart, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation, type Language } from '../../hooks/useTranslation';
 import WatacoLogo from '../common/WatacoLogo';
 
@@ -9,7 +9,10 @@ const Header: React.FC = () => {
   const { t, lang, setLang } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const navLinks = ["/about-us", "/", "/projects", "/careers", "/news"];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isPostPage = location.pathname.startsWith('/posts/');
+  const navLinks = ["/", "/about-us", "/projects", "/careers", "/news"];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,11 +27,10 @@ const Header: React.FC = () => {
     <>
       {/* Header - Green Background (#228B22) */}
       <header className={`w-full z-50 transition-all duration-300 ${isSticky ? 'fixed top-0 bg-[#228B22]/95 backdrop-blur-md shadow-lg' : 'relative bg-[#228B22]'} border-b border-white/5`}>
-        <div className="max-w-[1440px] mx-auto px-6 h-16 lg:h-20 flex justify-between items-center">
+        {/* Desktop layout */}
+        <div className="max-w-[1440px] mx-auto px-6 h-16 lg:h-20 hidden lg:flex justify-between items-center">
           <WatacoLogo />
-
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex space-x-10 items-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
+          <nav className="flex space-x-10 items-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
             {t.nav.map((item: string, idx: number) => (
               navLinks[idx].startsWith('/') ? (
                 <Link key={idx} to={navLinks[idx]} className="hover:text-[#FFD700] transition-colors">{item}</Link>
@@ -53,14 +55,47 @@ const Header: React.FC = () => {
               {t.getQuote}
             </button>
           </nav>
+        </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="lg:hidden text-white p-2"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu size={28} />
-          </button>
+        {/* Mobile layout */}
+        <div className={`max-w-[1440px] mx-auto px-4 h-16 lg:hidden flex items-center ${isPostPage ? 'relative justify-between' : 'justify-between'}`}>
+          {isPostPage ? (
+            <>
+              {/* Left: back button */}
+              <button
+                onClick={() => navigate(-1)}
+                className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full text-white/80 hover:text-[#FFD700] hover:bg-white/10 transition-all"
+                aria-label="Go back"
+              >
+                <ChevronLeft size={22} />
+              </button>
+
+              {/* Center: logo – absolutely centered */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="pointer-events-auto">
+                  <WatacoLogo />
+                </div>
+              </div>
+
+              {/* Right: hamburger */}
+              <button
+                className="relative z-10 text-white p-2"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Menu size={28} />
+              </button>
+            </>
+          ) : (
+            <>
+              <WatacoLogo />
+              <button
+                className="text-white p-2"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Menu size={28} />
+              </button>
+            </>
+          )}
         </div>
       </header>
 

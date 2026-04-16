@@ -1,30 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-const HERO_SLIDES_DATA = [
-    {
-        title: "DOANH NGHIỆP HÀNG ĐẦU\nTRONG LĨNH VỰC TÁI TẠO",
-        description: "Wataco đồng hành cùng doanh nghiệp ở Việt Nam và Nhật Bản trên hành trình chuyển đổi kép hướng tới Net-Zero."
-    },
-    {
-        title: "MÔ HÌNH HỢP TÁC LINH HOẠT:\nZERO CAPEX SOLAR",
-        description: "Điện mặt trời mái nhà 0 đồng vốn đầu tư dành cho các doanh nghiệp."
-    },
-    {
-        title: "ĐẦU TƯ & PHÁT TRIỂN\nDỰ ÁN NĂNG LƯỢNG TÁI TẠO",
-        description: "Nhà đầu tư tin cậy cho các dự án điện mặt trời mái nhà của doanh nghiệp."
-    },
-    {
-        title: "GIẢI PHÁP CHUYỂN ĐỔI KÉP:\nCHUYỂN ĐỔI SỐ - CHUYỂN ĐỔI XANH",
-        description: "Đồng hành cùng doanh nghiệp trên hành trình hướng tới 100% sử dụng năng lượng tái tạo và Net-Zero với lộ trình phù hợp dựa trên nền tảng số hóa chuẩn quốc tế."
-    }
-];
+import { useTranslation } from "../../../../hooks/useTranslation";
 
 const HeroSlider = () => {
     const [heroIndex, setHeroIndex] = useState(0);
+    const { t } = useTranslation();
 
-    const slides = HERO_SLIDES_DATA
-    const ctaText = "Nhận tư vấn"
+    const slides = t.heroSlides;
+    const ctaText = t.heroSliderCta;
 
     useEffect(() => {
         const heroTimer = setInterval(() => {
