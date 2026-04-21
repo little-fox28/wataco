@@ -9,7 +9,8 @@ import {
 import { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
-import { contentDatabase } from '../../data/posts';
+import { contentDatabaseByLanguage } from '../../data/posts';
+import { useTranslation } from '../../hooks/useTranslation';
 
 // --- 1. GLOBAL STYLES ---
 const FontStyles = () => (
@@ -143,6 +144,9 @@ const FontStyles = () => (
 // --- MAIN ARTICLE COMPONENT ---
 
 export default function ArticleDetail() {
+    const { t, lang } = useTranslation();
+    const contentDatabase = contentDatabaseByLanguage[lang];
+    const np = t.newsPage;
     const { slug } = useParams();
     const [currentSlug, setCurrentSlug] = useState(slug || "");
     const [copied, setCopied] = useState(false);
@@ -205,7 +209,7 @@ export default function ArticleDetail() {
     if (!pageData) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <p>Bài viết không tồn tại.</p>
+                <p className="text-gray-500">{np.notFound}</p>
             </div>
         );
     }
@@ -246,7 +250,7 @@ export default function ArticleDetail() {
                         {/* Semantic Breadcrumbs */}
                         <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-[10px] uppercase tracking-widest text-white/80 mb-6 font-bold">
                             <ol className="flex items-center space-x-2 list-none m-0 p-0">
-                                <li><a href="#" className="hover:text-white transition-colors">Trang chủ</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">{np.home}</a></li>
                                 <li><ChevronRight size={12} /></li>
                                 <li><a href="#" className="hover:text-white transition-colors">{pageData.category}</a></li>
                                 <li><ChevronRight size={12} /></li>
@@ -288,7 +292,7 @@ export default function ArticleDetail() {
 
                             {/* Social Share Footer */}
                             <div className="mt-12 py-6 border-y border-gray-100 flex items-center justify-between">
-                                <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">Chia sẻ bài viết:</span>
+                                <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">{np.share}</span>
                                 <div className="flex items-center gap-3">
                                     <button className="w-10 h-10 rounded-full bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition-colors">
                                         <Facebook size={18} />
@@ -298,7 +302,7 @@ export default function ArticleDetail() {
                                     </button>
                                     <button onClick={handleShareLink} className="w-10 h-10 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center hover:bg-[#1A2B3C] hover:text-white transition-colors relative">
                                         <Link2 size={18} />
-                                        {copied && <span className="absolute -top-8 bg-[#1A2B3C] text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">Đã copy link</span>}
+                                        {copied && <span className="absolute -top-8 bg-[#1A2B3C] text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">{np.copied}</span>}
                                     </button>
                                 </div>
                             </div>
@@ -315,7 +319,7 @@ export default function ArticleDetail() {
                                         <div className="bg-[#F8FAFC] px-6 py-4 border-b border-gray-100 flex items-center">
                                             <ListOrdered size={18} className="text-[#228B22] mr-2" />
                                             <h2 className="text-sm font-black text-[#1A2B3C] uppercase tracking-widest m-0">
-                                                Nội dung chính
+                                                {np.tocTitle}
                                             </h2>
                                         </div>
                                         <nav aria-label="Table of contents" className="p-6">
@@ -339,7 +343,7 @@ export default function ArticleDetail() {
                                 <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
                                     <div className="bg-[#F8FAFC] px-6 py-4 border-b border-gray-100">
                                         <h2 className="text-sm font-black text-[#1A2B3C] uppercase tracking-widest m-0">
-                                            Bài viết liên quan
+                                            {np.relatedArticles}
                                         </h2>
                                     </div>
                                     <div className="flex flex-col p-6 space-y-6">
@@ -360,7 +364,7 @@ export default function ArticleDetail() {
                                                 </div>
                                             </div>
                                         )) : (
-                                            <p className="text-sm text-gray-500">Đang cập nhật thêm bài viết...</p>
+                                            <p className="text-sm text-gray-500">{np.updating}</p>
                                         )}
                                     </div>
                                 </div>
@@ -371,12 +375,12 @@ export default function ArticleDetail() {
                                     <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm border border-white/20">
                                         <Phone size={28} className="text-[#FFD700]" />
                                     </div>
-                                    <h3 className="text-xl font-black font-heading mb-3 relative z-10 m-0">Cần tư vấn trực tiếp?</h3>
+                                    <h3 className="text-xl font-black font-heading mb-3 relative z-10 m-0">{np.needConsult}</h3>
                                     <p className="text-sm text-gray-300 mb-8 font-light relative z-10">
-                                        Kỹ sư của chúng tôi sẵn sàng giải đáp mọi thắc mắc về kỹ thuật và tài chính.
+                                        {np.consultDesc}
                                     </p>
-                                    <a href="tel:0786788837" aria-label="Gọi ngay số hotline" className="block w-full bg-[#228B22] hover:bg-[#FFD700] hover:text-[#1A2B3C] text-white py-4 rounded-md font-bold uppercase tracking-widest text-xs transition-colors relative z-10 shadow-lg text-center">
-                                        Gọi Hotline: 078.678.8837
+                                    <a href="tel:0359 959 831" aria-label="Gọi ngay số hotline" className="block w-full bg-[#228B22] hover:bg-[#FFD700] hover:text-[#1A2B3C] text-white py-4 rounded-md font-bold uppercase tracking-widest text-xs transition-colors relative z-10 shadow-lg text-center">
+                                        {np.callHotline} 078.678.8837
                                     </a>
                                 </div>
 

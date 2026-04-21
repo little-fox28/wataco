@@ -28,7 +28,7 @@ const Header: React.FC = () => {
       {/* Header - Green Background (#228B22) */}
       <header className={`w-full z-50 transition-all duration-300 ${isSticky ? 'fixed top-0 bg-[#228B22]/95 backdrop-blur-md shadow-lg' : 'relative bg-[#228B22]'} border-b border-white/5`}>
         {/* Desktop layout */}
-        <div className="max-w-[1440px] mx-auto px-6 h-16 lg:h-20 hidden lg:flex justify-between items-center">
+        <div className="max-w-360 mx-auto px-6 h-16 lg:h-20 hidden lg:flex justify-between items-center">
           <WatacoLogo />
           <nav className="flex space-x-10 items-center text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
             {t.nav.map((item: string, idx: number) => (
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile layout */}
-        <div className={`max-w-[1440px] mx-auto px-4 h-16 lg:hidden flex items-center ${isPostPage ? 'relative justify-between' : 'justify-between'}`}>
+        <div className={`max-w-360 mx-auto px-4 h-16 lg:hidden flex items-center ${isPostPage ? 'relative justify-between' : 'justify-between'}`}>
           {isPostPage ? (
             <>
               {/* Left: back button */}
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-[#1A2B3C] text-white flex flex-col p-6 lg:hidden"
+            className="fixed inset-0 z-60 bg-[#1A2B3C] text-white flex flex-col p-6 lg:hidden"
           >
             <div className="flex justify-between items-center mb-8">
               <WatacoLogo />
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
                   <button key={l} onClick={() => setLang(l)} className={lang === l ? 'text-[#FFD700]' : 'text-gray-400'}>{l}</button>
                 ))}
               </div>
-              <button className="bg-[#228B22] text-white w-full py-4 rounded-md font-black uppercase tracking-widest min-h-[44px] flex items-center justify-center">
+              <button className="bg-[#228B22] text-white w-full py-4 rounded-md font-black uppercase tracking-widest min-h-11 flex items-center justify-center">
                 <ShoppingCart size={16} className="mr-2" />
                 {t.getQuote}
               </button>

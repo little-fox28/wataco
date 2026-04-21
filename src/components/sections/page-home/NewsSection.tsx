@@ -97,7 +97,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({ t }) => {
                                                 {t.newsArticles[activeNewsIndex].title}
                                             </h3>
                                             <Link to={"posts/wataco-ky-ket-hop-tac-nhat-ban"} className="inline-flex items-center text-white hover:text-[#FFD700] transition-colors text-xs font-bold uppercase tracking-widest group">
-                                                <span>Đọc chi tiết</span>
+                                                <span>{t.newsPage.readDetail}</span>
                                                 <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                             </Link>
                                         </motion.div>

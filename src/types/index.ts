@@ -186,6 +186,7 @@ export interface Job {
     salary: string;
     deadline: string;
     urgent: boolean;
+    slug: string;
 }
 
 export interface CareersPage {
@@ -312,6 +313,7 @@ export interface TranslationContent {
     careersPage: CareersPage;
     aboutUsPage: AboutUsPageContent;
     newsPage: NewsPageContent;
+    newsPosts: NewsPost[];
     projectsData: {
         [key: string]: ProjectData[];
     };
@@ -352,6 +354,22 @@ export interface TranslationContent {
     };
 }
 
+export interface NewsPost {
+    id: number;
+    slug: string;
+    category: string;
+    categoryId: string;
+    date: string;
+    views: number;
+    title: string;
+    summary: string;
+    metaDescription: string;
+    heroImage: string;
+    tags: string[];
+    contentHTML: string;
+    toc: { id: string; label: string }[];
+}
+
 export interface Translations {
     VN: TranslationContent;
     EN: TranslationContent;
@@ -373,6 +391,17 @@ export interface NewsPageContent {
     readResearch: string;
     categoryAll: string;
     categoryProject: string;
+    home: string;
+    share: string;
+    copied: string;
+    tocTitle: string;
+    relatedArticles: string;
+    updating: string;
+    needConsult: string;
+    consultDesc: string;
+    callHotline: string;
+    notFound: string;
+    readDetail: string;
 }
 
 // NewsPage specific interfaces

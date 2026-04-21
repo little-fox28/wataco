@@ -37,11 +37,11 @@ const vnProjectsData: ProjectsData = {
       slug: 'hcong-trinh-he-thong-dien-mat-troi-mai-nha-tai-nha-may-cua-cong-ty-tnhh-mtv-the-he-moi-phu-tho'
     },
     {
-      name: "Dự án Kaifa Industry Vietnam - Nhà máy số 01", location: "Hố Nai, Đồng Nai", capacity: "339.84 kWp", production: "493 MWh/Năm", year: "2026", status: "Hoàn thành", img: "project/kaifa-1.png",
+      name: "Dự án Kaifa Industry Vietnam - Nhà máy số 01", location: "Hố Nai, Đồng Nai", capacity: "339.84 kWp", production: "493 MWh/Năm", year: "2025", status: "Hoàn thành", img: "project/kaifa-1.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-o-nha-may-so-01-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {
-      name: "Dự án Kaifa Industry Vietnam - Nhà máy số 02", location: "Hố Nai, Đồng Nai", capacity: "441.32 kWp", production: "640 MWh/Năm", year: "2026", status: "Hoàn thành", img: "project/kaifa-2.png",
+      name: "Dự án Kaifa Industry Vietnam - Nhà máy số 02", location: "Hố Nai, Đồng Nai", capacity: "441.32 kWp", production: "640 MWh/Năm", year: "2025", status: "Hoàn thành", img: "project/kaifa-2.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-nha-may-so-02-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {
@@ -112,11 +112,11 @@ const enProjectsData: ProjectsData = {
       slug: 'hcong-trinh-he-thong-dien-mat-troi-mai-nha-tai-nha-may-cua-cong-ty-tnhh-mtv-the-he-moi-phu-tho'
     },
     {
-      name: "Kaifa Industry Vietnam Project - Plant No. 01", location: "Ho Nai, Dong Nai", capacity: "339.84 kWp", production: "493 MWh/Year", year: "2026", status: "Completed", img: "project/kaifa-1.png",
+      name: "Kaifa Industry Vietnam Project - Plant No. 01", location: "Ho Nai, Dong Nai", capacity: "339.84 kWp", production: "493 MWh/Year", year: "2025", status: "Completed", img: "project/kaifa-1.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-o-nha-may-so-01-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {
-      name: "Kaifa Industry Vietnam Project - Plant No. 02", location: "Ho Nai, Dong Nai", capacity: "441.32 kWp", production: "640 MWh/Year", year: "2026", status: "Completed", img: "project/kaifa-2.png",
+      name: "Kaifa Industry Vietnam Project - Plant No. 02", location: "Ho Nai, Dong Nai", capacity: "441.32 kWp", production: "640 MWh/Year", year: "2025", status: "Completed", img: "project/kaifa-2.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-nha-may-so-02-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {
@@ -187,11 +187,11 @@ const jpProjectsData: ProjectsData = {
       slug: 'hcong-trinh-he-thong-dien-mat-troi-mai-nha-tai-nha-may-cua-cong-ty-tnhh-mtv-the-he-moi-phu-tho'
     },
     {
-      name: "カイファ・インダストリー・ベトナム プロジェクト 第01工場", location: "ホーナイ、ドンナイ省", capacity: "339.84 kWp", production: "493 MWh/年", year: "2026", status: "完成", img: "project/kaifa-1.png",
+      name: "カイファ・インダストリー・ベトナム プロジェクト 第01工場", location: "ホーナイ、ドンナイ省", capacity: "339.84 kWp", production: "493 MWh/年", year: "2025", status: "完成", img: "project/kaifa-1.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-o-nha-may-so-01-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {
-      name: "カイファ・インダストリー・ベトナム プロジェクト 第02工場", location: "ホーナイ、ドンナイ省", capacity: "441.32 kWp", production: "640 MWh/年", year: "2026", status: "完成", img: "project/kaifa-2.png",
+      name: "カイファ・インダストリー・ベトナム プロジェクト 第02工場", location: "ホーナイ、ドンナイ省", capacity: "441.32 kWp", production: "640 MWh/年", year: "2025", status: "完成", img: "project/kaifa-2.png",
       slug: 'cong-trinh-he-thong-dien-mat-troi-mai-nha-nha-may-so-02-cua-cong-ty-tnhh-cong-nghiep-kaifa-viet-nam'
     },
     {

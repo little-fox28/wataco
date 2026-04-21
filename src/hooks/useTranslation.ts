@@ -1,5 +1,6 @@
 import { BarChart3, Battery, Building2, Calendar, Cpu, DollarSign, Facebook, Factory, FileText, Home, Leaf, Linkedin, Mail, MapPin, Newspaper, Package, PenTool, Phone, Settings, Shield, Sprout, Sun, TrendingUp, Wallet, Wrench, Youtube, Zap } from 'lucide-react';
 import { useLanguage, type Language } from '../contexts/LanguageContext';
+import { allNewsPostsByLanguage } from '../data/posts/news';
 import { projectsDataByLanguage } from '../data/projectsData';
 import type { Translations } from '../types';
 
@@ -297,7 +298,7 @@ export const translations: Translations = {
     getQuote: "NHẬN BÁO GIÁ",
     viewAllArticles: "Tất cả bài viết",
     footer: {
-      description: "Kiến tạo hạ tầng năng lượng bền vững tại Việt Nam dựa trên tinh hoa kỹ thuật từ thành phố Sendai, Nhật Bản.",
+      description: "Mang lại giá trị bền vững cho Tương lai.",
       solutionsTitle: "Giải pháp",
       solutions: [
         "Tổng thầu EPC",
@@ -319,8 +320,8 @@ export const translations: Translations = {
       contact: {
         address1: "Trụ sở chính tại Việt Nam: 29 Nguyễn Khắc Nhu, Phường Cầu Ông Lãnh, Thành phố Hồ Chí Minh, Việt Nam",
         address2: "Văn phòng đại diện Miền Bắc: Tầng 4, Số 44 Tràng Tiền, Phường Tràng Tiền, Quận Hoàn Kiếm, Thành phố Hà Nội, Việt Nam",
-        email: "info@wataco.net",
-        phone: "0786788837"
+        email: "info@wataco.com.vn",
+        phone: "0359959831"
       }
     },
     projectTabs: [
@@ -476,58 +477,19 @@ export const translations: Translations = {
       jobCard: {
         urgent: "Gấp",
         deadlinePrefix: "Hạn nộp: ",
-        apply: "Ứng tuyển"
+        apply: "Xem Chi Tiết"
       },
       jobs: [
         {
           id: 1,
-          title: "Kỹ Sư Thiết Kế Điện Mặt Trời (Solar Design Engineer)",
-          department: "Kỹ thuật",
-          location: "TP. Hồ Chí Minh",
-          type: "Toàn thời gian",
-          salary: "Thỏa thuận",
-          deadline: "30/06/2024",
-          urgent: true
-        },
-        {
-          id: 2,
-          title: "Trưởng Nhóm Kinh Doanh B2B (Sales Team Leader)",
+          title: "Nhân viên kinh doanh",
           department: "Kinh doanh",
-          location: "Bình Dương",
-          type: "Toàn thời gian",
-          salary: "20 - 30 Triệu + HH",
-          deadline: "15/06/2024",
-          urgent: true
-        },
-        {
-          id: 3,
-          title: "Chuyên Viên Giám Sát An Toàn (HSE Supervisor)",
-          department: "Vận hành",
-          location: "Các tỉnh miền Nam",
+          location: "TP. Hồ Chí Minh",
           type: "Toàn thời gian",
           salary: "Thỏa thuận",
-          deadline: "30/06/2024",
-          urgent: false
-        },
-        {
-          id: 4,
-          title: "Kế Toán Tổng Hợp",
-          department: "Văn phòng",
-          location: "TP. Hồ Chí Minh",
-          type: "Toàn thời gian",
-          salary: "15 - 18 Triệu",
-          deadline: "20/06/2024",
-          urgent: false
-        },
-        {
-          id: 5,
-          title: "Thực Tập Sinh Kỹ Thuật Điện",
-          department: "Kỹ thuật",
-          location: "TP. Hồ Chí Minh",
-          type: "Bán thời gian / Thực tập",
-          salary: "Hỗ trợ lương",
-          deadline: "Liên tục tuyển",
-          urgent: false
+          deadline: "02/09/2026",
+          urgent: true,
+          slug: "tuyen-dung-nhan-vien-kinh-doanh-solar"
         }
       ]
     },
@@ -598,7 +560,7 @@ export const translations: Translations = {
         { title: "Giám sát công trình", category: "Công việc" },
         { title: "Đào tạo nội bộ", category: "Phát triển" },
         { title: "Họp chiến lược Quý", category: "Văn phòng" },
-        { title: "Nghiệm thu dự án", category: "Công việc" },
+        // { title: "Nghiệm thu dự án", category: "Công việc" },
         { title: "Hoạt động thể thao", category: "Gắn kết" }
       ],
     },
@@ -617,7 +579,19 @@ export const translations: Translations = {
       readResearch: "Đọc nghiên cứu",
       categoryAll: "Tất cả tin tức",
       categoryProject: "Hợp tác & Dự án",
+      home: "Trang chủ",
+      share: "Chia sẻ bài viết:",
+      copied: "Đã copy link",
+      tocTitle: "Nội dung chính",
+      relatedArticles: "Bài viết liên quan",
+      updating: "Đang cập nhật thêm bài viết...",
+      needConsult: "Cần tư vấn trực tiếp?",
+      consultDesc: "Kỹ sư của chúng tôi sẵn sàng giải đáp mọi thắc mắc về kỹ thuật và tài chính.",
+      callHotline: "Gọi Hotline:",
+      notFound: "Bài viết không tồn tại.",
+      readDetail: "Đọc chi tiết",
     },
+    newsPosts: allNewsPostsByLanguage.VN,
   },
   EN: {
     nav: ["Home", "About Us", "Projects", "Careers", "News"],
@@ -911,7 +885,7 @@ export const translations: Translations = {
     getQuote: "QUOTE",
     viewAllArticles: "View All Articles",
     footer: {
-      description: "Creating sustainable energy infrastructure in Vietnam based on engineering excellence from Sendai, Japan.",
+      description: "Delivering sustainable value for the future.",
       solutionsTitle: "Solutions",
       solutions: [
         "EPC Contractor",
@@ -933,8 +907,8 @@ export const translations: Translations = {
       contact: {
         address1: "Head Office in Vietnam: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
         address2: "Northern Representative Office: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
-        email: "info@wataco.net",
-        phone: "0786788837"
+        email: "info@wataco.com.vn",
+        phone: "0359 959 831"
       }
     },
     whySolar: {
@@ -1087,58 +1061,19 @@ export const translations: Translations = {
       jobCard: {
         urgent: "Urgent",
         deadlinePrefix: "Apply by: ",
-        apply: "Apply"
+        apply: "View Detail"
       },
       jobs: [
         {
-          id: 1,
-          title: "Solar Design Engineer",
-          department: "Technical",
-          location: "Ho Chi Minh City",
-          type: "Full-time",
-          salary: "Negotiable",
-          deadline: "30/06/2024",
-          urgent: true
-        },
-        {
-          id: 2,
-          title: "B2B Sales Team Leader",
-          department: "Sales",
-          location: "Binh Duong",
-          type: "Full-time",
-          salary: "20 - 30 Million + Commission",
-          deadline: "15/06/2024",
-          urgent: true
-        },
-        {
-          id: 3,
-          title: "HSE Supervisor",
-          department: "Operation",
-          location: "Southern provinces",
-          type: "Full-time",
-          salary: "Negotiable",
-          deadline: "30/06/2024",
-          urgent: false
-        },
-        {
-          id: 4,
-          title: "General Accountant",
-          department: "Office",
-          location: "Ho Chi Minh City",
-          type: "Full-time",
-          salary: "15 - 18 Million",
-          deadline: "20/06/2024",
-          urgent: false
-        },
-        {
-          id: 5,
-          title: "Electrical Engineering Intern",
-          department: "Technical",
-          location: "Ho Chi Minh City",
-          type: "Part-time / Internship",
-          salary: "Stipend",
-          deadline: "Continuous recruitment",
-          urgent: false
+          "id": 1,
+          "title": "Sales Executive",
+          "department": "Sales",
+          "location": "Ho Chi Minh City",
+          "type": "Full-time",
+          "salary": "Negotiable",
+          "deadline": "02/09/2026",
+          "urgent": true,
+          "slug": "tuyen-dung-nhan-vien-kinh-doanh-solar"
         }
       ]
     },
@@ -1209,7 +1144,7 @@ export const translations: Translations = {
         { title: "Site Supervision", category: "Work" },
         { title: "Internal Training", category: "Development" },
         { title: "Quarterly Strategy Meeting", category: "Office" },
-        { title: "Project Acceptance", category: "Work" },
+        // { title: "Project Acceptance", category: "Work" },
         { title: "Sports Activities", category: "Connection" }
       ],
     },
@@ -1228,7 +1163,19 @@ export const translations: Translations = {
       readResearch: "Read research",
       categoryAll: "All news",
       categoryProject: "Partnerships & Projects",
+      home: "Home",
+      share: "Share this article:",
+      copied: "Link copied",
+      tocTitle: "Table of contents",
+      relatedArticles: "Related articles",
+      updating: "Updating more articles...",
+      needConsult: "Need direct consultation?",
+      consultDesc: "Our engineers are ready to answer all technical and financial questions.",
+      callHotline: "Call Hotline:",
+      notFound: "Article does not exist.",
+      readDetail: "Read detail",
     },
+    newsPosts: allNewsPostsByLanguage.EN,
   },
   JP: {
     nav: ["ホーム", "私たちについて", "プロジェクト", "キャリア", "ニュース"],
@@ -1522,7 +1469,7 @@ export const translations: Translations = {
     getQuote: "見積もり",
     viewAllArticles: "すべての記事を見る",
     footer: {
-      description: "仙台市からの日本の技術的エッセンスに基づき、ベトナムで持続可能なエネルギーインフラを創造します。",
+      description: "未来に向けた持続可能な価値を提供する。",
       solutionsTitle: "ソリューション",
       solutions: [
         "EPC（設計・調達・建設）",
@@ -1544,8 +1491,8 @@ export const translations: Translations = {
       contact: {
         address1: "ベトナム本社: 29 Nguyen Khac Nhu, Cau Ong Lanh Ward, Ho Chi Minh City, Vietnam",
         address2: "北部駐在員事務所: 4th Floor, 44 Trang Tien, Trang Tien Ward, Hoan Kiem District, Hanoi, Vietnam",
-        email: "info@wataco.net",
-        phone: "0786788837"
+        email: "info@wataco.com.vn",
+        phone: "0359 959 831"
       }
     },
     whySolar: {
@@ -1687,58 +1634,19 @@ export const translations: Translations = {
       jobCard: {
         urgent: "急募",
         deadlinePrefix: "応募締め切り: ",
-        apply: "応募する"
+        apply: "詳細を表示"
       },
       jobs: [
         {
-          id: 1,
-          title: "太陽光発電設計エンジニア",
-          department: "技術",
-          location: "ホーチミン市",
-          type: "フルタイム",
-          salary: "応相談",
-          deadline: "2024/06/30",
-          urgent: true
-        },
-        {
-          id: 2,
-          title: "B2Bセールスチームリーダー",
-          department: "営業",
-          location: "ビンズオン",
-          type: "フルタイム",
-          salary: "2000万～3000万+手数料",
-          deadline: "2024/06/15",
-          urgent: true
-        },
-        {
-          id: 3,
-          title: "HSEスーパーバイザー",
-          department: "運営",
-          location: "南部諸省",
-          type: "フルタイム",
-          salary: "応相談",
-          deadline: "2024/06/30",
-          urgent: false
-        },
-        {
-          id: 4,
-          title: "一般会計士",
-          department: "オフィス",
-          location: "ホーチミン市",
-          type: "フルタイム",
-          salary: "1500万～1800万",
-          deadline: "2024/06/20",
-          urgent: false
-        },
-        {
-          id: 5,
-          title: "電気工学インターン",
-          department: "技術",
-          location: "ホーチミン市",
-          type: "パートタイム/インターンシップ",
-          salary: "有給",
-          deadline: "随時募集",
-          urgent: false
+          "id": 1,
+          "title": "営業担当者",
+          "department": "営業部",
+          "location": "ホーチミン市",
+          "type": "正社員",
+          "salary": "応相談",
+          "deadline": "2026/09/02",
+          "urgent": true,
+          "slug": "tuyen-dung-nhan-vien-kinh-doanh-solar"
         }
       ]
     },
@@ -1809,7 +1717,7 @@ export const translations: Translations = {
         { title: "現場監督", category: "業務" },
         { title: "社内研修", category: "成長" },
         { title: "四半期戦略会議", category: "オフィス" },
-        { title: "プロジェクト検収", category: "業務" },
+        // { title: "プロジェクト検収", category: "業務" },
         { title: "スポーツ活動", category: "つながり" }
       ],
     },
@@ -1839,8 +1747,19 @@ export const translations: Translations = {
       readResearch: "研究を読む",
       categoryAll: "すべてのニュース",
       categoryProject: "提携 & プロジェクト",
-    }
-
+      home: "ホーム",
+      share: "記事をシェアする：",
+      copied: "リンクをコピーしました",
+      tocTitle: "目次",
+      relatedArticles: "関連記事",
+      updating: "さらに記事を更新中...",
+      needConsult: "直接相談が必要ですか？",
+      consultDesc: "当社のエンジニアが技術的・財務的なすべての質問にお答えします。",
+      callHotline: "ホットライン：",
+      notFound: "記事が存在しません。",
+      readDetail: "詳細を見る",
+    },
+    newsPosts: allNewsPostsByLanguage.JP,
   }
 };
 

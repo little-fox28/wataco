@@ -1,8 +1,10 @@
+
+import type { Language } from "../../contexts/LanguageContext";
 import { financialLeaseSolutionPost } from "./invest-solutions/finace-leasing";
 import { investmentSolutionPost } from "./invest-solutions/invesment-solution";
 import { roofLeasingService } from "./invest-solutions/roof-leasing";
-import { solarDesignEngineerJobPost } from "./jobs";
-import { allNewsPosts } from "./news";
+import { salesExecutiveJobPostEN, salesExecutiveJobPostJP, salesExecutiveJobPostVN } from "./jobs";
+import { allNewsPostsByLanguage } from "./news";
 import { allProjectPosts } from "./projects";
 import { epcServicePost } from "./wataco-service/epc-service";
 import { ppaModelPost } from "./wataco-service/ppa-model";
@@ -13,17 +15,12 @@ import { strategicPartnershipPost } from "./why-solar/strategic-partnership";
 import { whySolarPost } from "./why-solar/why-solar";
 
 // Helper to convert array to slug-mapped object
-const newsPostsMap = allNewsPosts.reduce((acc, post) => {
-    acc[post.slug] = post;
-    return acc;
-}, {} as Record<string, any>);
-
 const allProjectPostsMap = allProjectPosts.reduce((acc, post) => {
     acc[post.slug] = post;
     return acc;
 }, {} as Record<string, any>);
 
-export const contentDatabase = {
+const staticPosts = {
     [whySolarPost.slug]: whySolarPost,
     [ourServicesPost.slug]: ourServicesPost,
 
@@ -36,7 +33,35 @@ export const contentDatabase = {
     [strategicPartnershipPost.slug]: strategicPartnershipPost,
     [watacoServicePost.slug]: watacoServicePost,
     ...allProjectPostsMap,
-    [solarDesignEngineerJobPost.slug]: solarDesignEngineerJobPost,
     [epcServicePost.slug]: epcServicePost,
-    ...newsPostsMap
 };
+
+export const contentDatabaseByLanguage: Record<Language, Record<string, any>> = {
+    VN: {
+        ...staticPosts,
+        [salesExecutiveJobPostVN.slug]: salesExecutiveJobPostVN,
+        ...allNewsPostsByLanguage.VN.reduce((acc, post) => {
+            acc[post.slug] = post;
+            return acc;
+        }, {} as Record<string, any>)
+    },
+    EN: {
+        [salesExecutiveJobPostEN.slug]: salesExecutiveJobPostEN,
+        ...staticPosts,
+        ...allNewsPostsByLanguage.EN.reduce((acc, post) => {
+            acc[post.slug] = post;
+            return acc;
+        }, {} as Record<string, any>)
+    },
+    JP: {
+        [salesExecutiveJobPostJP.slug]: salesExecutiveJobPostJP,
+        ...staticPosts,
+        ...allNewsPostsByLanguage.JP.reduce((acc, post) => {
+            acc[post.slug] = post;
+            return acc;
+        }, {} as Record<string, any>)
+    }
+};
+
+// For backward compatibility (defaulting to VN)
+export const contentDatabase = contentDatabaseByLanguage.VN;

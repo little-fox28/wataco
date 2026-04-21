@@ -15,7 +15,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ t }) => {
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <button className="bg-white text-[#228B22] px-8 py-4 rounded-md font-black uppercase tracking-widest hover:bg-[#1A2B3C] hover:text-white transition-all shadow-xl">
                         <a
-                            href="https://zalo.me/0786788837"
+                            href="https://zalo.me/0359 959 831"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-14 h-14 rounded-full bg-[#0068FF] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 relative group"

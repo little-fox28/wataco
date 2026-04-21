@@ -56,9 +56,9 @@ const StaggerItem = forwardRef<HTMLDivElement, { children: ReactNode; className?
 const dailyActivitiesMeta = [
     { id: 1, img: "/team_building.jpg", span: "md:col-span-2 md:row-span-2" },
     { id: 2, img: "https://images.unsplash.com/photo-1759922378222-47ad736a174d?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-1" },
-    { id: 3, img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-1" },
+    { id: 3, img: "/internal_tranning.jpg", span: "md:col-span-1 md:row-span-1" },
     { id: 4, img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-2" },
-    { id: 5, img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800", span: "md:col-span-2 md:row-span-1" },
+    // { id: 5, img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800", span: "md:col-span-2 md:row-span-1" },
     { id: 6, img: "https://images.unsplash.com/photo-1762944082537-bf904828a5c9?auto=format&fit=crop&q=80&w=800", span: "md:col-span-2 md:row-span-1" },
 ];
 

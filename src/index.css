@@ -1,6 +1,16 @@
 @import url('[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap)');
 @import "tailwindcss";
 
+/*
+  Global Design Guideline: Remove underlines from all hyperlinks
+  Enforced via Tailwind base layer - no underlines on any anchor tags
+  This applies globally across all pages and components
+*/
+@layer base {
+  a {
+    @apply no-underline hover:no-underline focus:no-underline active:no-underline;
+  }
+}
 
 @theme {
   --color-jerseyDark: #163300;

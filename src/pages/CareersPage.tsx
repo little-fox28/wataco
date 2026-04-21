@@ -11,6 +11,7 @@ import {
     TrendingUp
 } from 'lucide-react';
 import { forwardRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
 
 // --- SHARED STYLES ---
@@ -74,6 +75,12 @@ interface JobCardProps {
 
 const JobCard = forwardRef<HTMLDivElement, JobCardProps>(({ job }, ref) => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const handleCardClick = () => {
+        navigate(`/posts/${job.slug}`);
+    };
+
     return (
         <motion.div
             ref={ref}
@@ -82,7 +89,8 @@ const JobCard = forwardRef<HTMLDivElement, JobCardProps>(({ job }, ref) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="bg-white p-6 rounded-lg border border-gray-100 hover:border-[#228B22] hover:shadow-lg transition-all duration-300 group relative"
+            onClick={handleCardClick}
+            className="bg-white p-6 rounded-lg border border-gray-100 hover:border-[#228B22] hover:shadow-lg transition-all duration-300 group relative cursor-pointer"
         >
             {job.urgent && (
                 <span className="absolute top-4 right-4 bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider border border-red-100 animate-pulse">
@@ -108,9 +116,9 @@ const JobCard = forwardRef<HTMLDivElement, JobCardProps>(({ job }, ref) => {
 
             <div className="flex items-center justify-between pt-4 border-t border-gray-50">
                 <span className="text-sm font-bold text-[#1A2B3C] font-mono">{job.salary}</span>
-                <button className="text-xs font-black uppercase tracking-widest text-[#228B22] flex items-center group/btn">
+                <span className="text-xs font-black uppercase tracking-widest text-[#228B22] flex items-center group/btn">
                     {t.careersPage.jobCard.apply} <ArrowRight size={16} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                </span>
             </div>
         </motion.div>
     )
@@ -272,13 +280,13 @@ const JobBoardSection = () => {
                     </AnimatePresence>
                 </div>
 
-                <div className="mt-12 text-center p-8 bg-[#F0FDF4] rounded-xl border border-[#DCFCE7]">
+                {/* <div className="mt-12 text-center p-8 bg-[#F0FDF4] rounded-xl border border-[#DCFCE7]">
                     <h4 className="font-bold text-[#1A2B3C] mb-2">{t.careersPage.jobBoard.ctaTitle}</h4>
                     <p className="text-sm text-gray-600 mb-4">{t.careersPage.jobBoard.ctaDescription}</p>
                     <a href="" className="inline-flex items-center text-[#228B22] font-black uppercase tracking-widest text-xs border-b-2 border-[#228B22] pb-1 hover:text-[#1A2B3C] hover:border-[#1A2B3C] transition-all">
                         {t.careersPage.jobBoard.ctaButton} <ArrowRight size={14} className="ml-2" />
                     </a>
-                </div>
+                </div> */}
 
             </div>
         </section>

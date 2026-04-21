@@ -1,15 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import {
     ArrowRight, Calendar,
-    ChevronLeft,
-    ChevronRight,
     Clock, Eye,
     Search
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
-import type { Category, ExpertArticle, HeroSlide, HighlightWatacoProps, NewsItem, NewsListItemProps, SidebarWidgetProps, TrendingNewsItem } from '../types';
+import type { Category, HeroSlide, HighlightWatacoProps, NewsItem, NewsListItemProps, SidebarWidgetProps, TrendingNewsItem } from '../types';
 
 // --- SHARED STYLES ---
 const FontStyles = () => (
@@ -67,89 +65,24 @@ const HighlightWataco: React.FC<HighlightWatacoProps> = ({ text }) => {
     );
 };
 
-import { allNewsPosts } from '../data/posts/news';
-
 // --- DATA FROM WATACO WORDPRESS EXPORT ---
-const heroSlides: HeroSlide[] = allNewsPosts.slice(0, 3).map(post => ({
-    id: post.id,
-    title: post.title,
-    summary: post.summary,
-    image: post.heroImage,
-    date: post.date,
-    slug: post.slug
-}));
-
-const newsFeed: NewsItem[] = allNewsPosts.map(post => ({
-    id: post.id,
-    title: post.title,
-    summary: post.summary,
-    category: post.category,
-    categoryId: post.categoryId,
-    date: post.date,
-    views: post.views,
-    image: post.heroImage,
-    slug: post.slug
-}));
-
-const trendingNews: TrendingNewsItem[] = allNewsPosts.slice(0, 3).map(post => ({
-    id: post.id,
-    title: post.title,
-    date: post.date.split('/').slice(0, 2).join('/'),
-    slug: post.slug
-}));
-
-// Expanded Expert Data for Slider
-const expertArticles: ExpertArticle[] = [
-    {
-        id: 1,
-        title: "Tối ưu hóa hiệu suất tấm pin trong điều kiện bức xạ thấp",
-        desc: "Phân tích kỹ thuật chuyên sâu về tác động của bóng râm cục bộ và giải pháp từ công nghệ Half-cut cells kết hợp với Optimizers.",
-        img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 2,
-        title: "Hệ thống lưu trữ năng lượng (BESS) cho nhà máy công nghiệp",
-        desc: "Đánh giá hiệu quả kinh tế kỹ thuật của việc tích hợp BESS để cắt giảm phụ tải đỉnh và đảm bảo an ninh năng lượng.",
-        img: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 3,
-        title: "Tiêu chuẩn an toàn cháy nổ cho hệ thống điện mặt trời áp mái",
-        desc: "Cập nhật các quy định mới nhất của PCCC và các biện pháp kỹ thuật bắt buộc để đảm bảo an toàn tuyệt đối cho nhà xưởng.",
-        img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 4,
-        title: "Ứng dụng AI trong giám sát và vận hành hệ thống điện mặt trời",
-        desc: "Sử dụng trí tuệ nhân tạo để dự báo sản lượng điện và phát hiện sớm các sự cố kỹ thuật tiềm ẩn.",
-        img: "https://images.unsplash.com/photo-1555664424-778a69022365?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 5,
-        title: "Tái chế tấm pin năng lượng mặt trời: Thách thức và giải pháp",
-        desc: "Nghiên cứu về vòng đời của tấm pin và các phương pháp xử lý rác thải điện tử bền vững trong tương lai.",
-        img: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-        id: 6,
-        title: "Mô hình Microgrid cho các khu công nghiệp biệt lập",
-        desc: "Giải pháp lưới điện thông minh quy mô nhỏ giúp các khu công nghiệp tự chủ năng lượng và giảm phụ thuộc lưới điện quốc gia.",
-        img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=600"
-    }
-]
+// Data moved inside component
 
 // --- COMPONENTS ---
 
 // 1. Hero Carousel Component
-const HeroCarousel = ({ heroBadge }: { heroBadge: string }) => {
+const HeroCarousel = ({ heroBadge, heroSlides }: { heroBadge: string, heroSlides: HeroSlide[] }) => {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
+        if (heroSlides.length === 0) return;
         const timer = setInterval(() => {
             setCurrent(prev => (prev + 1) % heroSlides.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [heroSlides.length]);
+
+    if (heroSlides.length === 0) return null;
 
     return (
         <div className="relative h-100 lg:h-150 overflow-hidden bg-[#1A2B3C] text-white">
@@ -265,9 +198,39 @@ export default function NewsPage() {
     const { t } = useTranslation();
     const np = t.newsPage;
 
+    const allNewsPosts = t.newsPosts || [];
+
+    const heroSlides: HeroSlide[] = allNewsPosts.slice(0, 3).map(post => ({
+        id: post.id,
+        title: post.title,
+        summary: post.summary,
+        image: post.heroImage,
+        date: post.date,
+        slug: post.slug
+    }));
+
+    const newsFeed: NewsItem[] = allNewsPosts.map(post => ({
+        id: post.id,
+        title: post.title,
+        summary: post.summary,
+        category: post.category,
+        categoryId: post.categoryId,
+        date: post.date,
+        views: post.views,
+        image: post.heroImage,
+        slug: post.slug
+    }));
+
+    const trendingNews: TrendingNewsItem[] = allNewsPosts.slice(0, 3).map(post => ({
+        id: post.id,
+        title: post.title,
+        date: post.date.split('/').slice(0, 2).join('/'),
+        slug: post.slug
+    }));
+
     const categories: Category[] = [
-        { id: 'all', label: np.categoryAll, count: 7 },
-        { id: 'project', label: np.categoryProject, count: 7 },
+        { id: 'all', label: np.categoryAll, count: allNewsPosts.length },
+        { id: 'project', label: np.categoryProject, count: allNewsPosts.filter(p => p.categoryId === 'project').length },
     ];
 
     const [activeCategory, setActiveCategory] = useState('all');
@@ -275,7 +238,6 @@ export default function NewsPage() {
     const [visibleCount, setVisibleCount] = useState(5);
 
     // Expert Slider State
-    const [expertIndex, setExpertIndex] = useState(0);
 
     const filteredNews = newsFeed.filter(item => {
         const matchesCategory = activeCategory === 'all' || item.categoryId === activeCategory;
@@ -285,21 +247,12 @@ export default function NewsPage() {
 
     const visibleNews = filteredNews.slice(0, visibleCount);
 
-    const handleExpertSlide = (dir: 'next' | 'prev') => {
-        const maxIndex = expertArticles.length - 1;
-        if (dir === 'next') {
-            setExpertIndex(prev => prev >= maxIndex ? 0 : prev + 1);
-        } else {
-            setExpertIndex(prev => prev <= 0 ? maxIndex : prev - 1);
-        }
-    };
-
     return (
         <div className="min-h-screen bg-[#F8FAFC]">
             <FontStyles />
 
             {/* --- HERO SLIDER --- */}
-            <HeroCarousel heroBadge={np.heroBadge} />
+            <HeroCarousel heroBadge={np.heroBadge} heroSlides={heroSlides} />
 
             <div className="max-w-360 mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -416,84 +369,6 @@ export default function NewsPage() {
                     </div>
                 </div>
             </div>
-
-            {/* --- EXPERT CORNER SLIDER (Updated) --- */}
-            <section className="py-20 bg-[#F3F4F6] text-[#1A2B3C] relative overflow-hidden border-t border-gray-200">
-                <div className="max-w-360 mx-auto px-6 relative z-10">
-                    <div className="flex items-center justify-between mb-12">
-                        <div>
-                            <span className="text-[#228B22] text-xs font-black uppercase tracking-[0.3em] block mb-2">{np.expertSubtitle}</span>
-                            <h2 className="text-3xl lg:text-4xl font-black font-heading text-[#1A2B3C]">{np.expertTitle}</h2>
-                        </div>
-
-                        {/* Navigation Controls */}
-                        <div className="flex gap-2">
-                            <button onClick={() => handleExpertSlide('prev')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
-                                <ChevronLeft size={20} />
-                            </button>
-                            <button onClick={() => handleExpertSlide('next')} className="p-3 rounded-full border border-gray-300 hover:bg-[#1A2B3C] hover:text-white hover:border-[#1A2B3C] transition-colors">
-                                <ChevronRight size={20} />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Slider Track */}
-                    <div className="overflow-hidden">
-                        <motion.div
-                            className="flex gap-8"
-                            animate={{ x: `-${expertIndex * 100}%` }}
-                        >
-                            {/* We map a larger array to allow sliding */}
-                            <div className="flex gap-8 w-full transition-transform duration-500 ease-out"
-                                style={{ transform: `translateX(-${expertIndex * (100 / 1)}%)` }}
-                            >
-                            </div>
-                        </motion.div>
-
-                        {/* ROBUST CSS SCROLL SNAP IMPLEMENTATION */}
-                        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
-                            ref={(el) => {
-                                if (el) {
-                                    // Simple Imperative scroll based on index
-                                    const itemWidth = el.offsetWidth / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1);
-                                    el.scrollLeft = expertIndex * itemWidth;
-                                }
-                            }}
-                        >
-                            {expertArticles.map((article) => (
-                                <div key={article.id} className="min-w-full mb-1 md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
-                                    <div className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-transparent hover:border-[#228B22] flex flex-col h-full">
-                                        <div className="h-60 overflow-hidden relative">
-                                            <img
-                                                src={article.img}
-                                                alt={article.title}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                                loading="lazy"
-                                            />
-                                            <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                            <div className="absolute top-4 right-4 bg-[#1A2B3C] text-[#FFD700] text-[9px] font-bold px-3 py-1.5 rounded-full shadow-lg border border-[#FFD700]/20">
-                                                Tech Insight
-                                            </div>
-                                        </div>
-                                        <div className="p-8 flex flex-col grow">
-                                            <h4 className="text-xl font-bold text-[#1A2B3C] leading-snug mb-4 group-hover:text-[#228B22] transition-colors line-clamp-2">
-                                                {article.title}
-                                            </h4>
-                                            <p className="text-sm text-gray-500 line-clamp-3 mb-6 leading-relaxed grow">
-                                                {article.desc}
-                                            </p>
-                                            <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#228B22] text-xs font-black uppercase tracking-wider group/link">
-                                                {np.readResearch} <ArrowRight size={14} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
         </div>
     );
 }
