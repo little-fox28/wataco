@@ -1,4 +1,4 @@
-import{j as e,A as u,m}from"./framer-motion-BULEuaIA.js";import{r as i,c as p}from"./react-vendor-ENFamPgn.js";import{u as c}from"./index-CGYtnTti.js";import{x as b,y as f,z as j,G as v,T as y,q as w,b as N,I as C,J as B,r as P}from"./lucide-react-BNlNfnBB.js";const k=()=>e.jsx("style",{children:`
+import{j as e,A as u,m}from"./framer-motion-BULEuaIA.js";import{r as i,c as p}from"./react-vendor-ENFamPgn.js";import{u as c}from"./index-BRHpFg3X.js";import{x as b,y as f,z as j,G as v,T as y,q as w,b as N,I as C,J as B,r as P}from"./lucide-react-BNlNfnBB.js";const k=()=>e.jsx("style",{children:`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap');
     
     :root {
