@@ -57,7 +57,7 @@ const dailyActivitiesMeta = [
     { id: 1, img: "about-us/team_building.jpg", span: "md:col-span-2 md:row-span-2" },
     { id: 2, img: "about-us/site_supervision.jpg", span: "md:col-span-1 md:row-span-1" },
     { id: 3, img: "about-us/internal_training.jpg", span: "md:col-span-1 md:row-span-1" },
-    { id: 4, img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800", span: "md:col-span-1 md:row-span-2" },
+    { id: 4, img: "about-us/strategy_meeting.jpg", span: "md:col-span-1 md:row-span-2" },
     // { id: 5, img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800", span: "md:col-span-2 md:row-span-1" },
     { id: 6, img: "about-us/sport_activities.jpg", span: "md:col-span-2 md:row-span-2" },
 ];

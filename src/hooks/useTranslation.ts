@@ -298,7 +298,7 @@ export const translations: Translations = {
     getQuote: "NHẬN BÁO GIÁ",
     viewAllArticles: "Tất cả bài viết",
     footer: {
-      description: "Mang lại giá trị bền vững cho Tương lai.",
+      description: "Mang lại giá trị bền vững cho tương lai.",
       solutionsTitle: "Giải pháp",
       solutions: [
         "Tổng thầu EPC",
